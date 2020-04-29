@@ -1,0 +1,15 @@
+html {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: #4d4d4d;
+  background-color: #fbfbfb;
+  font-family: Georgia, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  line-height: 150%;
+}

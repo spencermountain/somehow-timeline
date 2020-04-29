@@ -1,2 +1,7 @@
-# somehow-timeline
-a svelte component for layout with time as y-axis
+to create a svelte component really quickly:
+
+clone of `sveltejs/template` with spencer's preferences.
+
+```bash
+npx degit spencermountain/spencer-svelte
+```
