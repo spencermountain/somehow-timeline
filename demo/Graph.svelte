@@ -1,5 +1,5 @@
 <script>
-  import { Timeline, Days, Ticks } from '../src'
+  import { Timeline, DayDots, MonthTicks } from '../src'
   let year = 2012
 
   let data = {
@@ -38,10 +38,10 @@
 <Timeline>
   <div class="part label" style="">{year}</div>
   <div class="part">
-    <Ticks {days} />
+    <MonthTicks {days} />
   </div>
   <div class="part line" />
   <div class="part" style=" ">
-    <Days {days} {data} />
+    <DayDots {days} {data} />
   </div>
 </Timeline>
