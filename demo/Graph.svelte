@@ -1,47 +1,28 @@
 <script>
-  import { Timeline, DayDots, MonthTicks } from '../src'
-  let year = 2012
-
-  let data = {
-    '2012-02-02': '*****',
-    '2012-03-02': '*********',
-    '2012-04-02': '*****',
-  }
-  let days = []
   import spacetime from 'spacetime'
-  let start = spacetime
-    .now()
+  import { Timeline, DayDots, MonthTicks, Labels, Lines } from '../src'
+
+  let year = 2012
+  let start = spacetime()
     .year(year)
     .startOf('year')
-  while (start.year() <= year) {
-    start = start.add(1, 'day')
-    days.push(start.format('iso-short'))
-  }
+  let end = start.endOf('year')
+
+  let dotData = [
+    { value: '2012-02-02', data: ['*****'] },
+    { value: '2012-03-02', data: ['*********'] },
+    { value: '2012-04-02', data: ['*****'] },
+  ]
+  let lineData = [{ start: start, end: end }]
 </script>
 
 <style>
-  .line {
-    position: relative;
-    border-left: 5px solid steelblue;
-  }
-  .label {
-    margin-left: 25px !important;
-    font-size: 20px;
-  }
-  .part {
-    min-width: 2px;
-    margin: 5px;
-    min-height: 100%;
-  }
+
 </style>
 
-<Timeline>
-  <div class="part label" style="">{year}</div>
-  <div class="part">
-    <MonthTicks {days} />
-  </div>
-  <div class="part line" />
-  <div class="part" style=" ">
-    <DayDots {days} {data} />
-  </div>
+<Timeline {start} {end} title="hi">
+  <Labels data={[year]} />
+  <MonthTicks />
+  <Lines data={lineData} />
+  <DayDots data={dotData} />
 </Timeline>

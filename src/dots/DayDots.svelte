@@ -11,7 +11,7 @@
   }
 </style>
 
-<div>
+<div class="part">
   {#each days as iso, i}
     <div class="day">
       {#if data[iso]}

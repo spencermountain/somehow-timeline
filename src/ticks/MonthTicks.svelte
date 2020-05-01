@@ -1,24 +1,37 @@
 <script>
-  export let days = []
-  export let data = []
+  import spacetime from 'spacetime'
+  import { getContext } from 'svelte'
+  let start = getContext('start')
+  const end = getContext('end')
+  const scale = getContext('scale')
+  start = start.minus(1, 'second')
+  let arr = spacetime(start).every('months', end)
+  let months = arr.map(s => {
+    let y = scale(s.epoch)
+    console.log(y)
+    return {
+      value: y,
+      label: s.format('{month-short}'),
+    }
+  })
 </script>
 
 <style>
-  .day {
-    font-size: 8px;
-    margin: 0px;
-    height: 4px;
+  .container {
+    position: relative;
+    min-width: 40px;
+  }
+  .label {
+    position: absolute;
+    white-space: nowrap;
+    text-align: left;
+    color: grey;
+    font-size: 10px;
   }
 </style>
 
-<div>
-  {#each days as iso, i}
-    <div class="day">
-      {#if data[iso]}
-        <span>{data[iso]}</span>
-      {:else}
-        <span />
-      {/if}
-    </div>
+<div class="part container">
+  {#each months as month, i}
+    <div class="label" style="top:{month.value}px;">{month.label} -</div>
   {/each}
 </div>
