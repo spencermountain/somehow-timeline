@@ -16,8 +16,8 @@
 </style>
 
 <Timeline {start} {end} height={2800} title="2019">
-  <!-- <Labels data={[{ label: 'hi', value: 'May 1 2019' }]} /> -->
   <MonthTicks />
+  <Labels data={[{ label: '- 12.0.0 - ', value: 'Nov 28 2019' }]} />
   <Lines data={lineData} />
   <DayDots data={dotData} />
 </Timeline>
