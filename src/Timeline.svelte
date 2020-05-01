@@ -1,14 +1,16 @@
 <script>
   import { setContext } from 'svelte'
-  import linear from './_linear'
+  import colors from './_lib/colors'
+  import scale from './_lib/scale'
   export let start = null
   export let end = null
   export let height = 800
   export let title = ''
   setContext('start', start)
   setContext('end', end)
+  setContext('colors', colors)
   setContext('scale', val => {
-    return linear(
+    return scale(
       {
         world: [0, height],
         minmax: [start.epoch, end.epoch],
@@ -28,14 +30,12 @@
   .container {
     display: inline-flex;
     flex-direction: column;
-    border: 1px solid steelblue;
   }
   .slot {
     position: relative;
     display: inline-flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    border: 1px solid darkred;
   }
 </style>
 
