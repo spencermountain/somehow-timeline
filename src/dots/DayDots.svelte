@@ -10,12 +10,9 @@
     if (d.data && !d.dots) {
       d.dots = d.data
     }
-    d.dots = d.dots.map(dot => {
-      dot.color = colors[dot.color] || dot.color
-      return dot
-    })
     return d
   })
+  console.log(data)
 </script>
 
 <style>
@@ -23,7 +20,7 @@
     position: relative;
   }
   .day {
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -45,7 +42,7 @@
       {#each d.dots as dot}
         <div
           class="dot"
-          title={dot.label}
+          title={dot.label + '  ' + d.label}
           style="background-color:{dot.color || 'steelblue'};" />
       {/each}
     </div>
