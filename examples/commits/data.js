@@ -1,5 +1,5 @@
-import commits from './data/2019-commits'
-import colors from '../src/_lib/colors'
+import commits from './_2019'
+import colors from '../../src/_lib/colors'
 const mapping = {
   compromise: colors.tulip,
   efrt: colors.tulip,

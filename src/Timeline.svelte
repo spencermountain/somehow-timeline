@@ -1,11 +1,15 @@
 <script>
   import { setContext } from 'svelte'
+  import spacetime from 'spacetime'
   import colors from './_lib/colors'
   import scale from './_lib/scale'
   export let start = null
   export let end = null
   export let height = 800
   export let title = ''
+  start = spacetime(start)
+  end = spacetime(end)
+  setContext('height', height)
   setContext('start', start)
   setContext('end', end)
   setContext('colors', colors)

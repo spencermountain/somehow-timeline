@@ -3,9 +3,9 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
-// import { pug, scss } from 'svelte-preprocess'
 
-const production = !process.env.ROLLUP_WATCH
+const example = 'wikipedia'
+const production = false
 
 function serve() {
   let started = false
@@ -23,7 +23,7 @@ function serve() {
 }
 
 export default {
-  input: './demo/app.js',
+  input: `./examples/${example}/app.js`,
   output: {
     sourcemap: false,
     format: 'iife',

@@ -1,6 +1,6 @@
 <script>
   import spacetime from 'spacetime'
-  import { Timeline, DayDots, MonthTicks, Labels, Lines } from '../src'
+  import { Timeline, DayDots, MonthTicks, Labels, Lines } from '../../src'
   import { dotData } from './data'
   let year = 2019
   let start = spacetime()
