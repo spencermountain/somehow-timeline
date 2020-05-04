@@ -2,7 +2,7 @@
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
   let start = getContext('start')
-  const end = getContext('end')
+  let end = getContext('end')
   const scale = getContext('scale')
   start = start.minus(1, 'second')
   let arr = spacetime(start).every('months', end)

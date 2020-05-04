@@ -12,7 +12,6 @@
     }
     return d
   })
-  console.log(data)
 </script>
 
 <style>

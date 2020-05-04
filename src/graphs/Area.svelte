@@ -1,12 +1,33 @@
 <script>
   import spacetime from 'spacetime'
-  import makeScale from './makeScale'
+  import makeTicks from 'somehow-ticks'
+  import scale from '../_lib/scale'
   import * as d3Shape from 'd3-shape'
   import { getContext } from 'svelte'
+  let start = getContext('start')
+  let end = getContext('end')
   export let data = []
   export let width = 400
+  export let showTicks = true
   const yScale = getContext('scale')
-  const xScale = makeScale(data, width)
+
+  // find max x
+  let max = 0
+  data.forEach(o => {
+    if (o.x > max) {
+      max = o.x
+    }
+  })
+
+  let xScale = val => {
+    return scale(
+      {
+        world: [0, width],
+        minmax: [0, max],
+      },
+      val
+    )
+  }
 
   let points = data.map(obj => {
     let d = spacetime(obj.value)
@@ -28,6 +49,11 @@
     .x(d => d.x)
     .y(d => d.y)
     .curve(d3Shape.curveMonotoneX)(points)
+
+  let ticks = makeTicks(0, max, 4)
+  if (!showTicks) {
+    ticks = []
+  }
 </script>
 
 <style>
@@ -42,6 +68,16 @@
     overflow: hidden;
     vector-effect: non-scaling-stroke;
   }
+  .ticks {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+  }
+  .tick {
+    position: absolute;
+    color: grey;
+    font-size: 12px;
+  }
 </style>
 
 <div class="part container" style="width:{width}px;">
@@ -54,4 +90,16 @@
       fill-opacity="0.5" />
     <path d={line} fill="none" stroke="steelblue" stroke-width="3px" />
   </svg>
+  <div class="ticks">
+    {#each ticks as tick}
+      <div
+        class="tick"
+        style="left:{tick.value * 100}%; transform:translate(5px)">
+        ∣
+      </div>
+      <div class="tick" style="top:12px; left:{tick.value * 100}%;">
+        {tick.label}
+      </div>
+    {/each}
+  </div>
 </div>
