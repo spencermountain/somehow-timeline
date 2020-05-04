@@ -41,6 +41,7 @@
     color: grey;
     font-size: 10px;
     border-bottom: 1px solid grey;
+    transform: translate(0px, -8px);
   }
 </style>
 

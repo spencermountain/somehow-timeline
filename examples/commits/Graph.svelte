@@ -16,7 +16,7 @@
 <Timeline {start} {end} height={2800} title="2019">
   <Ticks every="month" />
   <Column width="90px">
-    <Label
+    <!-- <Label
       label="(kingsville)"
       value="may 18 2019"
       color="lightgrey"
@@ -45,7 +45,7 @@
       label="(florida)"
       value="dec 9 2019"
       color="lightgrey"
-      opacity="0.5" />
+      opacity="0.5" /> -->
     <Label label="spacetime v6" value="August 12, 2019" color="orange" />
     <Label label="portfolio" value="June 29 2019" color="green" />
     <Label label="v12 release" value="Nov 28 2019" color="tulip" />

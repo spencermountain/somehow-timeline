@@ -27,7 +27,8 @@
 <style>
   :global(.part) {
     min-width: 2px;
-    margin: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
     min-height: 100%;
     /* background-color: lightgrey; */
   }
@@ -41,10 +42,13 @@
     flex-direction: row;
     flex-wrap: nowrap;
   }
+  .title {
+    margin: 12px;
+  }
 </style>
 
 <div class="container">
-  <div>{title}</div>
+  <div class="title">{title}</div>
   <div class="slot" style="min-height:{height}px">
     <slot />
   </div>

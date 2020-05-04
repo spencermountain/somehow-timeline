@@ -1,5 +1,5 @@
 <script>
-  import { Timeline, Ticks, Area, Label } from '../../src'
+  import { Timeline, Ticks, Area, WideLabel } from '../../src'
   import { getContext } from 'svelte'
   import spacetime from 'spacetime'
   const height = getContext('height')
@@ -21,8 +21,8 @@
 </style>
 
 <Timeline {start} {end} {height} {title}>
-  <Ticks />
+  <Ticks every="year" />
   <Area {data} />
-  <Label date="Aug 19 2004" label="Google's IPO" />
-  <Label date="June 29, 2007" label="iPhone released" />
+  <WideLabel date="Aug 19 2004" label="Google IPO" />
+  <WideLabel date="June 29, 2007" label="iPhone release" />
 </Timeline>

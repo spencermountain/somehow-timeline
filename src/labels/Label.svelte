@@ -4,6 +4,7 @@
   import c from 'spencer-color'
   export let label = ''
   export let align = 'right'
+  export let side = 'right'
   export let opacity = '1.0'
   export let value = null
   export let color = '#AB5850'
@@ -20,7 +21,7 @@
   .label {
     position: absolute;
     width: 100%;
-    padding: 5px 5px 5px 0px;
+    padding: 5px 5px 5px 5px;
     font-size: 12px;
     color: grey;
   }
@@ -28,7 +29,7 @@
 
 <div
   class="label"
-  style="top:{obj.value}px; opacity:{opacity}; border-right: 4px solid {color};
+  style="top:{obj.value}px; opacity:{opacity}; border-{side}: 4px solid {color};
   color:{color}; text-align: {align};">
   {@html obj.label}
 </div>

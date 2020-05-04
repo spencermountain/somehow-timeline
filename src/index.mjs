@@ -1,5 +1,6 @@
 export { default as Timeline } from './Timeline.svelte'
 export { default as Line } from './lines/Line.svelte'
+export { default as Now } from './lines/Now.svelte'
 export { default as DayDots } from './dots/DayDots.svelte'
 
 export { default as Ticks } from './ticks/Ticks.svelte'
