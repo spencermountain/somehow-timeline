@@ -39,9 +39,6 @@ export let dotData = Object.keys(commits).map((date) => {
     label: date,
     dots: commits[date].map((repo) => {
       let color = mapping[repo] || 'grey'
-      if (!mapping[repo]) {
-        console.log(repo)
-      }
       return { color: color, label: repo }
     }),
   }

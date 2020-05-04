@@ -4,6 +4,7 @@
   import { getContext } from 'svelte'
   const scale = getContext('scale')
   export let data = []
+  // todo: make sure every day appears
   data = data.map(d => {
     d.value = spacetime(d.value).epoch
     d.value = scale(d.value)
@@ -17,9 +18,14 @@
 <style>
   .container {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-self: stretch;
   }
   .day {
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -37,7 +43,7 @@
 
 <div class="part container">
   {#each data as d, i}
-    <div class="day" style="top:{d.value}px;">
+    <div class="day" style="">
       {#each d.dots as dot}
         <div
           class="dot"
