@@ -6,6 +6,7 @@
   .line {
     position: relative;
     border-left: 5px solid steelblue;
+    margin: 0px;
   }
 </style>
 
