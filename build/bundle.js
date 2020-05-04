@@ -5539,17 +5539,18 @@ var app = (function () {
 
     function create_fragment$4(ctx) {
     	let div;
-    	let raw_value = /*obj*/ ctx[2].label + "";
+    	let raw_value = /*obj*/ ctx[3].label + "";
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			attr_dev(div, "class", "label svelte-l4dxpg");
-    			set_style(div, "top", /*obj*/ ctx[2].value + "px");
+    			attr_dev(div, "class", "label svelte-8fu7ra");
+    			set_style(div, "top", /*obj*/ ctx[3].value + "px");
+    			set_style(div, "opacity", /*opacity*/ ctx[2]);
     			set_style(div, "border-right", "4px solid " + /*color*/ ctx[0]);
     			set_style(div, "color", /*color*/ ctx[0]);
     			set_style(div, "text-align", /*align*/ ctx[1]);
-    			add_location(div, file$4, 26, 0, 514);
+    			add_location(div, file$4, 28, 0, 557);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5559,6 +5560,10 @@ var app = (function () {
     			div.innerHTML = raw_value;
     		},
     		p: function update(ctx, [dirty]) {
+    			if (dirty & /*opacity*/ 4) {
+    				set_style(div, "opacity", /*opacity*/ ctx[2]);
+    			}
+
     			if (dirty & /*color*/ 1) {
     				set_style(div, "border-right", "4px solid " + /*color*/ ctx[0]);
     			}
@@ -5592,6 +5597,7 @@ var app = (function () {
     function instance$4($$self, $$props, $$invalidate) {
     	let { label = "" } = $$props;
     	let { align = "right" } = $$props;
+    	let { opacity = "1.0" } = $$props;
     	let { value = null } = $$props;
     	let { color = "#AB5850" } = $$props;
     	color = spencerColor.colors[color] || color;
@@ -5602,7 +5608,7 @@ var app = (function () {
     		value: scale(src(value).epoch)
     	};
 
-    	const writable_props = ["label", "align", "value", "color"];
+    	const writable_props = ["label", "align", "opacity", "value", "color"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Label> was created with unknown prop '${key}'`);
@@ -5612,9 +5618,10 @@ var app = (function () {
     	validate_slots("Label", $$slots, []);
 
     	$$self.$set = $$props => {
-    		if ("label" in $$props) $$invalidate(3, label = $$props.label);
+    		if ("label" in $$props) $$invalidate(4, label = $$props.label);
     		if ("align" in $$props) $$invalidate(1, align = $$props.align);
-    		if ("value" in $$props) $$invalidate(4, value = $$props.value);
+    		if ("opacity" in $$props) $$invalidate(2, opacity = $$props.opacity);
+    		if ("value" in $$props) $$invalidate(5, value = $$props.value);
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     	};
 
@@ -5624,6 +5631,7 @@ var app = (function () {
     		c: spencerColor,
     		label,
     		align,
+    		opacity,
     		value,
     		color,
     		scale,
@@ -5631,24 +5639,32 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("label" in $$props) $$invalidate(3, label = $$props.label);
+    		if ("label" in $$props) $$invalidate(4, label = $$props.label);
     		if ("align" in $$props) $$invalidate(1, align = $$props.align);
-    		if ("value" in $$props) $$invalidate(4, value = $$props.value);
+    		if ("opacity" in $$props) $$invalidate(2, opacity = $$props.opacity);
+    		if ("value" in $$props) $$invalidate(5, value = $$props.value);
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
-    		if ("obj" in $$props) $$invalidate(2, obj = $$props.obj);
+    		if ("obj" in $$props) $$invalidate(3, obj = $$props.obj);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [color, align, obj, label, value];
+    	return [color, align, opacity, obj, label, value];
     }
 
     class Label extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$4, create_fragment$4, safe_not_equal, { label: 3, align: 1, value: 4, color: 0 });
+
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, {
+    			label: 4,
+    			align: 1,
+    			opacity: 2,
+    			value: 5,
+    			color: 0
+    		});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -5674,6 +5690,14 @@ var app = (function () {
     		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
+    	get opacity() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set opacity(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
     	get value() {
     		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
@@ -5691,22 +5715,23 @@ var app = (function () {
     	}
     }
 
-    /* src/labels/Labels.svelte generated by Svelte v3.21.0 */
+    /* src/Column.svelte generated by Svelte v3.21.0 */
 
-    const file$5 = "src/labels/Labels.svelte";
+    const file$5 = "src/Column.svelte";
 
     function create_fragment$5(ctx) {
     	let div;
     	let current;
-    	const default_slot_template = /*$$slots*/ ctx[1].default;
-    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[0], null);
+    	const default_slot_template = /*$$slots*/ ctx[2].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[1], null);
 
     	const block = {
     		c: function create() {
     			div = element("div");
     			if (default_slot) default_slot.c();
-    			attr_dev(div, "class", "part");
-    			add_location(div, file$5, 8, 0, 40);
+    			attr_dev(div, "class", "part column svelte-15zq0or");
+    			set_style(div, "width", /*width*/ ctx[0]);
+    			add_location(div, file$5, 10, 0, 106);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5722,9 +5747,13 @@ var app = (function () {
     		},
     		p: function update(ctx, [dirty]) {
     			if (default_slot) {
-    				if (default_slot.p && dirty & /*$$scope*/ 1) {
-    					default_slot.p(get_slot_context(default_slot_template, ctx, /*$$scope*/ ctx[0], null), get_slot_changes(default_slot_template, /*$$scope*/ ctx[0], dirty, null));
+    				if (default_slot.p && dirty & /*$$scope*/ 2) {
+    					default_slot.p(get_slot_context(default_slot_template, ctx, /*$$scope*/ ctx[1], null), get_slot_changes(default_slot_template, /*$$scope*/ ctx[1], dirty, null));
     				}
+    			}
+
+    			if (!current || dirty & /*width*/ 1) {
+    				set_style(div, "width", /*width*/ ctx[0]);
     			}
     		},
     		i: function intro(local) {
@@ -5754,33 +5783,53 @@ var app = (function () {
     }
 
     function instance$5($$self, $$props, $$invalidate) {
-    	const writable_props = [];
+    	let { width = "30px" } = $$props;
+    	const writable_props = ["width"];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Labels> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Column> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
-    	validate_slots("Labels", $$slots, ['default']);
+    	validate_slots("Column", $$slots, ['default']);
 
     	$$self.$set = $$props => {
-    		if ("$$scope" in $$props) $$invalidate(0, $$scope = $$props.$$scope);
+    		if ("width" in $$props) $$invalidate(0, width = $$props.width);
+    		if ("$$scope" in $$props) $$invalidate(1, $$scope = $$props.$$scope);
     	};
 
-    	return [$$scope, $$slots];
+    	$$self.$capture_state = () => ({ width });
+
+    	$$self.$inject_state = $$props => {
+    		if ("width" in $$props) $$invalidate(0, width = $$props.width);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [width, $$scope, $$slots];
     }
 
-    class Labels extends SvelteComponentDev {
+    class Column extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$5, create_fragment$5, safe_not_equal, {});
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, { width: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
-    			tagName: "Labels",
+    			tagName: "Column",
     			options,
     			id: create_fragment$5.name
     		});
+    	}
+
+    	get width() {
+    		throw new Error("<Column>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set width(value) {
+    		throw new Error("<Column>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
@@ -7221,12 +7270,88 @@ var app = (function () {
 
     /* examples/commits/Graph.svelte generated by Svelte v3.21.0 */
 
-    // (18:2) <Labels>
+    // (18:2) <Column width="90px">
     function create_default_slot_1(ctx) {
-    	let t;
+    	let t0;
+    	let t1;
+    	let t2;
+    	let t3;
+    	let t4;
+    	let t5;
+    	let t6;
+    	let t7;
     	let current;
 
     	const label0 = new Label({
+    			props: {
+    				label: "(kingsville)",
+    				value: "may 18 2019",
+    				color: "lightgrey",
+    				opacity: "0.5"
+    			},
+    			$$inline: true
+    		});
+
+    	const label1 = new Label({
+    			props: {
+    				label: "(huron)",
+    				value: "june 13 2019",
+    				color: "lightgrey",
+    				opacity: "0.5"
+    			},
+    			$$inline: true
+    		});
+
+    	const label2 = new Label({
+    			props: {
+    				label: "(camping)",
+    				value: "august 19 2019",
+    				color: "lightgrey",
+    				opacity: "0.5"
+    			},
+    			$$inline: true
+    		});
+
+    	const label3 = new Label({
+    			props: {
+    				label: "(niagara)",
+    				value: "march 28 2019",
+    				color: "lightgrey",
+    				opacity: "0.5"
+    			},
+    			$$inline: true
+    		});
+
+    	const label4 = new Label({
+    			props: {
+    				label: "(montreal)",
+    				value: "nov 8 2019",
+    				color: "lightgrey",
+    				opacity: "0.5"
+    			},
+    			$$inline: true
+    		});
+
+    	const label5 = new Label({
+    			props: {
+    				label: "(florida)",
+    				value: "dec 9 2019",
+    				color: "lightgrey",
+    				opacity: "0.5"
+    			},
+    			$$inline: true
+    		});
+
+    	const label6 = new Label({
+    			props: {
+    				label: "spacetime v6",
+    				value: "August 12, 2019",
+    				color: "orange"
+    			},
+    			$$inline: true
+    		});
+
+    	const label7 = new Label({
     			props: {
     				label: "portfolio",
     				value: "June 29 2019",
@@ -7235,7 +7360,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const label1 = new Label({
+    	const label8 = new Label({
     			props: {
     				label: "v12 release",
     				value: "Nov 28 2019",
@@ -7247,13 +7372,41 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			create_component(label0.$$.fragment);
-    			t = space();
+    			t0 = space();
     			create_component(label1.$$.fragment);
+    			t1 = space();
+    			create_component(label2.$$.fragment);
+    			t2 = space();
+    			create_component(label3.$$.fragment);
+    			t3 = space();
+    			create_component(label4.$$.fragment);
+    			t4 = space();
+    			create_component(label5.$$.fragment);
+    			t5 = space();
+    			create_component(label6.$$.fragment);
+    			t6 = space();
+    			create_component(label7.$$.fragment);
+    			t7 = space();
+    			create_component(label8.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(label0, target, anchor);
-    			insert_dev(target, t, anchor);
+    			insert_dev(target, t0, anchor);
     			mount_component(label1, target, anchor);
+    			insert_dev(target, t1, anchor);
+    			mount_component(label2, target, anchor);
+    			insert_dev(target, t2, anchor);
+    			mount_component(label3, target, anchor);
+    			insert_dev(target, t3, anchor);
+    			mount_component(label4, target, anchor);
+    			insert_dev(target, t4, anchor);
+    			mount_component(label5, target, anchor);
+    			insert_dev(target, t5, anchor);
+    			mount_component(label6, target, anchor);
+    			insert_dev(target, t6, anchor);
+    			mount_component(label7, target, anchor);
+    			insert_dev(target, t7, anchor);
+    			mount_component(label8, target, anchor);
     			current = true;
     		},
     		p: noop,
@@ -7261,17 +7414,45 @@ var app = (function () {
     			if (current) return;
     			transition_in(label0.$$.fragment, local);
     			transition_in(label1.$$.fragment, local);
+    			transition_in(label2.$$.fragment, local);
+    			transition_in(label3.$$.fragment, local);
+    			transition_in(label4.$$.fragment, local);
+    			transition_in(label5.$$.fragment, local);
+    			transition_in(label6.$$.fragment, local);
+    			transition_in(label7.$$.fragment, local);
+    			transition_in(label8.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(label0.$$.fragment, local);
     			transition_out(label1.$$.fragment, local);
+    			transition_out(label2.$$.fragment, local);
+    			transition_out(label3.$$.fragment, local);
+    			transition_out(label4.$$.fragment, local);
+    			transition_out(label5.$$.fragment, local);
+    			transition_out(label6.$$.fragment, local);
+    			transition_out(label7.$$.fragment, local);
+    			transition_out(label8.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			destroy_component(label0, detaching);
-    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(t0);
     			destroy_component(label1, detaching);
+    			if (detaching) detach_dev(t1);
+    			destroy_component(label2, detaching);
+    			if (detaching) detach_dev(t2);
+    			destroy_component(label3, detaching);
+    			if (detaching) detach_dev(t3);
+    			destroy_component(label4, detaching);
+    			if (detaching) detach_dev(t4);
+    			destroy_component(label5, detaching);
+    			if (detaching) detach_dev(t5);
+    			destroy_component(label6, detaching);
+    			if (detaching) detach_dev(t6);
+    			destroy_component(label7, detaching);
+    			if (detaching) detach_dev(t7);
+    			destroy_component(label8, detaching);
     		}
     	};
 
@@ -7279,7 +7460,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(18:2) <Labels>",
+    		source: "(18:2) <Column width=\\\"90px\\\">",
     		ctx
     	});
 
@@ -7298,8 +7479,9 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const labels = new Labels({
+    	const column = new Column({
     			props: {
+    				width: "90px",
     				$$slots: { default: [create_default_slot_1] },
     				$$scope: { ctx }
     			},
@@ -7313,7 +7495,7 @@ var app = (function () {
     		c: function create() {
     			create_component(ticks.$$.fragment);
     			t0 = space();
-    			create_component(labels.$$.fragment);
+    			create_component(column.$$.fragment);
     			t1 = space();
     			create_component(line.$$.fragment);
     			t2 = space();
@@ -7322,7 +7504,7 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			mount_component(ticks, target, anchor);
     			insert_dev(target, t0, anchor);
-    			mount_component(labels, target, anchor);
+    			mount_component(column, target, anchor);
     			insert_dev(target, t1, anchor);
     			mount_component(line, target, anchor);
     			insert_dev(target, t2, anchor);
@@ -7330,25 +7512,25 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const labels_changes = {};
+    			const column_changes = {};
 
     			if (dirty & /*$$scope*/ 8) {
-    				labels_changes.$$scope = { dirty, ctx };
+    				column_changes.$$scope = { dirty, ctx };
     			}
 
-    			labels.$set(labels_changes);
+    			column.$set(column_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(ticks.$$.fragment, local);
-    			transition_in(labels.$$.fragment, local);
+    			transition_in(column.$$.fragment, local);
     			transition_in(line.$$.fragment, local);
     			transition_in(daydots.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(ticks.$$.fragment, local);
-    			transition_out(labels.$$.fragment, local);
+    			transition_out(column.$$.fragment, local);
     			transition_out(line.$$.fragment, local);
     			transition_out(daydots.$$.fragment, local);
     			current = false;
@@ -7356,7 +7538,7 @@ var app = (function () {
     		d: function destroy(detaching) {
     			destroy_component(ticks, detaching);
     			if (detaching) detach_dev(t0);
-    			destroy_component(labels, detaching);
+    			destroy_component(column, detaching);
     			if (detaching) detach_dev(t1);
     			destroy_component(line, detaching);
     			if (detaching) detach_dev(t2);
@@ -7452,7 +7634,7 @@ var app = (function () {
     		spacetime: src,
     		Timeline,
     		DayDots,
-    		Labels,
+    		Column,
     		Label,
     		Line,
     		Ticks,
