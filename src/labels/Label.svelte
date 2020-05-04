@@ -24,11 +24,9 @@
   }
 </style>
 
-<div class="part">
-  <div
-    class="label"
-    style="top:{obj.value}px; border-right: 4px solid {color}; color:{color};
-    text-align: {align};">
-    {@html obj.label}
-  </div>
+<div
+  class="label"
+  style="top:{obj.value}px; border-right: 4px solid {color}; color:{color};
+  text-align: {align};">
+  {@html obj.label}
 </div>

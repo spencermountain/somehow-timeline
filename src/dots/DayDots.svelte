@@ -3,16 +3,33 @@
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
   const scale = getContext('scale')
+  let start = getContext('start').minus(1, 'second')
+  let end = getContext('end')
   export let data = []
-  // todo: make sure every day appears
+
   data = data.map(d => {
-    d.value = spacetime(d.value).epoch
-    d.value = scale(d.value)
-    if (d.data && !d.dots) {
-      d.dots = d.data
-    }
+    d.value = spacetime(d.value).format('iso-short')
     return d
   })
+
+  let days = start.every('day', end)
+  days = days.map(d => {
+    let iso = d.format('iso-short')
+    let found = data.find(o => o.value === iso) || {}
+    found.value = found.value || iso
+    found.dots = found.dots || []
+    return found
+  })
+
+  // todo: make sure every day appears
+  // data = data.map(d => {
+  //   d.value = spacetime(d.value).epoch
+  //   d.value = scale(d.value)
+  //   if (d.data && !d.dots) {
+  //     d.dots = d.data
+  //   }
+  //   return d
+  // })
 </script>
 
 <style>
@@ -30,7 +47,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     margin: 0px;
-    height: 15px;
+    max-height: 15px;
   }
   .dot {
     border-radius: 50%;
@@ -42,7 +59,7 @@
 </style>
 
 <div class="part container">
-  {#each data as d, i}
+  {#each days as d, i}
     <div class="day" style="">
       {#each d.dots as dot}
         <div
