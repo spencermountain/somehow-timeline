@@ -4,11 +4,15 @@
   import scale from '../_lib/scale'
   import * as d3Shape from 'd3-shape'
   import { getContext } from 'svelte'
+  import c from 'spencer-color'
   let start = getContext('start')
   let end = getContext('end')
   export let data = []
   export let width = 400
+  export let opacity = '1'
   export let showTicks = true
+  export let color = 'blue'
+  color = c.colors[color] || color
   const yScale = getContext('scale')
 
   // find max x
@@ -80,15 +84,15 @@
   }
 </style>
 
-<div class="part container" style="width:{width}px;">
+<div class="part container" style="width:{width}px; opacity:{opacity};">
   <svg preserveAspectRatio="none">
     <path
       d={path}
-      fill="steelblue"
-      stroke="steelblue"
+      fill={color}
+      stroke={color}
       stroke-width="0"
       fill-opacity="0.5" />
-    <path d={line} fill="none" stroke="steelblue" stroke-width="3px" />
+    <path d={line} fill="none" stroke={color} stroke-width="3px" />
   </svg>
   <div class="ticks">
     {#each ticks as tick}
