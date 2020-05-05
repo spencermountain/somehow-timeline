@@ -84,26 +84,15 @@
   }
 </style>
 
-<div class="part container" style="width:{width}px; opacity:{opacity};">
+<div class="container" style="width:{width}px; opacity:{opacity};">
   <svg preserveAspectRatio="none">
-    <path
-      d={path}
-      fill={color}
-      stroke={color}
-      stroke-width="0"
-      fill-opacity="0.5" />
+    <path d={path} fill={color} stroke={color} stroke-width="0" fill-opacity="0.5" />
     <path d={line} fill="none" stroke={color} stroke-width="3px" />
   </svg>
   <div class="ticks">
     {#each ticks as tick}
-      <div
-        class="tick"
-        style="left:{tick.value * 100}%; transform:translate(5px)">
-        ∣
-      </div>
-      <div class="tick" style="top:12px; left:{tick.value * 100}%;">
-        {tick.label}
-      </div>
+      <div class="tick" style="left:{tick.value * 100}%; transform:translate(5px)">∣</div>
+      <div class="tick" style="top:12px; left:{tick.value * 100}%;">{tick.label}</div>
     {/each}
   </div>
 </div>

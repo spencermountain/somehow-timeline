@@ -38,18 +38,15 @@
   }
   .container {
     /* width: 100%; */
+    z-index: 5;
   }
 </style>
 
 <div class="container">
   <div class="wide" style="top:{height}px;">{label}</div>
-  <div class="part">
-    <div
-      class="line"
-      style="border-left: {width} solid {color}; height:{height}px;" />
+  <div class="">
+    <div class="line" style="border-left: {width} solid {color}; height:{height}px;" />
     <!-- <div class="label" style="top:{height}px; color:lightgrey;">{label}</div> -->
-    <div
-      class="line future"
-      style="border-left: {width} dashed {color}; height:100%;" />
+    <div class="line future" style="border-left: {width} dashed {color}; height:100%;" />
   </div>
 </div>

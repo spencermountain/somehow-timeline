@@ -51,13 +51,8 @@
   }
 </style>
 
-<div class="part container">
+<div class="container">
   {#each ticks as tick}
-    <div
-      class="label"
-      class:underline
-      style="top:{tick.value}px; color:{color}; font-size:{size};">
-      {tick.label}
-    </div>
+    <div class="label" class:underline style="top:{tick.value}px; color:{color}; font-size:{size};">{tick.label}</div>
   {/each}
 </div>

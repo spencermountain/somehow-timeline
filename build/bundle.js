@@ -78,9 +78,6 @@ var app = (function () {
     function element(name) {
         return document.createElement(name);
     }
-    function svg_element(name) {
-        return document.createElementNS('http://www.w3.org/2000/svg', name);
-    }
     function text(data) {
         return document.createTextNode(data);
     }
@@ -4659,57 +4656,49 @@ var app = (function () {
     const file$1 = "src/lines/Line.svelte";
 
     function create_fragment$1(ctx) {
-    	let div3;
-    	let div0;
-    	let t0;
-    	let div1;
-    	let t1;
     	let div2;
-    	let t2;
+    	let div0;
+    	let t;
+    	let div1;
     	let dispose;
 
     	const block = {
     		c: function create() {
-    			div3 = element("div");
-    			div0 = element("div");
-    			t0 = space();
-    			div1 = element("div");
-    			t1 = space();
     			div2 = element("div");
-    			t2 = text(/*label*/ ctx[5]);
-    			attr_dev(div0, "class", "line svelte-8jtfcx");
+    			div0 = element("div");
+    			t = space();
+    			div1 = element("div");
+    			attr_dev(div0, "class", "line svelte-r70vgm");
     			set_style(div0, "border-left", /*width*/ ctx[1] + " solid " + /*color*/ ctx[0]);
-    			add_location(div0, file$1, 72, 2, 1619);
-    			attr_dev(div1, "class", "label svelte-8jtfcx");
-    			set_style(div1, "top", /*bottom*/ ctx[8] + "px");
+    			add_location(div0, file$1, 100, 2, 2180);
+    			attr_dev(div1, "class", "label svelte-r70vgm");
+    			set_style(div1, "top", "20%");
     			set_style(div1, "color", /*color*/ ctx[0]);
     			set_style(div1, "font-size", /*size*/ ctx[3]);
-    			add_location(div1, file$1, 73, 2, 1686);
-    			attr_dev(div2, "class", "tooltip svelte-8jtfcx");
-    			set_style(div2, "top", /*tooltipY*/ ctx[6] - 25 + "px");
-    			set_style(div2, "color", /*color*/ ctx[0]);
-    			add_location(div2, file$1, 76, 2, 1792);
-    			attr_dev(div3, "class", "container svelte-8jtfcx");
-    			set_style(div3, "min-width", /*space*/ ctx[2]);
-    			set_style(div3, "opacity", /*opacity*/ ctx[4]);
-    			set_style(div3, "top", /*top*/ ctx[7] + "px");
-    			set_style(div3, "height", /*height*/ ctx[9] + "px");
-    			add_location(div3, file$1, 68, 0, 1478);
+    			add_location(div1, file$1, 101, 2, 2247);
+    			attr_dev(div2, "class", "container svelte-r70vgm");
+    			set_style(div2, "min-width", /*space*/ ctx[2]);
+    			set_style(div2, "opacity", /*opacity*/ ctx[4]);
+    			set_style(div2, "top", /*top*/ ctx[8] + "px");
+    			set_style(div2, "height", /*height*/ ctx[9] + "px");
+    			add_location(div2, file$1, 78, 0, 1689);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor, remount) {
-    			insert_dev(target, div3, anchor);
-    			append_dev(div3, div0);
-    			append_dev(div3, t0);
-    			append_dev(div3, div1);
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div0);
+    			append_dev(div2, t);
+    			append_dev(div2, div1);
     			div1.innerHTML = /*label*/ ctx[5];
-    			append_dev(div3, t1);
-    			append_dev(div3, div2);
-    			append_dev(div2, t2);
-    			if (remount) dispose();
-    			dispose = listen_dev(div3, "mousemove", /*handleMousemove*/ ctx[10], false, false, false);
+    			if (remount) run_all(dispose);
+
+    			dispose = [
+    				listen_dev(div2, "mouseenter", /*mouseenter_handler*/ ctx[16], false, false, false),
+    				listen_dev(div2, "mouseleave", /*mouseleave_handler*/ ctx[17], false, false, false),
+    				listen_dev(div2, "click", /*click_handler*/ ctx[18], false, false, false)
+    			];
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*width, color*/ 3) {
@@ -4725,29 +4714,19 @@ var app = (function () {
     				set_style(div1, "font-size", /*size*/ ctx[3]);
     			}
 
-    			if (dirty & /*label*/ 32) set_data_dev(t2, /*label*/ ctx[5]);
-
-    			if (dirty & /*tooltipY*/ 64) {
-    				set_style(div2, "top", /*tooltipY*/ ctx[6] - 25 + "px");
-    			}
-
-    			if (dirty & /*color*/ 1) {
-    				set_style(div2, "color", /*color*/ ctx[0]);
-    			}
-
     			if (dirty & /*space*/ 4) {
-    				set_style(div3, "min-width", /*space*/ ctx[2]);
+    				set_style(div2, "min-width", /*space*/ ctx[2]);
     			}
 
     			if (dirty & /*opacity*/ 16) {
-    				set_style(div3, "opacity", /*opacity*/ ctx[4]);
+    				set_style(div2, "opacity", /*opacity*/ ctx[4]);
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div3);
-    			dispose();
+    			if (detaching) detach_dev(div2);
+    			run_all(dispose);
     		}
     	};
 
@@ -4766,7 +4745,7 @@ var app = (function () {
     	let { color = "steelblue" } = $$props;
     	let { width = "5px" } = $$props;
     	let { space = "5px" } = $$props;
-    	let { size = "9px" } = $$props;
+    	let { size = "14px" } = $$props;
     	let { opacity = "1" } = $$props;
     	let { label = "" } = $$props;
     	let { start = getContext("start") } = $$props;
@@ -4778,13 +4757,14 @@ var app = (function () {
     	let top = scale(start);
     	let bottom = scale(end);
     	let height = bottom - top;
+    	let freeze_label = false;
 
     	function handleMousemove(e) {
     		var rect = e.target.getBoundingClientRect();
     		let y = e.clientY - rect.top;
 
     		if (y !== -1 && y !== 0) {
-    			$$invalidate(6, tooltipY = y);
+    			tooltipY = y;
     		}
     	}
 
@@ -4797,6 +4777,34 @@ var app = (function () {
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("Line", $$slots, []);
 
+    	const mouseenter_handler = () => {
+    		setTimeout(
+    			function () {
+    				$$invalidate(7, show_label = true);
+    			},
+    			100
+    		);
+    	};
+
+    	const mouseleave_handler = () => {
+    		setTimeout(
+    			function () {
+    				$$invalidate(7, show_label = !freeze_label ? false : true);
+    			},
+    			100
+    		);
+    	};
+
+    	const click_handler = () => {
+    		if (!freeze_label) {
+    			$$invalidate(7, show_label = true);
+    			$$invalidate(6, freeze_label = true);
+    		} else {
+    			$$invalidate(7, show_label = false);
+    			$$invalidate(6, freeze_label = false);
+    		}
+    	};
+
     	$$self.$set = $$props => {
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     		if ("width" in $$props) $$invalidate(1, width = $$props.width);
@@ -4804,8 +4812,8 @@ var app = (function () {
     		if ("size" in $$props) $$invalidate(3, size = $$props.size);
     		if ("opacity" in $$props) $$invalidate(4, opacity = $$props.opacity);
     		if ("label" in $$props) $$invalidate(5, label = $$props.label);
-    		if ("start" in $$props) $$invalidate(11, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(12, end = $$props.end);
+    		if ("start" in $$props) $$invalidate(10, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(11, end = $$props.end);
     	};
 
     	$$self.$capture_state = () => ({
@@ -4824,7 +4832,9 @@ var app = (function () {
     		top,
     		bottom,
     		height,
+    		freeze_label,
     		handleMousemove,
+    		show_label,
     		tooltipY
     	});
 
@@ -4835,21 +4845,25 @@ var app = (function () {
     		if ("size" in $$props) $$invalidate(3, size = $$props.size);
     		if ("opacity" in $$props) $$invalidate(4, opacity = $$props.opacity);
     		if ("label" in $$props) $$invalidate(5, label = $$props.label);
-    		if ("start" in $$props) $$invalidate(11, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(12, end = $$props.end);
-    		if ("top" in $$props) $$invalidate(7, top = $$props.top);
-    		if ("bottom" in $$props) $$invalidate(8, bottom = $$props.bottom);
+    		if ("start" in $$props) $$invalidate(10, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(11, end = $$props.end);
+    		if ("top" in $$props) $$invalidate(8, top = $$props.top);
+    		if ("bottom" in $$props) bottom = $$props.bottom;
     		if ("height" in $$props) $$invalidate(9, height = $$props.height);
-    		if ("tooltipY" in $$props) $$invalidate(6, tooltipY = $$props.tooltipY);
+    		if ("freeze_label" in $$props) $$invalidate(6, freeze_label = $$props.freeze_label);
+    		if ("show_label" in $$props) $$invalidate(7, show_label = $$props.show_label);
+    		if ("tooltipY" in $$props) tooltipY = $$props.tooltipY;
     	};
 
+    	let show_label;
     	let tooltipY;
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	 $$invalidate(6, tooltipY = 10);
+    	 $$invalidate(7, show_label = false);
+    	 tooltipY = 10;
 
     	return [
     		color,
@@ -4858,13 +4872,19 @@ var app = (function () {
     		size,
     		opacity,
     		label,
-    		tooltipY,
+    		freeze_label,
+    		show_label,
     		top,
-    		bottom,
     		height,
-    		handleMousemove,
     		start,
-    		end
+    		end,
+    		tooltipY,
+    		scale,
+    		bottom,
+    		handleMousemove,
+    		mouseenter_handler,
+    		mouseleave_handler,
+    		click_handler
     	];
     }
 
@@ -4879,8 +4899,8 @@ var app = (function () {
     			size: 3,
     			opacity: 4,
     			label: 5,
-    			start: 11,
-    			end: 12
+    			start: 10,
+    			end: 11
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -4979,21 +4999,21 @@ var app = (function () {
     			div1 = element("div");
     			t2 = space();
     			div2 = element("div");
-    			attr_dev(div0, "class", "wide svelte-qbswg7");
+    			attr_dev(div0, "class", "wide svelte-hlvir2");
     			set_style(div0, "top", /*height*/ ctx[3] + "px");
-    			add_location(div0, file$2, 44, 2, 890);
-    			attr_dev(div1, "class", "line svelte-qbswg7");
+    			add_location(div0, file$2, 45, 2, 906);
+    			attr_dev(div1, "class", "line svelte-hlvir2");
     			set_style(div1, "border-left", /*width*/ ctx[1] + " solid " + /*color*/ ctx[0]);
     			set_style(div1, "height", /*height*/ ctx[3] + "px");
-    			add_location(div1, file$2, 46, 4, 971);
-    			attr_dev(div2, "class", "line future svelte-qbswg7");
+    			add_location(div1, file$2, 47, 4, 983);
+    			attr_dev(div2, "class", "line future svelte-hlvir2");
     			set_style(div2, "border-left", /*width*/ ctx[1] + " dashed " + /*color*/ ctx[0]);
     			set_style(div2, "height", "100%");
-    			add_location(div2, file$2, 50, 4, 1158);
-    			attr_dev(div3, "class", "part");
-    			add_location(div3, file$2, 45, 2, 948);
-    			attr_dev(div4, "class", "container svelte-qbswg7");
-    			add_location(div4, file$2, 43, 0, 864);
+    			add_location(div2, file$2, 49, 4, 1158);
+    			attr_dev(div3, "class", "");
+    			add_location(div3, file$2, 46, 2, 964);
+    			attr_dev(div4, "class", "container svelte-hlvir2");
+    			add_location(div4, file$2, 44, 0, 880);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5140,26 +5160,23 @@ var app = (function () {
     // (55:2) {#each ticks as tick}
     function create_each_block(ctx) {
     	let div;
-    	let t0_value = /*tick*/ ctx[11].label + "";
-    	let t0;
-    	let t1;
+    	let t_value = /*tick*/ ctx[11].label + "";
+    	let t;
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			t0 = text(t0_value);
-    			t1 = space();
+    			t = text(t_value);
     			attr_dev(div, "class", "label svelte-1oegkdx");
     			set_style(div, "top", /*tick*/ ctx[11].value + "px");
     			set_style(div, "color", /*color*/ ctx[0]);
     			set_style(div, "font-size", /*size*/ ctx[1]);
     			toggle_class(div, "underline", /*underline*/ ctx[2]);
-    			add_location(div, file$3, 55, 4, 1241);
+    			add_location(div, file$3, 55, 4, 1236);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
-    			append_dev(div, t0);
-    			append_dev(div, t1);
+    			append_dev(div, t);
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*color*/ 1) {
@@ -5208,7 +5225,7 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div, "class", "part container svelte-1oegkdx");
+    			attr_dev(div, "class", "container svelte-1oegkdx");
     			add_location(div, file$3, 53, 0, 1184);
     		},
     		l: function claim(nodes) {
@@ -5697,2443 +5714,10 @@ var app = (function () {
     });
     });
 
-    var pi = Math.PI,
-        tau = 2 * pi,
-        epsilon = 1e-6,
-        tauEpsilon = tau - epsilon;
-
-    function Path() {
-      this._x0 = this._y0 = // start of current subpath
-      this._x1 = this._y1 = null; // end of current subpath
-      this._ = "";
-    }
-
-    function path() {
-      return new Path;
-    }
-
-    Path.prototype = path.prototype = {
-      constructor: Path,
-      moveTo: function(x, y) {
-        this._ += "M" + (this._x0 = this._x1 = +x) + "," + (this._y0 = this._y1 = +y);
-      },
-      closePath: function() {
-        if (this._x1 !== null) {
-          this._x1 = this._x0, this._y1 = this._y0;
-          this._ += "Z";
-        }
-      },
-      lineTo: function(x, y) {
-        this._ += "L" + (this._x1 = +x) + "," + (this._y1 = +y);
-      },
-      quadraticCurveTo: function(x1, y1, x, y) {
-        this._ += "Q" + (+x1) + "," + (+y1) + "," + (this._x1 = +x) + "," + (this._y1 = +y);
-      },
-      bezierCurveTo: function(x1, y1, x2, y2, x, y) {
-        this._ += "C" + (+x1) + "," + (+y1) + "," + (+x2) + "," + (+y2) + "," + (this._x1 = +x) + "," + (this._y1 = +y);
-      },
-      arcTo: function(x1, y1, x2, y2, r) {
-        x1 = +x1, y1 = +y1, x2 = +x2, y2 = +y2, r = +r;
-        var x0 = this._x1,
-            y0 = this._y1,
-            x21 = x2 - x1,
-            y21 = y2 - y1,
-            x01 = x0 - x1,
-            y01 = y0 - y1,
-            l01_2 = x01 * x01 + y01 * y01;
-
-        // Is the radius negative? Error.
-        if (r < 0) throw new Error("negative radius: " + r);
-
-        // Is this path empty? Move to (x1,y1).
-        if (this._x1 === null) {
-          this._ += "M" + (this._x1 = x1) + "," + (this._y1 = y1);
-        }
-
-        // Or, is (x1,y1) coincident with (x0,y0)? Do nothing.
-        else if (!(l01_2 > epsilon));
-
-        // Or, are (x0,y0), (x1,y1) and (x2,y2) collinear?
-        // Equivalently, is (x1,y1) coincident with (x2,y2)?
-        // Or, is the radius zero? Line to (x1,y1).
-        else if (!(Math.abs(y01 * x21 - y21 * x01) > epsilon) || !r) {
-          this._ += "L" + (this._x1 = x1) + "," + (this._y1 = y1);
-        }
-
-        // Otherwise, draw an arc!
-        else {
-          var x20 = x2 - x0,
-              y20 = y2 - y0,
-              l21_2 = x21 * x21 + y21 * y21,
-              l20_2 = x20 * x20 + y20 * y20,
-              l21 = Math.sqrt(l21_2),
-              l01 = Math.sqrt(l01_2),
-              l = r * Math.tan((pi - Math.acos((l21_2 + l01_2 - l20_2) / (2 * l21 * l01))) / 2),
-              t01 = l / l01,
-              t21 = l / l21;
-
-          // If the start tangent is not coincident with (x0,y0), line to.
-          if (Math.abs(t01 - 1) > epsilon) {
-            this._ += "L" + (x1 + t01 * x01) + "," + (y1 + t01 * y01);
-          }
-
-          this._ += "A" + r + "," + r + ",0,0," + (+(y01 * x20 > x01 * y20)) + "," + (this._x1 = x1 + t21 * x21) + "," + (this._y1 = y1 + t21 * y21);
-        }
-      },
-      arc: function(x, y, r, a0, a1, ccw) {
-        x = +x, y = +y, r = +r, ccw = !!ccw;
-        var dx = r * Math.cos(a0),
-            dy = r * Math.sin(a0),
-            x0 = x + dx,
-            y0 = y + dy,
-            cw = 1 ^ ccw,
-            da = ccw ? a0 - a1 : a1 - a0;
-
-        // Is the radius negative? Error.
-        if (r < 0) throw new Error("negative radius: " + r);
-
-        // Is this path empty? Move to (x0,y0).
-        if (this._x1 === null) {
-          this._ += "M" + x0 + "," + y0;
-        }
-
-        // Or, is (x0,y0) not coincident with the previous point? Line to (x0,y0).
-        else if (Math.abs(this._x1 - x0) > epsilon || Math.abs(this._y1 - y0) > epsilon) {
-          this._ += "L" + x0 + "," + y0;
-        }
-
-        // Is this arc empty? We’re done.
-        if (!r) return;
-
-        // Does the angle go the wrong way? Flip the direction.
-        if (da < 0) da = da % tau + tau;
-
-        // Is this a complete circle? Draw two arcs to complete the circle.
-        if (da > tauEpsilon) {
-          this._ += "A" + r + "," + r + ",0,1," + cw + "," + (x - dx) + "," + (y - dy) + "A" + r + "," + r + ",0,1," + cw + "," + (this._x1 = x0) + "," + (this._y1 = y0);
-        }
-
-        // Is this arc non-empty? Draw an arc!
-        else if (da > epsilon) {
-          this._ += "A" + r + "," + r + ",0," + (+(da >= pi)) + "," + cw + "," + (this._x1 = x + r * Math.cos(a1)) + "," + (this._y1 = y + r * Math.sin(a1));
-        }
-      },
-      rect: function(x, y, w, h) {
-        this._ += "M" + (this._x0 = this._x1 = +x) + "," + (this._y0 = this._y1 = +y) + "h" + (+w) + "v" + (+h) + "h" + (-w) + "Z";
-      },
-      toString: function() {
-        return this._;
-      }
-    };
-
-    function constant(x) {
-      return function constant() {
-        return x;
-      };
-    }
-
-    var abs = Math.abs;
-    var atan2 = Math.atan2;
-    var cos = Math.cos;
-    var max = Math.max;
-    var min = Math.min;
-    var sin = Math.sin;
-    var sqrt = Math.sqrt;
-
-    var epsilon$1 = 1e-12;
-    var pi$1 = Math.PI;
-    var halfPi = pi$1 / 2;
-    var tau$1 = 2 * pi$1;
-
-    function acos(x) {
-      return x > 1 ? 0 : x < -1 ? pi$1 : Math.acos(x);
-    }
-
-    function asin(x) {
-      return x >= 1 ? halfPi : x <= -1 ? -halfPi : Math.asin(x);
-    }
-
-    function arcInnerRadius(d) {
-      return d.innerRadius;
-    }
-
-    function arcOuterRadius(d) {
-      return d.outerRadius;
-    }
-
-    function arcStartAngle(d) {
-      return d.startAngle;
-    }
-
-    function arcEndAngle(d) {
-      return d.endAngle;
-    }
-
-    function arcPadAngle(d) {
-      return d && d.padAngle; // Note: optional!
-    }
-
-    function intersect(x0, y0, x1, y1, x2, y2, x3, y3) {
-      var x10 = x1 - x0, y10 = y1 - y0,
-          x32 = x3 - x2, y32 = y3 - y2,
-          t = y32 * x10 - x32 * y10;
-      if (t * t < epsilon$1) return;
-      t = (x32 * (y0 - y2) - y32 * (x0 - x2)) / t;
-      return [x0 + t * x10, y0 + t * y10];
-    }
-
-    // Compute perpendicular offset line of length rc.
-    // http://mathworld.wolfram.com/Circle-LineIntersection.html
-    function cornerTangents(x0, y0, x1, y1, r1, rc, cw) {
-      var x01 = x0 - x1,
-          y01 = y0 - y1,
-          lo = (cw ? rc : -rc) / sqrt(x01 * x01 + y01 * y01),
-          ox = lo * y01,
-          oy = -lo * x01,
-          x11 = x0 + ox,
-          y11 = y0 + oy,
-          x10 = x1 + ox,
-          y10 = y1 + oy,
-          x00 = (x11 + x10) / 2,
-          y00 = (y11 + y10) / 2,
-          dx = x10 - x11,
-          dy = y10 - y11,
-          d2 = dx * dx + dy * dy,
-          r = r1 - rc,
-          D = x11 * y10 - x10 * y11,
-          d = (dy < 0 ? -1 : 1) * sqrt(max(0, r * r * d2 - D * D)),
-          cx0 = (D * dy - dx * d) / d2,
-          cy0 = (-D * dx - dy * d) / d2,
-          cx1 = (D * dy + dx * d) / d2,
-          cy1 = (-D * dx + dy * d) / d2,
-          dx0 = cx0 - x00,
-          dy0 = cy0 - y00,
-          dx1 = cx1 - x00,
-          dy1 = cy1 - y00;
-
-      // Pick the closer of the two intersection points.
-      // TODO Is there a faster way to determine which intersection to use?
-      if (dx0 * dx0 + dy0 * dy0 > dx1 * dx1 + dy1 * dy1) cx0 = cx1, cy0 = cy1;
-
-      return {
-        cx: cx0,
-        cy: cy0,
-        x01: -ox,
-        y01: -oy,
-        x11: cx0 * (r1 / r - 1),
-        y11: cy0 * (r1 / r - 1)
-      };
-    }
-
-    function arc() {
-      var innerRadius = arcInnerRadius,
-          outerRadius = arcOuterRadius,
-          cornerRadius = constant(0),
-          padRadius = null,
-          startAngle = arcStartAngle,
-          endAngle = arcEndAngle,
-          padAngle = arcPadAngle,
-          context = null;
-
-      function arc() {
-        var buffer,
-            r,
-            r0 = +innerRadius.apply(this, arguments),
-            r1 = +outerRadius.apply(this, arguments),
-            a0 = startAngle.apply(this, arguments) - halfPi,
-            a1 = endAngle.apply(this, arguments) - halfPi,
-            da = abs(a1 - a0),
-            cw = a1 > a0;
-
-        if (!context) context = buffer = path();
-
-        // Ensure that the outer radius is always larger than the inner radius.
-        if (r1 < r0) r = r1, r1 = r0, r0 = r;
-
-        // Is it a point?
-        if (!(r1 > epsilon$1)) context.moveTo(0, 0);
-
-        // Or is it a circle or annulus?
-        else if (da > tau$1 - epsilon$1) {
-          context.moveTo(r1 * cos(a0), r1 * sin(a0));
-          context.arc(0, 0, r1, a0, a1, !cw);
-          if (r0 > epsilon$1) {
-            context.moveTo(r0 * cos(a1), r0 * sin(a1));
-            context.arc(0, 0, r0, a1, a0, cw);
-          }
-        }
-
-        // Or is it a circular or annular sector?
-        else {
-          var a01 = a0,
-              a11 = a1,
-              a00 = a0,
-              a10 = a1,
-              da0 = da,
-              da1 = da,
-              ap = padAngle.apply(this, arguments) / 2,
-              rp = (ap > epsilon$1) && (padRadius ? +padRadius.apply(this, arguments) : sqrt(r0 * r0 + r1 * r1)),
-              rc = min(abs(r1 - r0) / 2, +cornerRadius.apply(this, arguments)),
-              rc0 = rc,
-              rc1 = rc,
-              t0,
-              t1;
-
-          // Apply padding? Note that since r1 ≥ r0, da1 ≥ da0.
-          if (rp > epsilon$1) {
-            var p0 = asin(rp / r0 * sin(ap)),
-                p1 = asin(rp / r1 * sin(ap));
-            if ((da0 -= p0 * 2) > epsilon$1) p0 *= (cw ? 1 : -1), a00 += p0, a10 -= p0;
-            else da0 = 0, a00 = a10 = (a0 + a1) / 2;
-            if ((da1 -= p1 * 2) > epsilon$1) p1 *= (cw ? 1 : -1), a01 += p1, a11 -= p1;
-            else da1 = 0, a01 = a11 = (a0 + a1) / 2;
-          }
-
-          var x01 = r1 * cos(a01),
-              y01 = r1 * sin(a01),
-              x10 = r0 * cos(a10),
-              y10 = r0 * sin(a10);
-
-          // Apply rounded corners?
-          if (rc > epsilon$1) {
-            var x11 = r1 * cos(a11),
-                y11 = r1 * sin(a11),
-                x00 = r0 * cos(a00),
-                y00 = r0 * sin(a00),
-                oc;
-
-            // Restrict the corner radius according to the sector angle.
-            if (da < pi$1 && (oc = intersect(x01, y01, x00, y00, x11, y11, x10, y10))) {
-              var ax = x01 - oc[0],
-                  ay = y01 - oc[1],
-                  bx = x11 - oc[0],
-                  by = y11 - oc[1],
-                  kc = 1 / sin(acos((ax * bx + ay * by) / (sqrt(ax * ax + ay * ay) * sqrt(bx * bx + by * by))) / 2),
-                  lc = sqrt(oc[0] * oc[0] + oc[1] * oc[1]);
-              rc0 = min(rc, (r0 - lc) / (kc - 1));
-              rc1 = min(rc, (r1 - lc) / (kc + 1));
-            }
-          }
-
-          // Is the sector collapsed to a line?
-          if (!(da1 > epsilon$1)) context.moveTo(x01, y01);
-
-          // Does the sector’s outer ring have rounded corners?
-          else if (rc1 > epsilon$1) {
-            t0 = cornerTangents(x00, y00, x01, y01, r1, rc1, cw);
-            t1 = cornerTangents(x11, y11, x10, y10, r1, rc1, cw);
-
-            context.moveTo(t0.cx + t0.x01, t0.cy + t0.y01);
-
-            // Have the corners merged?
-            if (rc1 < rc) context.arc(t0.cx, t0.cy, rc1, atan2(t0.y01, t0.x01), atan2(t1.y01, t1.x01), !cw);
-
-            // Otherwise, draw the two corners and the ring.
-            else {
-              context.arc(t0.cx, t0.cy, rc1, atan2(t0.y01, t0.x01), atan2(t0.y11, t0.x11), !cw);
-              context.arc(0, 0, r1, atan2(t0.cy + t0.y11, t0.cx + t0.x11), atan2(t1.cy + t1.y11, t1.cx + t1.x11), !cw);
-              context.arc(t1.cx, t1.cy, rc1, atan2(t1.y11, t1.x11), atan2(t1.y01, t1.x01), !cw);
-            }
-          }
-
-          // Or is the outer ring just a circular arc?
-          else context.moveTo(x01, y01), context.arc(0, 0, r1, a01, a11, !cw);
-
-          // Is there no inner ring, and it’s a circular sector?
-          // Or perhaps it’s an annular sector collapsed due to padding?
-          if (!(r0 > epsilon$1) || !(da0 > epsilon$1)) context.lineTo(x10, y10);
-
-          // Does the sector’s inner ring (or point) have rounded corners?
-          else if (rc0 > epsilon$1) {
-            t0 = cornerTangents(x10, y10, x11, y11, r0, -rc0, cw);
-            t1 = cornerTangents(x01, y01, x00, y00, r0, -rc0, cw);
-
-            context.lineTo(t0.cx + t0.x01, t0.cy + t0.y01);
-
-            // Have the corners merged?
-            if (rc0 < rc) context.arc(t0.cx, t0.cy, rc0, atan2(t0.y01, t0.x01), atan2(t1.y01, t1.x01), !cw);
-
-            // Otherwise, draw the two corners and the ring.
-            else {
-              context.arc(t0.cx, t0.cy, rc0, atan2(t0.y01, t0.x01), atan2(t0.y11, t0.x11), !cw);
-              context.arc(0, 0, r0, atan2(t0.cy + t0.y11, t0.cx + t0.x11), atan2(t1.cy + t1.y11, t1.cx + t1.x11), cw);
-              context.arc(t1.cx, t1.cy, rc0, atan2(t1.y11, t1.x11), atan2(t1.y01, t1.x01), !cw);
-            }
-          }
-
-          // Or is the inner ring just a circular arc?
-          else context.arc(0, 0, r0, a10, a00, cw);
-        }
-
-        context.closePath();
-
-        if (buffer) return context = null, buffer + "" || null;
-      }
-
-      arc.centroid = function() {
-        var r = (+innerRadius.apply(this, arguments) + +outerRadius.apply(this, arguments)) / 2,
-            a = (+startAngle.apply(this, arguments) + +endAngle.apply(this, arguments)) / 2 - pi$1 / 2;
-        return [cos(a) * r, sin(a) * r];
-      };
-
-      arc.innerRadius = function(_) {
-        return arguments.length ? (innerRadius = typeof _ === "function" ? _ : constant(+_), arc) : innerRadius;
-      };
-
-      arc.outerRadius = function(_) {
-        return arguments.length ? (outerRadius = typeof _ === "function" ? _ : constant(+_), arc) : outerRadius;
-      };
-
-      arc.cornerRadius = function(_) {
-        return arguments.length ? (cornerRadius = typeof _ === "function" ? _ : constant(+_), arc) : cornerRadius;
-      };
-
-      arc.padRadius = function(_) {
-        return arguments.length ? (padRadius = _ == null ? null : typeof _ === "function" ? _ : constant(+_), arc) : padRadius;
-      };
-
-      arc.startAngle = function(_) {
-        return arguments.length ? (startAngle = typeof _ === "function" ? _ : constant(+_), arc) : startAngle;
-      };
-
-      arc.endAngle = function(_) {
-        return arguments.length ? (endAngle = typeof _ === "function" ? _ : constant(+_), arc) : endAngle;
-      };
-
-      arc.padAngle = function(_) {
-        return arguments.length ? (padAngle = typeof _ === "function" ? _ : constant(+_), arc) : padAngle;
-      };
-
-      arc.context = function(_) {
-        return arguments.length ? ((context = _ == null ? null : _), arc) : context;
-      };
-
-      return arc;
-    }
-
-    function Linear(context) {
-      this._context = context;
-    }
-
-    Linear.prototype = {
-      areaStart: function() {
-        this._line = 0;
-      },
-      areaEnd: function() {
-        this._line = NaN;
-      },
-      lineStart: function() {
-        this._point = 0;
-      },
-      lineEnd: function() {
-        if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
-        this._line = 1 - this._line;
-      },
-      point: function(x, y) {
-        x = +x, y = +y;
-        switch (this._point) {
-          case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
-          case 1: this._point = 2; // proceed
-          default: this._context.lineTo(x, y); break;
-        }
-      }
-    };
-
-    function curveLinear(context) {
-      return new Linear(context);
-    }
-
-    function x(p) {
-      return p[0];
-    }
-
-    function y(p) {
-      return p[1];
-    }
-
-    function line() {
-      var x$1 = x,
-          y$1 = y,
-          defined = constant(true),
-          context = null,
-          curve = curveLinear,
-          output = null;
-
-      function line(data) {
-        var i,
-            n = data.length,
-            d,
-            defined0 = false,
-            buffer;
-
-        if (context == null) output = curve(buffer = path());
-
-        for (i = 0; i <= n; ++i) {
-          if (!(i < n && defined(d = data[i], i, data)) === defined0) {
-            if (defined0 = !defined0) output.lineStart();
-            else output.lineEnd();
-          }
-          if (defined0) output.point(+x$1(d, i, data), +y$1(d, i, data));
-        }
-
-        if (buffer) return output = null, buffer + "" || null;
-      }
-
-      line.x = function(_) {
-        return arguments.length ? (x$1 = typeof _ === "function" ? _ : constant(+_), line) : x$1;
-      };
-
-      line.y = function(_) {
-        return arguments.length ? (y$1 = typeof _ === "function" ? _ : constant(+_), line) : y$1;
-      };
-
-      line.defined = function(_) {
-        return arguments.length ? (defined = typeof _ === "function" ? _ : constant(!!_), line) : defined;
-      };
-
-      line.curve = function(_) {
-        return arguments.length ? (curve = _, context != null && (output = curve(context)), line) : curve;
-      };
-
-      line.context = function(_) {
-        return arguments.length ? (_ == null ? context = output = null : output = curve(context = _), line) : context;
-      };
-
-      return line;
-    }
-
-    function area() {
-      var x0 = x,
-          x1 = null,
-          y0 = constant(0),
-          y1 = y,
-          defined = constant(true),
-          context = null,
-          curve = curveLinear,
-          output = null;
-
-      function area(data) {
-        var i,
-            j,
-            k,
-            n = data.length,
-            d,
-            defined0 = false,
-            buffer,
-            x0z = new Array(n),
-            y0z = new Array(n);
-
-        if (context == null) output = curve(buffer = path());
-
-        for (i = 0; i <= n; ++i) {
-          if (!(i < n && defined(d = data[i], i, data)) === defined0) {
-            if (defined0 = !defined0) {
-              j = i;
-              output.areaStart();
-              output.lineStart();
-            } else {
-              output.lineEnd();
-              output.lineStart();
-              for (k = i - 1; k >= j; --k) {
-                output.point(x0z[k], y0z[k]);
-              }
-              output.lineEnd();
-              output.areaEnd();
-            }
-          }
-          if (defined0) {
-            x0z[i] = +x0(d, i, data), y0z[i] = +y0(d, i, data);
-            output.point(x1 ? +x1(d, i, data) : x0z[i], y1 ? +y1(d, i, data) : y0z[i]);
-          }
-        }
-
-        if (buffer) return output = null, buffer + "" || null;
-      }
-
-      function arealine() {
-        return line().defined(defined).curve(curve).context(context);
-      }
-
-      area.x = function(_) {
-        return arguments.length ? (x0 = typeof _ === "function" ? _ : constant(+_), x1 = null, area) : x0;
-      };
-
-      area.x0 = function(_) {
-        return arguments.length ? (x0 = typeof _ === "function" ? _ : constant(+_), area) : x0;
-      };
-
-      area.x1 = function(_) {
-        return arguments.length ? (x1 = _ == null ? null : typeof _ === "function" ? _ : constant(+_), area) : x1;
-      };
-
-      area.y = function(_) {
-        return arguments.length ? (y0 = typeof _ === "function" ? _ : constant(+_), y1 = null, area) : y0;
-      };
-
-      area.y0 = function(_) {
-        return arguments.length ? (y0 = typeof _ === "function" ? _ : constant(+_), area) : y0;
-      };
-
-      area.y1 = function(_) {
-        return arguments.length ? (y1 = _ == null ? null : typeof _ === "function" ? _ : constant(+_), area) : y1;
-      };
-
-      area.lineX0 =
-      area.lineY0 = function() {
-        return arealine().x(x0).y(y0);
-      };
-
-      area.lineY1 = function() {
-        return arealine().x(x0).y(y1);
-      };
-
-      area.lineX1 = function() {
-        return arealine().x(x1).y(y0);
-      };
-
-      area.defined = function(_) {
-        return arguments.length ? (defined = typeof _ === "function" ? _ : constant(!!_), area) : defined;
-      };
-
-      area.curve = function(_) {
-        return arguments.length ? (curve = _, context != null && (output = curve(context)), area) : curve;
-      };
-
-      area.context = function(_) {
-        return arguments.length ? (_ == null ? context = output = null : output = curve(context = _), area) : context;
-      };
-
-      return area;
-    }
-
-    function descending(a, b) {
-      return b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
-    }
-
-    function identity(d) {
-      return d;
-    }
-
-    function pie() {
-      var value = identity,
-          sortValues = descending,
-          sort = null,
-          startAngle = constant(0),
-          endAngle = constant(tau$1),
-          padAngle = constant(0);
-
-      function pie(data) {
-        var i,
-            n = data.length,
-            j,
-            k,
-            sum = 0,
-            index = new Array(n),
-            arcs = new Array(n),
-            a0 = +startAngle.apply(this, arguments),
-            da = Math.min(tau$1, Math.max(-tau$1, endAngle.apply(this, arguments) - a0)),
-            a1,
-            p = Math.min(Math.abs(da) / n, padAngle.apply(this, arguments)),
-            pa = p * (da < 0 ? -1 : 1),
-            v;
-
-        for (i = 0; i < n; ++i) {
-          if ((v = arcs[index[i] = i] = +value(data[i], i, data)) > 0) {
-            sum += v;
-          }
-        }
-
-        // Optionally sort the arcs by previously-computed values or by data.
-        if (sortValues != null) index.sort(function(i, j) { return sortValues(arcs[i], arcs[j]); });
-        else if (sort != null) index.sort(function(i, j) { return sort(data[i], data[j]); });
-
-        // Compute the arcs! They are stored in the original data's order.
-        for (i = 0, k = sum ? (da - n * pa) / sum : 0; i < n; ++i, a0 = a1) {
-          j = index[i], v = arcs[j], a1 = a0 + (v > 0 ? v * k : 0) + pa, arcs[j] = {
-            data: data[j],
-            index: i,
-            value: v,
-            startAngle: a0,
-            endAngle: a1,
-            padAngle: p
-          };
-        }
-
-        return arcs;
-      }
-
-      pie.value = function(_) {
-        return arguments.length ? (value = typeof _ === "function" ? _ : constant(+_), pie) : value;
-      };
-
-      pie.sortValues = function(_) {
-        return arguments.length ? (sortValues = _, sort = null, pie) : sortValues;
-      };
-
-      pie.sort = function(_) {
-        return arguments.length ? (sort = _, sortValues = null, pie) : sort;
-      };
-
-      pie.startAngle = function(_) {
-        return arguments.length ? (startAngle = typeof _ === "function" ? _ : constant(+_), pie) : startAngle;
-      };
-
-      pie.endAngle = function(_) {
-        return arguments.length ? (endAngle = typeof _ === "function" ? _ : constant(+_), pie) : endAngle;
-      };
-
-      pie.padAngle = function(_) {
-        return arguments.length ? (padAngle = typeof _ === "function" ? _ : constant(+_), pie) : padAngle;
-      };
-
-      return pie;
-    }
-
-    var curveRadialLinear = curveRadial(curveLinear);
-
-    function Radial(curve) {
-      this._curve = curve;
-    }
-
-    Radial.prototype = {
-      areaStart: function() {
-        this._curve.areaStart();
-      },
-      areaEnd: function() {
-        this._curve.areaEnd();
-      },
-      lineStart: function() {
-        this._curve.lineStart();
-      },
-      lineEnd: function() {
-        this._curve.lineEnd();
-      },
-      point: function(a, r) {
-        this._curve.point(r * Math.sin(a), r * -Math.cos(a));
-      }
-    };
-
-    function curveRadial(curve) {
-
-      function radial(context) {
-        return new Radial(curve(context));
-      }
-
-      radial._curve = curve;
-
-      return radial;
-    }
-
-    function lineRadial(l) {
-      var c = l.curve;
-
-      l.angle = l.x, delete l.x;
-      l.radius = l.y, delete l.y;
-
-      l.curve = function(_) {
-        return arguments.length ? c(curveRadial(_)) : c()._curve;
-      };
-
-      return l;
-    }
-
-    function lineRadial$1() {
-      return lineRadial(line().curve(curveRadialLinear));
-    }
-
-    function areaRadial() {
-      var a = area().curve(curveRadialLinear),
-          c = a.curve,
-          x0 = a.lineX0,
-          x1 = a.lineX1,
-          y0 = a.lineY0,
-          y1 = a.lineY1;
-
-      a.angle = a.x, delete a.x;
-      a.startAngle = a.x0, delete a.x0;
-      a.endAngle = a.x1, delete a.x1;
-      a.radius = a.y, delete a.y;
-      a.innerRadius = a.y0, delete a.y0;
-      a.outerRadius = a.y1, delete a.y1;
-      a.lineStartAngle = function() { return lineRadial(x0()); }, delete a.lineX0;
-      a.lineEndAngle = function() { return lineRadial(x1()); }, delete a.lineX1;
-      a.lineInnerRadius = function() { return lineRadial(y0()); }, delete a.lineY0;
-      a.lineOuterRadius = function() { return lineRadial(y1()); }, delete a.lineY1;
-
-      a.curve = function(_) {
-        return arguments.length ? c(curveRadial(_)) : c()._curve;
-      };
-
-      return a;
-    }
-
-    function pointRadial(x, y) {
-      return [(y = +y) * Math.cos(x -= Math.PI / 2), y * Math.sin(x)];
-    }
-
-    var slice = Array.prototype.slice;
-
-    function linkSource(d) {
-      return d.source;
-    }
-
-    function linkTarget(d) {
-      return d.target;
-    }
-
-    function link(curve) {
-      var source = linkSource,
-          target = linkTarget,
-          x$1 = x,
-          y$1 = y,
-          context = null;
-
-      function link() {
-        var buffer, argv = slice.call(arguments), s = source.apply(this, argv), t = target.apply(this, argv);
-        if (!context) context = buffer = path();
-        curve(context, +x$1.apply(this, (argv[0] = s, argv)), +y$1.apply(this, argv), +x$1.apply(this, (argv[0] = t, argv)), +y$1.apply(this, argv));
-        if (buffer) return context = null, buffer + "" || null;
-      }
-
-      link.source = function(_) {
-        return arguments.length ? (source = _, link) : source;
-      };
-
-      link.target = function(_) {
-        return arguments.length ? (target = _, link) : target;
-      };
-
-      link.x = function(_) {
-        return arguments.length ? (x$1 = typeof _ === "function" ? _ : constant(+_), link) : x$1;
-      };
-
-      link.y = function(_) {
-        return arguments.length ? (y$1 = typeof _ === "function" ? _ : constant(+_), link) : y$1;
-      };
-
-      link.context = function(_) {
-        return arguments.length ? ((context = _ == null ? null : _), link) : context;
-      };
-
-      return link;
-    }
-
-    function curveHorizontal(context, x0, y0, x1, y1) {
-      context.moveTo(x0, y0);
-      context.bezierCurveTo(x0 = (x0 + x1) / 2, y0, x0, y1, x1, y1);
-    }
-
-    function curveVertical(context, x0, y0, x1, y1) {
-      context.moveTo(x0, y0);
-      context.bezierCurveTo(x0, y0 = (y0 + y1) / 2, x1, y0, x1, y1);
-    }
-
-    function curveRadial$1(context, x0, y0, x1, y1) {
-      var p0 = pointRadial(x0, y0),
-          p1 = pointRadial(x0, y0 = (y0 + y1) / 2),
-          p2 = pointRadial(x1, y0),
-          p3 = pointRadial(x1, y1);
-      context.moveTo(p0[0], p0[1]);
-      context.bezierCurveTo(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-    }
-
-    function linkHorizontal() {
-      return link(curveHorizontal);
-    }
-
-    function linkVertical() {
-      return link(curveVertical);
-    }
-
-    function linkRadial() {
-      var l = link(curveRadial$1);
-      l.angle = l.x, delete l.x;
-      l.radius = l.y, delete l.y;
-      return l;
-    }
-
-    var circle = {
-      draw: function(context, size) {
-        var r = Math.sqrt(size / pi$1);
-        context.moveTo(r, 0);
-        context.arc(0, 0, r, 0, tau$1);
-      }
-    };
-
-    var cross = {
-      draw: function(context, size) {
-        var r = Math.sqrt(size / 5) / 2;
-        context.moveTo(-3 * r, -r);
-        context.lineTo(-r, -r);
-        context.lineTo(-r, -3 * r);
-        context.lineTo(r, -3 * r);
-        context.lineTo(r, -r);
-        context.lineTo(3 * r, -r);
-        context.lineTo(3 * r, r);
-        context.lineTo(r, r);
-        context.lineTo(r, 3 * r);
-        context.lineTo(-r, 3 * r);
-        context.lineTo(-r, r);
-        context.lineTo(-3 * r, r);
-        context.closePath();
-      }
-    };
-
-    var tan30 = Math.sqrt(1 / 3),
-        tan30_2 = tan30 * 2;
-
-    var diamond = {
-      draw: function(context, size) {
-        var y = Math.sqrt(size / tan30_2),
-            x = y * tan30;
-        context.moveTo(0, -y);
-        context.lineTo(x, 0);
-        context.lineTo(0, y);
-        context.lineTo(-x, 0);
-        context.closePath();
-      }
-    };
-
-    var ka = 0.89081309152928522810,
-        kr = Math.sin(pi$1 / 10) / Math.sin(7 * pi$1 / 10),
-        kx = Math.sin(tau$1 / 10) * kr,
-        ky = -Math.cos(tau$1 / 10) * kr;
-
-    var star = {
-      draw: function(context, size) {
-        var r = Math.sqrt(size * ka),
-            x = kx * r,
-            y = ky * r;
-        context.moveTo(0, -r);
-        context.lineTo(x, y);
-        for (var i = 1; i < 5; ++i) {
-          var a = tau$1 * i / 5,
-              c = Math.cos(a),
-              s = Math.sin(a);
-          context.lineTo(s * r, -c * r);
-          context.lineTo(c * x - s * y, s * x + c * y);
-        }
-        context.closePath();
-      }
-    };
-
-    var square = {
-      draw: function(context, size) {
-        var w = Math.sqrt(size),
-            x = -w / 2;
-        context.rect(x, x, w, w);
-      }
-    };
-
-    var sqrt3 = Math.sqrt(3);
-
-    var triangle = {
-      draw: function(context, size) {
-        var y = -Math.sqrt(size / (sqrt3 * 3));
-        context.moveTo(0, y * 2);
-        context.lineTo(-sqrt3 * y, -y);
-        context.lineTo(sqrt3 * y, -y);
-        context.closePath();
-      }
-    };
-
-    var c = -0.5,
-        s = Math.sqrt(3) / 2,
-        k = 1 / Math.sqrt(12),
-        a = (k / 2 + 1) * 3;
-
-    var wye = {
-      draw: function(context, size) {
-        var r = Math.sqrt(size / a),
-            x0 = r / 2,
-            y0 = r * k,
-            x1 = x0,
-            y1 = r * k + r,
-            x2 = -x1,
-            y2 = y1;
-        context.moveTo(x0, y0);
-        context.lineTo(x1, y1);
-        context.lineTo(x2, y2);
-        context.lineTo(c * x0 - s * y0, s * x0 + c * y0);
-        context.lineTo(c * x1 - s * y1, s * x1 + c * y1);
-        context.lineTo(c * x2 - s * y2, s * x2 + c * y2);
-        context.lineTo(c * x0 + s * y0, c * y0 - s * x0);
-        context.lineTo(c * x1 + s * y1, c * y1 - s * x1);
-        context.lineTo(c * x2 + s * y2, c * y2 - s * x2);
-        context.closePath();
-      }
-    };
-
-    var symbols = [
-      circle,
-      cross,
-      diamond,
-      square,
-      star,
-      triangle,
-      wye
-    ];
-
-    function symbol() {
-      var type = constant(circle),
-          size = constant(64),
-          context = null;
-
-      function symbol() {
-        var buffer;
-        if (!context) context = buffer = path();
-        type.apply(this, arguments).draw(context, +size.apply(this, arguments));
-        if (buffer) return context = null, buffer + "" || null;
-      }
-
-      symbol.type = function(_) {
-        return arguments.length ? (type = typeof _ === "function" ? _ : constant(_), symbol) : type;
-      };
-
-      symbol.size = function(_) {
-        return arguments.length ? (size = typeof _ === "function" ? _ : constant(+_), symbol) : size;
-      };
-
-      symbol.context = function(_) {
-        return arguments.length ? (context = _ == null ? null : _, symbol) : context;
-      };
-
-      return symbol;
-    }
-
-    function noop$1() {}
-
-    function point(that, x, y) {
-      that._context.bezierCurveTo(
-        (2 * that._x0 + that._x1) / 3,
-        (2 * that._y0 + that._y1) / 3,
-        (that._x0 + 2 * that._x1) / 3,
-        (that._y0 + 2 * that._y1) / 3,
-        (that._x0 + 4 * that._x1 + x) / 6,
-        (that._y0 + 4 * that._y1 + y) / 6
-      );
-    }
-
-    function Basis(context) {
-      this._context = context;
-    }
-
-    Basis.prototype = {
-      areaStart: function() {
-        this._line = 0;
-      },
-      areaEnd: function() {
-        this._line = NaN;
-      },
-      lineStart: function() {
-        this._x0 = this._x1 =
-        this._y0 = this._y1 = NaN;
-        this._point = 0;
-      },
-      lineEnd: function() {
-        switch (this._point) {
-          case 3: point(this, this._x1, this._y1); // proceed
-          case 2: this._context.lineTo(this._x1, this._y1); break;
-        }
-        if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
-        this._line = 1 - this._line;
-      },
-      point: function(x, y) {
-        x = +x, y = +y;
-        switch (this._point) {
-          case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
-          case 1: this._point = 2; break;
-          case 2: this._point = 3; this._context.lineTo((5 * this._x0 + this._x1) / 6, (5 * this._y0 + this._y1) / 6); // proceed
-          default: point(this, x, y); break;
-        }
-        this._x0 = this._x1, this._x1 = x;
-        this._y0 = this._y1, this._y1 = y;
-      }
-    };
-
-    function basis(context) {
-      return new Basis(context);
-    }
-
-    function BasisClosed(context) {
-      this._context = context;
-    }
-
-    BasisClosed.prototype = {
-      areaStart: noop$1,
-      areaEnd: noop$1,
-      lineStart: function() {
-        this._x0 = this._x1 = this._x2 = this._x3 = this._x4 =
-        this._y0 = this._y1 = this._y2 = this._y3 = this._y4 = NaN;
-        this._point = 0;
-      },
-      lineEnd: function() {
-        switch (this._point) {
-          case 1: {
-            this._context.moveTo(this._x2, this._y2);
-            this._context.closePath();
-            break;
-          }
-          case 2: {
-            this._context.moveTo((this._x2 + 2 * this._x3) / 3, (this._y2 + 2 * this._y3) / 3);
-            this._context.lineTo((this._x3 + 2 * this._x2) / 3, (this._y3 + 2 * this._y2) / 3);
-            this._context.closePath();
-            break;
-          }
-          case 3: {
-            this.point(this._x2, this._y2);
-            this.point(this._x3, this._y3);
-            this.point(this._x4, this._y4);
-            break;
-          }
-        }
-      },
-      point: function(x, y) {
-        x = +x, y = +y;
-        switch (this._point) {
-          case 0: this._point = 1; this._x2 = x, this._y2 = y; break;
-          case 1: this._point = 2; this._x3 = x, this._y3 = y; break;
-          case 2: this._point = 3; this._x4 = x, this._y4 = y; this._context.moveTo((this._x0 + 4 * this._x1 + x) / 6, (this._y0 + 4 * this._y1 + y) / 6); break;
-          default: point(this, x, y); break;
-        }
-        this._x0 = this._x1, this._x1 = x;
-        this._y0 = this._y1, this._y1 = y;
-      }
-    };
-
-    function basisClosed(context) {
-      return new BasisClosed(context);
-    }
-
-    function BasisOpen(context) {
-      this._context = context;
-    }
-
-    BasisOpen.prototype = {
-      areaStart: function() {
-        this._line = 0;
-      },
-      areaEnd: function() {
-        this._line = NaN;
-      },
-      lineStart: function() {
-        this._x0 = this._x1 =
-        this._y0 = this._y1 = NaN;
-        this._point = 0;
-      },
-      lineEnd: function() {
-        if (this._line || (this._line !== 0 && this._point === 3)) this._context.closePath();
-        this._line = 1 - this._line;
-      },
-      point: function(x, y) {
-        x = +x, y = +y;
-        switch (this._point) {
-          case 0: this._point = 1; break;
-          case 1: this._point = 2; break;
-          case 2: this._point = 3; var x0 = (this._x0 + 4 * this._x1 + x) / 6, y0 = (this._y0 + 4 * this._y1 + y) / 6; this._line ? this._context.lineTo(x0, y0) : this._context.moveTo(x0, y0); break;
-          case 3: this._point = 4; // proceed
-          default: point(this, x, y); break;
-        }
-        this._x0 = this._x1, this._x1 = x;
-        this._y0 = this._y1, this._y1 = y;
-      }
-    };
-
-    function basisOpen(context) {
-      return new BasisOpen(context);
-    }
-
-    function Bundle(context, beta) {
-      this._basis = new Basis(context);
-      this._beta = beta;
-    }
-
-    Bundle.prototype = {
-      lineStart: function() {
-        this._x = [];
-        this._y = [];
-        this._basis.lineStart();
-      },
-      lineEnd: function() {
-        var x = this._x,
-            y = this._y,
-            j = x.length - 1;
-
-        if (j > 0) {
-          var x0 = x[0],
-              y0 = y[0],
-              dx = x[j] - x0,
-              dy = y[j] - y0,
-              i = -1,
-              t;
-
-          while (++i <= j) {
-            t = i / j;
-            this._basis.point(
-              this._beta * x[i] + (1 - this._beta) * (x0 + t * dx),
-              this._beta * y[i] + (1 - this._beta) * (y0 + t * dy)
-            );
-          }
-        }
-
-        this._x = this._y = null;
-        this._basis.lineEnd();
-      },
-      point: function(x, y) {
-        this._x.push(+x);
-        this._y.push(+y);
-      }
-    };
-
-    var bundle = (function custom(beta) {
-
-      function bundle(context) {
-        return beta === 1 ? new Basis(context) : new Bundle(context, beta);
-      }
-
-      bundle.beta = function(beta) {
-        return custom(+beta);
-      };
-
-      return bundle;
-    })(0.85);
-
-    function point$1(that, x, y) {
-      that._context.bezierCurveTo(
-        that._x1 + that._k * (that._x2 - that._x0),
-        that._y1 + that._k * (that._y2 - that._y0),
-        that._x2 + that._k * (that._x1 - x),
-        that._y2 + that._k * (that._y1 - y),
-        that._x2,
-        that._y2
-      );
-    }
-
-    function Cardinal(context, tension) {
-      this._context = context;
-      this._k = (1 - tension) / 6;
-    }
-
-    Cardinal.prototype = {
-      areaStart: function() {
-        this._line = 0;
-      },
-      areaEnd: function() {
-        this._line = NaN;
-      },
-      lineStart: function() {
-        this._x0 = this._x1 = this._x2 =
-        this._y0 = this._y1 = this._y2 = NaN;
-        this._point = 0;
-      },
-      lineEnd: function() {
-        switch (this._point) {
-          case 2: this._context.lineTo(this._x2, this._y2); break;
-          case 3: point$1(this, this._x1, this._y1); break;
-        }
-        if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
-        this._line = 1 - this._line;
-      },
-      point: function(x, y) {
-        x = +x, y = +y;
-        switch (this._point) {
-          case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
-          case 1: this._point = 2; this._x1 = x, this._y1 = y; break;
-          case 2: this._point = 3; // proceed
-          default: point$1(this, x, y); break;
-        }
-        this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
-        this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
-      }
-    };
-
-    var cardinal = (function custom(tension) {
-
-      function cardinal(context) {
-        return new Cardinal(context, tension);
-      }
-
-      cardinal.tension = function(tension) {
-        return custom(+tension);
-      };
-
-      return cardinal;
-    })(0);
-
-    function CardinalClosed(context, tension) {
-      this._context = context;
-      this._k = (1 - tension) / 6;
-    }
-
-    CardinalClosed.prototype = {
-      areaStart: noop$1,
-      areaEnd: noop$1,
-      lineStart: function() {
-        this._x0 = this._x1 = this._x2 = this._x3 = this._x4 = this._x5 =
-        this._y0 = this._y1 = this._y2 = this._y3 = this._y4 = this._y5 = NaN;
-        this._point = 0;
-      },
-      lineEnd: function() {
-        switch (this._point) {
-          case 1: {
-            this._context.moveTo(this._x3, this._y3);
-            this._context.closePath();
-            break;
-          }
-          case 2: {
-            this._context.lineTo(this._x3, this._y3);
-            this._context.closePath();
-            break;
-          }
-          case 3: {
-            this.point(this._x3, this._y3);
-            this.point(this._x4, this._y4);
-            this.point(this._x5, this._y5);
-            break;
-          }
-        }
-      },
-      point: function(x, y) {
-        x = +x, y = +y;
-        switch (this._point) {
-          case 0: this._point = 1; this._x3 = x, this._y3 = y; break;
-          case 1: this._point = 2; this._context.moveTo(this._x4 = x, this._y4 = y); break;
-          case 2: this._point = 3; this._x5 = x, this._y5 = y; break;
-          default: point$1(this, x, y); break;
-        }
-        this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
-        this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
-      }
-    };
-
-    var cardinalClosed = (function custom(tension) {
-
-      function cardinal(context) {
-        return new CardinalClosed(context, tension);
-      }
-
-      cardinal.tension = function(tension) {
-        return custom(+tension);
-      };
-
-      return cardinal;
-    })(0);
-
-    function CardinalOpen(context, tension) {
-      this._context = context;
-      this._k = (1 - tension) / 6;
-    }
-
-    CardinalOpen.prototype = {
-      areaStart: function() {
-        this._line = 0;
-      },
-      areaEnd: function() {
-        this._line = NaN;
-      },
-      lineStart: function() {
-        this._x0 = this._x1 = this._x2 =
-        this._y0 = this._y1 = this._y2 = NaN;
-        this._point = 0;
-      },
-      lineEnd: function() {
-        if (this._line || (this._line !== 0 && this._point === 3)) this._context.closePath();
-        this._line = 1 - this._line;
-      },
-      point: function(x, y) {
-        x = +x, y = +y;
-        switch (this._point) {
-          case 0: this._point = 1; break;
-          case 1: this._point = 2; break;
-          case 2: this._point = 3; this._line ? this._context.lineTo(this._x2, this._y2) : this._context.moveTo(this._x2, this._y2); break;
-          case 3: this._point = 4; // proceed
-          default: point$1(this, x, y); break;
-        }
-        this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
-        this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
-      }
-    };
-
-    var cardinalOpen = (function custom(tension) {
-
-      function cardinal(context) {
-        return new CardinalOpen(context, tension);
-      }
-
-      cardinal.tension = function(tension) {
-        return custom(+tension);
-      };
-
-      return cardinal;
-    })(0);
-
-    function point$2(that, x, y) {
-      var x1 = that._x1,
-          y1 = that._y1,
-          x2 = that._x2,
-          y2 = that._y2;
-
-      if (that._l01_a > epsilon$1) {
-        var a = 2 * that._l01_2a + 3 * that._l01_a * that._l12_a + that._l12_2a,
-            n = 3 * that._l01_a * (that._l01_a + that._l12_a);
-        x1 = (x1 * a - that._x0 * that._l12_2a + that._x2 * that._l01_2a) / n;
-        y1 = (y1 * a - that._y0 * that._l12_2a + that._y2 * that._l01_2a) / n;
-      }
-
-      if (that._l23_a > epsilon$1) {
-        var b = 2 * that._l23_2a + 3 * that._l23_a * that._l12_a + that._l12_2a,
-            m = 3 * that._l23_a * (that._l23_a + that._l12_a);
-        x2 = (x2 * b + that._x1 * that._l23_2a - x * that._l12_2a) / m;
-        y2 = (y2 * b + that._y1 * that._l23_2a - y * that._l12_2a) / m;
-      }
-
-      that._context.bezierCurveTo(x1, y1, x2, y2, that._x2, that._y2);
-    }
-
-    function CatmullRom(context, alpha) {
-      this._context = context;
-      this._alpha = alpha;
-    }
-
-    CatmullRom.prototype = {
-      areaStart: function() {
-        this._line = 0;
-      },
-      areaEnd: function() {
-        this._line = NaN;
-      },
-      lineStart: function() {
-        this._x0 = this._x1 = this._x2 =
-        this._y0 = this._y1 = this._y2 = NaN;
-        this._l01_a = this._l12_a = this._l23_a =
-        this._l01_2a = this._l12_2a = this._l23_2a =
-        this._point = 0;
-      },
-      lineEnd: function() {
-        switch (this._point) {
-          case 2: this._context.lineTo(this._x2, this._y2); break;
-          case 3: this.point(this._x2, this._y2); break;
-        }
-        if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
-        this._line = 1 - this._line;
-      },
-      point: function(x, y) {
-        x = +x, y = +y;
-
-        if (this._point) {
-          var x23 = this._x2 - x,
-              y23 = this._y2 - y;
-          this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
-        }
-
-        switch (this._point) {
-          case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
-          case 1: this._point = 2; break;
-          case 2: this._point = 3; // proceed
-          default: point$2(this, x, y); break;
-        }
-
-        this._l01_a = this._l12_a, this._l12_a = this._l23_a;
-        this._l01_2a = this._l12_2a, this._l12_2a = this._l23_2a;
-        this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
-        this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
-      }
-    };
-
-    var catmullRom = (function custom(alpha) {
-
-      function catmullRom(context) {
-        return alpha ? new CatmullRom(context, alpha) : new Cardinal(context, 0);
-      }
-
-      catmullRom.alpha = function(alpha) {
-        return custom(+alpha);
-      };
-
-      return catmullRom;
-    })(0.5);
-
-    function CatmullRomClosed(context, alpha) {
-      this._context = context;
-      this._alpha = alpha;
-    }
-
-    CatmullRomClosed.prototype = {
-      areaStart: noop$1,
-      areaEnd: noop$1,
-      lineStart: function() {
-        this._x0 = this._x1 = this._x2 = this._x3 = this._x4 = this._x5 =
-        this._y0 = this._y1 = this._y2 = this._y3 = this._y4 = this._y5 = NaN;
-        this._l01_a = this._l12_a = this._l23_a =
-        this._l01_2a = this._l12_2a = this._l23_2a =
-        this._point = 0;
-      },
-      lineEnd: function() {
-        switch (this._point) {
-          case 1: {
-            this._context.moveTo(this._x3, this._y3);
-            this._context.closePath();
-            break;
-          }
-          case 2: {
-            this._context.lineTo(this._x3, this._y3);
-            this._context.closePath();
-            break;
-          }
-          case 3: {
-            this.point(this._x3, this._y3);
-            this.point(this._x4, this._y4);
-            this.point(this._x5, this._y5);
-            break;
-          }
-        }
-      },
-      point: function(x, y) {
-        x = +x, y = +y;
-
-        if (this._point) {
-          var x23 = this._x2 - x,
-              y23 = this._y2 - y;
-          this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
-        }
-
-        switch (this._point) {
-          case 0: this._point = 1; this._x3 = x, this._y3 = y; break;
-          case 1: this._point = 2; this._context.moveTo(this._x4 = x, this._y4 = y); break;
-          case 2: this._point = 3; this._x5 = x, this._y5 = y; break;
-          default: point$2(this, x, y); break;
-        }
-
-        this._l01_a = this._l12_a, this._l12_a = this._l23_a;
-        this._l01_2a = this._l12_2a, this._l12_2a = this._l23_2a;
-        this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
-        this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
-      }
-    };
-
-    var catmullRomClosed = (function custom(alpha) {
-
-      function catmullRom(context) {
-        return alpha ? new CatmullRomClosed(context, alpha) : new CardinalClosed(context, 0);
-      }
-
-      catmullRom.alpha = function(alpha) {
-        return custom(+alpha);
-      };
-
-      return catmullRom;
-    })(0.5);
-
-    function CatmullRomOpen(context, alpha) {
-      this._context = context;
-      this._alpha = alpha;
-    }
-
-    CatmullRomOpen.prototype = {
-      areaStart: function() {
-        this._line = 0;
-      },
-      areaEnd: function() {
-        this._line = NaN;
-      },
-      lineStart: function() {
-        this._x0 = this._x1 = this._x2 =
-        this._y0 = this._y1 = this._y2 = NaN;
-        this._l01_a = this._l12_a = this._l23_a =
-        this._l01_2a = this._l12_2a = this._l23_2a =
-        this._point = 0;
-      },
-      lineEnd: function() {
-        if (this._line || (this._line !== 0 && this._point === 3)) this._context.closePath();
-        this._line = 1 - this._line;
-      },
-      point: function(x, y) {
-        x = +x, y = +y;
-
-        if (this._point) {
-          var x23 = this._x2 - x,
-              y23 = this._y2 - y;
-          this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
-        }
-
-        switch (this._point) {
-          case 0: this._point = 1; break;
-          case 1: this._point = 2; break;
-          case 2: this._point = 3; this._line ? this._context.lineTo(this._x2, this._y2) : this._context.moveTo(this._x2, this._y2); break;
-          case 3: this._point = 4; // proceed
-          default: point$2(this, x, y); break;
-        }
-
-        this._l01_a = this._l12_a, this._l12_a = this._l23_a;
-        this._l01_2a = this._l12_2a, this._l12_2a = this._l23_2a;
-        this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
-        this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
-      }
-    };
-
-    var catmullRomOpen = (function custom(alpha) {
-
-      function catmullRom(context) {
-        return alpha ? new CatmullRomOpen(context, alpha) : new CardinalOpen(context, 0);
-      }
-
-      catmullRom.alpha = function(alpha) {
-        return custom(+alpha);
-      };
-
-      return catmullRom;
-    })(0.5);
-
-    function LinearClosed(context) {
-      this._context = context;
-    }
-
-    LinearClosed.prototype = {
-      areaStart: noop$1,
-      areaEnd: noop$1,
-      lineStart: function() {
-        this._point = 0;
-      },
-      lineEnd: function() {
-        if (this._point) this._context.closePath();
-      },
-      point: function(x, y) {
-        x = +x, y = +y;
-        if (this._point) this._context.lineTo(x, y);
-        else this._point = 1, this._context.moveTo(x, y);
-      }
-    };
-
-    function linearClosed(context) {
-      return new LinearClosed(context);
-    }
-
-    function sign(x) {
-      return x < 0 ? -1 : 1;
-    }
-
-    // Calculate the slopes of the tangents (Hermite-type interpolation) based on
-    // the following paper: Steffen, M. 1990. A Simple Method for Monotonic
-    // Interpolation in One Dimension. Astronomy and Astrophysics, Vol. 239, NO.
-    // NOV(II), P. 443, 1990.
-    function slope3(that, x2, y2) {
-      var h0 = that._x1 - that._x0,
-          h1 = x2 - that._x1,
-          s0 = (that._y1 - that._y0) / (h0 || h1 < 0 && -0),
-          s1 = (y2 - that._y1) / (h1 || h0 < 0 && -0),
-          p = (s0 * h1 + s1 * h0) / (h0 + h1);
-      return (sign(s0) + sign(s1)) * Math.min(Math.abs(s0), Math.abs(s1), 0.5 * Math.abs(p)) || 0;
-    }
-
-    // Calculate a one-sided slope.
-    function slope2(that, t) {
-      var h = that._x1 - that._x0;
-      return h ? (3 * (that._y1 - that._y0) / h - t) / 2 : t;
-    }
-
-    // According to https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Representations
-    // "you can express cubic Hermite interpolation in terms of cubic Bézier curves
-    // with respect to the four values p0, p0 + m0 / 3, p1 - m1 / 3, p1".
-    function point$3(that, t0, t1) {
-      var x0 = that._x0,
-          y0 = that._y0,
-          x1 = that._x1,
-          y1 = that._y1,
-          dx = (x1 - x0) / 3;
-      that._context.bezierCurveTo(x0 + dx, y0 + dx * t0, x1 - dx, y1 - dx * t1, x1, y1);
-    }
-
-    function MonotoneX(context) {
-      this._context = context;
-    }
-
-    MonotoneX.prototype = {
-      areaStart: function() {
-        this._line = 0;
-      },
-      areaEnd: function() {
-        this._line = NaN;
-      },
-      lineStart: function() {
-        this._x0 = this._x1 =
-        this._y0 = this._y1 =
-        this._t0 = NaN;
-        this._point = 0;
-      },
-      lineEnd: function() {
-        switch (this._point) {
-          case 2: this._context.lineTo(this._x1, this._y1); break;
-          case 3: point$3(this, this._t0, slope2(this, this._t0)); break;
-        }
-        if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
-        this._line = 1 - this._line;
-      },
-      point: function(x, y) {
-        var t1 = NaN;
-
-        x = +x, y = +y;
-        if (x === this._x1 && y === this._y1) return; // Ignore coincident points.
-        switch (this._point) {
-          case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
-          case 1: this._point = 2; break;
-          case 2: this._point = 3; point$3(this, slope2(this, t1 = slope3(this, x, y)), t1); break;
-          default: point$3(this, this._t0, t1 = slope3(this, x, y)); break;
-        }
-
-        this._x0 = this._x1, this._x1 = x;
-        this._y0 = this._y1, this._y1 = y;
-        this._t0 = t1;
-      }
-    };
-
-    function MonotoneY(context) {
-      this._context = new ReflectContext(context);
-    }
-
-    (MonotoneY.prototype = Object.create(MonotoneX.prototype)).point = function(x, y) {
-      MonotoneX.prototype.point.call(this, y, x);
-    };
-
-    function ReflectContext(context) {
-      this._context = context;
-    }
-
-    ReflectContext.prototype = {
-      moveTo: function(x, y) { this._context.moveTo(y, x); },
-      closePath: function() { this._context.closePath(); },
-      lineTo: function(x, y) { this._context.lineTo(y, x); },
-      bezierCurveTo: function(x1, y1, x2, y2, x, y) { this._context.bezierCurveTo(y1, x1, y2, x2, y, x); }
-    };
-
-    function monotoneX(context) {
-      return new MonotoneX(context);
-    }
-
-    function monotoneY(context) {
-      return new MonotoneY(context);
-    }
-
-    function Natural(context) {
-      this._context = context;
-    }
-
-    Natural.prototype = {
-      areaStart: function() {
-        this._line = 0;
-      },
-      areaEnd: function() {
-        this._line = NaN;
-      },
-      lineStart: function() {
-        this._x = [];
-        this._y = [];
-      },
-      lineEnd: function() {
-        var x = this._x,
-            y = this._y,
-            n = x.length;
-
-        if (n) {
-          this._line ? this._context.lineTo(x[0], y[0]) : this._context.moveTo(x[0], y[0]);
-          if (n === 2) {
-            this._context.lineTo(x[1], y[1]);
-          } else {
-            var px = controlPoints(x),
-                py = controlPoints(y);
-            for (var i0 = 0, i1 = 1; i1 < n; ++i0, ++i1) {
-              this._context.bezierCurveTo(px[0][i0], py[0][i0], px[1][i0], py[1][i0], x[i1], y[i1]);
-            }
-          }
-        }
-
-        if (this._line || (this._line !== 0 && n === 1)) this._context.closePath();
-        this._line = 1 - this._line;
-        this._x = this._y = null;
-      },
-      point: function(x, y) {
-        this._x.push(+x);
-        this._y.push(+y);
-      }
-    };
-
-    // See https://www.particleincell.com/2012/bezier-splines/ for derivation.
-    function controlPoints(x) {
-      var i,
-          n = x.length - 1,
-          m,
-          a = new Array(n),
-          b = new Array(n),
-          r = new Array(n);
-      a[0] = 0, b[0] = 2, r[0] = x[0] + 2 * x[1];
-      for (i = 1; i < n - 1; ++i) a[i] = 1, b[i] = 4, r[i] = 4 * x[i] + 2 * x[i + 1];
-      a[n - 1] = 2, b[n - 1] = 7, r[n - 1] = 8 * x[n - 1] + x[n];
-      for (i = 1; i < n; ++i) m = a[i] / b[i - 1], b[i] -= m, r[i] -= m * r[i - 1];
-      a[n - 1] = r[n - 1] / b[n - 1];
-      for (i = n - 2; i >= 0; --i) a[i] = (r[i] - a[i + 1]) / b[i];
-      b[n - 1] = (x[n] + a[n - 1]) / 2;
-      for (i = 0; i < n - 1; ++i) b[i] = 2 * x[i + 1] - a[i + 1];
-      return [a, b];
-    }
-
-    function natural(context) {
-      return new Natural(context);
-    }
-
-    function Step(context, t) {
-      this._context = context;
-      this._t = t;
-    }
-
-    Step.prototype = {
-      areaStart: function() {
-        this._line = 0;
-      },
-      areaEnd: function() {
-        this._line = NaN;
-      },
-      lineStart: function() {
-        this._x = this._y = NaN;
-        this._point = 0;
-      },
-      lineEnd: function() {
-        if (0 < this._t && this._t < 1 && this._point === 2) this._context.lineTo(this._x, this._y);
-        if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
-        if (this._line >= 0) this._t = 1 - this._t, this._line = 1 - this._line;
-      },
-      point: function(x, y) {
-        x = +x, y = +y;
-        switch (this._point) {
-          case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
-          case 1: this._point = 2; // proceed
-          default: {
-            if (this._t <= 0) {
-              this._context.lineTo(this._x, y);
-              this._context.lineTo(x, y);
-            } else {
-              var x1 = this._x * (1 - this._t) + x * this._t;
-              this._context.lineTo(x1, this._y);
-              this._context.lineTo(x1, y);
-            }
-            break;
-          }
-        }
-        this._x = x, this._y = y;
-      }
-    };
-
-    function step(context) {
-      return new Step(context, 0.5);
-    }
-
-    function stepBefore(context) {
-      return new Step(context, 0);
-    }
-
-    function stepAfter(context) {
-      return new Step(context, 1);
-    }
-
-    function none(series, order) {
-      if (!((n = series.length) > 1)) return;
-      for (var i = 1, j, s0, s1 = series[order[0]], n, m = s1.length; i < n; ++i) {
-        s0 = s1, s1 = series[order[i]];
-        for (j = 0; j < m; ++j) {
-          s1[j][1] += s1[j][0] = isNaN(s0[j][1]) ? s0[j][0] : s0[j][1];
-        }
-      }
-    }
-
-    function none$1(series) {
-      var n = series.length, o = new Array(n);
-      while (--n >= 0) o[n] = n;
-      return o;
-    }
-
-    function stackValue(d, key) {
-      return d[key];
-    }
-
-    function stack() {
-      var keys = constant([]),
-          order = none$1,
-          offset = none,
-          value = stackValue;
-
-      function stack(data) {
-        var kz = keys.apply(this, arguments),
-            i,
-            m = data.length,
-            n = kz.length,
-            sz = new Array(n),
-            oz;
-
-        for (i = 0; i < n; ++i) {
-          for (var ki = kz[i], si = sz[i] = new Array(m), j = 0, sij; j < m; ++j) {
-            si[j] = sij = [0, +value(data[j], ki, j, data)];
-            sij.data = data[j];
-          }
-          si.key = ki;
-        }
-
-        for (i = 0, oz = order(sz); i < n; ++i) {
-          sz[oz[i]].index = i;
-        }
-
-        offset(sz, oz);
-        return sz;
-      }
-
-      stack.keys = function(_) {
-        return arguments.length ? (keys = typeof _ === "function" ? _ : constant(slice.call(_)), stack) : keys;
-      };
-
-      stack.value = function(_) {
-        return arguments.length ? (value = typeof _ === "function" ? _ : constant(+_), stack) : value;
-      };
-
-      stack.order = function(_) {
-        return arguments.length ? (order = _ == null ? none$1 : typeof _ === "function" ? _ : constant(slice.call(_)), stack) : order;
-      };
-
-      stack.offset = function(_) {
-        return arguments.length ? (offset = _ == null ? none : _, stack) : offset;
-      };
-
-      return stack;
-    }
-
-    function expand(series, order) {
-      if (!((n = series.length) > 0)) return;
-      for (var i, n, j = 0, m = series[0].length, y; j < m; ++j) {
-        for (y = i = 0; i < n; ++i) y += series[i][j][1] || 0;
-        if (y) for (i = 0; i < n; ++i) series[i][j][1] /= y;
-      }
-      none(series, order);
-    }
-
-    function diverging(series, order) {
-      if (!((n = series.length) > 0)) return;
-      for (var i, j = 0, d, dy, yp, yn, n, m = series[order[0]].length; j < m; ++j) {
-        for (yp = yn = 0, i = 0; i < n; ++i) {
-          if ((dy = (d = series[order[i]][j])[1] - d[0]) > 0) {
-            d[0] = yp, d[1] = yp += dy;
-          } else if (dy < 0) {
-            d[1] = yn, d[0] = yn += dy;
-          } else {
-            d[0] = 0, d[1] = dy;
-          }
-        }
-      }
-    }
-
-    function silhouette(series, order) {
-      if (!((n = series.length) > 0)) return;
-      for (var j = 0, s0 = series[order[0]], n, m = s0.length; j < m; ++j) {
-        for (var i = 0, y = 0; i < n; ++i) y += series[i][j][1] || 0;
-        s0[j][1] += s0[j][0] = -y / 2;
-      }
-      none(series, order);
-    }
-
-    function wiggle(series, order) {
-      if (!((n = series.length) > 0) || !((m = (s0 = series[order[0]]).length) > 0)) return;
-      for (var y = 0, j = 1, s0, m, n; j < m; ++j) {
-        for (var i = 0, s1 = 0, s2 = 0; i < n; ++i) {
-          var si = series[order[i]],
-              sij0 = si[j][1] || 0,
-              sij1 = si[j - 1][1] || 0,
-              s3 = (sij0 - sij1) / 2;
-          for (var k = 0; k < i; ++k) {
-            var sk = series[order[k]],
-                skj0 = sk[j][1] || 0,
-                skj1 = sk[j - 1][1] || 0;
-            s3 += skj0 - skj1;
-          }
-          s1 += sij0, s2 += s3 * sij0;
-        }
-        s0[j - 1][1] += s0[j - 1][0] = y;
-        if (s1) y -= s2 / s1;
-      }
-      s0[j - 1][1] += s0[j - 1][0] = y;
-      none(series, order);
-    }
-
-    function appearance(series) {
-      var peaks = series.map(peak);
-      return none$1(series).sort(function(a, b) { return peaks[a] - peaks[b]; });
-    }
-
-    function peak(series) {
-      var i = -1, j = 0, n = series.length, vi, vj = -Infinity;
-      while (++i < n) if ((vi = +series[i][1]) > vj) vj = vi, j = i;
-      return j;
-    }
-
-    function ascending(series) {
-      var sums = series.map(sum);
-      return none$1(series).sort(function(a, b) { return sums[a] - sums[b]; });
-    }
-
-    function sum(series) {
-      var s = 0, i = -1, n = series.length, v;
-      while (++i < n) if (v = +series[i][1]) s += v;
-      return s;
-    }
-
-    function descending$1(series) {
-      return ascending(series).reverse();
-    }
-
-    function insideOut(series) {
-      var n = series.length,
-          i,
-          j,
-          sums = series.map(sum),
-          order = appearance(series),
-          top = 0,
-          bottom = 0,
-          tops = [],
-          bottoms = [];
-
-      for (i = 0; i < n; ++i) {
-        j = order[i];
-        if (top < bottom) {
-          top += sums[j];
-          tops.push(j);
-        } else {
-          bottom += sums[j];
-          bottoms.push(j);
-        }
-      }
-
-      return bottoms.reverse().concat(tops);
-    }
-
-    function reverse(series) {
-      return none$1(series).reverse();
-    }
-
-    var d3Shape = /*#__PURE__*/Object.freeze({
-        __proto__: null,
-        arc: arc,
-        area: area,
-        line: line,
-        pie: pie,
-        areaRadial: areaRadial,
-        radialArea: areaRadial,
-        lineRadial: lineRadial$1,
-        radialLine: lineRadial$1,
-        pointRadial: pointRadial,
-        linkHorizontal: linkHorizontal,
-        linkVertical: linkVertical,
-        linkRadial: linkRadial,
-        symbol: symbol,
-        symbols: symbols,
-        symbolCircle: circle,
-        symbolCross: cross,
-        symbolDiamond: diamond,
-        symbolSquare: square,
-        symbolStar: star,
-        symbolTriangle: triangle,
-        symbolWye: wye,
-        curveBasisClosed: basisClosed,
-        curveBasisOpen: basisOpen,
-        curveBasis: basis,
-        curveBundle: bundle,
-        curveCardinalClosed: cardinalClosed,
-        curveCardinalOpen: cardinalOpen,
-        curveCardinal: cardinal,
-        curveCatmullRomClosed: catmullRomClosed,
-        curveCatmullRomOpen: catmullRomOpen,
-        curveCatmullRom: catmullRom,
-        curveLinearClosed: linearClosed,
-        curveLinear: curveLinear,
-        curveMonotoneX: monotoneX,
-        curveMonotoneY: monotoneY,
-        curveNatural: natural,
-        curveStep: step,
-        curveStepAfter: stepAfter,
-        curveStepBefore: stepBefore,
-        stack: stack,
-        stackOffsetExpand: expand,
-        stackOffsetDiverging: diverging,
-        stackOffsetNone: none,
-        stackOffsetSilhouette: silhouette,
-        stackOffsetWiggle: wiggle,
-        stackOrderAppearance: appearance,
-        stackOrderAscending: ascending,
-        stackOrderDescending: descending$1,
-        stackOrderInsideOut: insideOut,
-        stackOrderNone: none$1,
-        stackOrderReverse: reverse
-    });
-
-    /* src/graphs/Area.svelte generated by Svelte v3.21.0 */
-    const file$4 = "src/graphs/Area.svelte";
-
-    function get_each_context$1(ctx, list, i) {
-    	const child_ctx = ctx.slice();
-    	child_ctx[14] = list[i];
-    	return child_ctx;
-    }
-
-    // (98:4) {#each ticks as tick}
-    function create_each_block$1(ctx) {
-    	let div0;
-    	let t0;
-    	let t1;
-    	let div1;
-    	let t2_value = /*tick*/ ctx[14].label + "";
-    	let t2;
-    	let t3;
-
-    	const block = {
-    		c: function create() {
-    			div0 = element("div");
-    			t0 = text("∣");
-    			t1 = space();
-    			div1 = element("div");
-    			t2 = text(t2_value);
-    			t3 = space();
-    			attr_dev(div0, "class", "tick svelte-c43yl5");
-    			set_style(div0, "left", /*tick*/ ctx[14].value * 100 + "%");
-    			set_style(div0, "transform", "translate(5px)");
-    			add_location(div0, file$4, 98, 6, 1918);
-    			attr_dev(div1, "class", "tick svelte-c43yl5");
-    			set_style(div1, "top", "12px");
-    			set_style(div1, "left", /*tick*/ ctx[14].value * 100 + "%");
-    			add_location(div1, file$4, 103, 6, 2041);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, div0, anchor);
-    			append_dev(div0, t0);
-    			insert_dev(target, t1, anchor);
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, t2);
-    			append_dev(div1, t3);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*ticks*/ 8) {
-    				set_style(div0, "left", /*tick*/ ctx[14].value * 100 + "%");
-    			}
-
-    			if (dirty & /*ticks*/ 8 && t2_value !== (t2_value = /*tick*/ ctx[14].label + "")) set_data_dev(t2, t2_value);
-
-    			if (dirty & /*ticks*/ 8) {
-    				set_style(div1, "left", /*tick*/ ctx[14].value * 100 + "%");
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div0);
-    			if (detaching) detach_dev(t1);
-    			if (detaching) detach_dev(div1);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_each_block$1.name,
-    		type: "each",
-    		source: "(98:4) {#each ticks as tick}",
-    		ctx
-    	});
-
-    	return block;
-    }
+    /* src/labels/Label.svelte generated by Svelte v3.21.0 */
+    const file$4 = "src/labels/Label.svelte";
 
     function create_fragment$4(ctx) {
-    	let div1;
-    	let svg;
-    	let path0;
-    	let path1;
-    	let t;
-    	let div0;
-    	let each_value = /*ticks*/ ctx[3];
-    	validate_each_argument(each_value);
-    	let each_blocks = [];
-
-    	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
-    	}
-
-    	const block = {
-    		c: function create() {
-    			div1 = element("div");
-    			svg = svg_element("svg");
-    			path0 = svg_element("path");
-    			path1 = svg_element("path");
-    			t = space();
-    			div0 = element("div");
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
-    			attr_dev(path0, "d", /*path*/ ctx[4]);
-    			attr_dev(path0, "fill", /*color*/ ctx[0]);
-    			attr_dev(path0, "stroke", /*color*/ ctx[0]);
-    			attr_dev(path0, "stroke-width", "0");
-    			attr_dev(path0, "fill-opacity", "0.5");
-    			add_location(path0, file$4, 88, 4, 1675);
-    			attr_dev(path1, "d", /*line*/ ctx[5]);
-    			attr_dev(path1, "fill", "none");
-    			attr_dev(path1, "stroke", /*color*/ ctx[0]);
-    			attr_dev(path1, "stroke-width", "3px");
-    			add_location(path1, file$4, 94, 4, 1791);
-    			attr_dev(svg, "preserveAspectRatio", "none");
-    			attr_dev(svg, "class", "svelte-c43yl5");
-    			add_location(svg, file$4, 87, 2, 1638);
-    			attr_dev(div0, "class", "ticks svelte-c43yl5");
-    			add_location(div0, file$4, 96, 2, 1866);
-    			attr_dev(div1, "class", "part container svelte-c43yl5");
-    			set_style(div1, "width", /*width*/ ctx[1] + "px");
-    			set_style(div1, "opacity", /*opacity*/ ctx[2]);
-    			add_location(div1, file$4, 86, 0, 1563);
-    		},
-    		l: function claim(nodes) {
-    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, svg);
-    			append_dev(svg, path0);
-    			append_dev(svg, path1);
-    			append_dev(div1, t);
-    			append_dev(div1, div0);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div0, null);
-    			}
-    		},
-    		p: function update(ctx, [dirty]) {
-    			if (dirty & /*color*/ 1) {
-    				attr_dev(path0, "fill", /*color*/ ctx[0]);
-    			}
-
-    			if (dirty & /*color*/ 1) {
-    				attr_dev(path0, "stroke", /*color*/ ctx[0]);
-    			}
-
-    			if (dirty & /*color*/ 1) {
-    				attr_dev(path1, "stroke", /*color*/ ctx[0]);
-    			}
-
-    			if (dirty & /*ticks*/ 8) {
-    				each_value = /*ticks*/ ctx[3];
-    				validate_each_argument(each_value);
-    				let i;
-
-    				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context$1(ctx, each_value, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks[i] = create_each_block$1(child_ctx);
-    						each_blocks[i].c();
-    						each_blocks[i].m(div0, null);
-    					}
-    				}
-
-    				for (; i < each_blocks.length; i += 1) {
-    					each_blocks[i].d(1);
-    				}
-
-    				each_blocks.length = each_value.length;
-    			}
-
-    			if (dirty & /*width*/ 2) {
-    				set_style(div1, "width", /*width*/ ctx[1] + "px");
-    			}
-
-    			if (dirty & /*opacity*/ 4) {
-    				set_style(div1, "opacity", /*opacity*/ ctx[2]);
-    			}
-    		},
-    		i: noop,
-    		o: noop,
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div1);
-    			destroy_each(each_blocks, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_fragment$4.name,
-    		type: "component",
-    		source: "",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    function instance$4($$self, $$props, $$invalidate) {
-    	let start = getContext("start");
-    	let end = getContext("end");
-    	let { data = [] } = $$props;
-    	let { width = 400 } = $$props;
-    	let { opacity = "1" } = $$props;
-    	let { showTicks = true } = $$props;
-    	let { color = "blue" } = $$props;
-    	color = spencerColor.colors[color] || color;
-    	const yScale = getContext("scale");
-
-    	// find max x
-    	let max = 0;
-
-    	data.forEach(o => {
-    		if (o.x > max) {
-    			max = o.x;
-    		}
-    	});
-
-    	let xScale = val => {
-    		return scale({ world: [0, width], minmax: [0, max] }, val);
-    	};
-
-    	let points = data.map(obj => {
-    		let d = src(obj.value);
-    		return { x: xScale(obj.x), y: yScale(d.epoch) };
-    	});
-
-    	let path = area().x0(d => d.x).y0(d => d.y).y1(6070129).curve(monotoneX)(points);
-    	let line$1 = line().x(d => d.x).y(d => d.y).curve(monotoneX)(points);
-    	let ticks = somehowTicks(0, max, 4);
-
-    	if (!showTicks) {
-    		ticks = [];
-    	}
-
-    	const writable_props = ["data", "width", "opacity", "showTicks", "color"];
-
-    	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Area> was created with unknown prop '${key}'`);
-    	});
-
-    	let { $$slots = {}, $$scope } = $$props;
-    	validate_slots("Area", $$slots, []);
-
-    	$$self.$set = $$props => {
-    		if ("data" in $$props) $$invalidate(6, data = $$props.data);
-    		if ("width" in $$props) $$invalidate(1, width = $$props.width);
-    		if ("opacity" in $$props) $$invalidate(2, opacity = $$props.opacity);
-    		if ("showTicks" in $$props) $$invalidate(7, showTicks = $$props.showTicks);
-    		if ("color" in $$props) $$invalidate(0, color = $$props.color);
-    	};
-
-    	$$self.$capture_state = () => ({
-    		spacetime: src,
-    		makeTicks: somehowTicks,
-    		scale,
-    		d3Shape,
-    		getContext,
-    		c: spencerColor,
-    		start,
-    		end,
-    		data,
-    		width,
-    		opacity,
-    		showTicks,
-    		color,
-    		yScale,
-    		max,
-    		xScale,
-    		points,
-    		path,
-    		line: line$1,
-    		ticks
-    	});
-
-    	$$self.$inject_state = $$props => {
-    		if ("start" in $$props) start = $$props.start;
-    		if ("end" in $$props) end = $$props.end;
-    		if ("data" in $$props) $$invalidate(6, data = $$props.data);
-    		if ("width" in $$props) $$invalidate(1, width = $$props.width);
-    		if ("opacity" in $$props) $$invalidate(2, opacity = $$props.opacity);
-    		if ("showTicks" in $$props) $$invalidate(7, showTicks = $$props.showTicks);
-    		if ("color" in $$props) $$invalidate(0, color = $$props.color);
-    		if ("max" in $$props) max = $$props.max;
-    		if ("xScale" in $$props) xScale = $$props.xScale;
-    		if ("points" in $$props) points = $$props.points;
-    		if ("path" in $$props) $$invalidate(4, path = $$props.path);
-    		if ("line" in $$props) $$invalidate(5, line$1 = $$props.line);
-    		if ("ticks" in $$props) $$invalidate(3, ticks = $$props.ticks);
-    	};
-
-    	if ($$props && "$$inject" in $$props) {
-    		$$self.$inject_state($$props.$$inject);
-    	}
-
-    	return [color, width, opacity, ticks, path, line$1, data, showTicks];
-    }
-
-    class Area extends SvelteComponentDev {
-    	constructor(options) {
-    		super(options);
-
-    		init(this, options, instance$4, create_fragment$4, safe_not_equal, {
-    			data: 6,
-    			width: 1,
-    			opacity: 2,
-    			showTicks: 7,
-    			color: 0
-    		});
-
-    		dispatch_dev("SvelteRegisterComponent", {
-    			component: this,
-    			tagName: "Area",
-    			options,
-    			id: create_fragment$4.name
-    		});
-    	}
-
-    	get data() {
-    		throw new Error("<Area>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set data(value) {
-    		throw new Error("<Area>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get width() {
-    		throw new Error("<Area>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set width(value) {
-    		throw new Error("<Area>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get opacity() {
-    		throw new Error("<Area>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set opacity(value) {
-    		throw new Error("<Area>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get showTicks() {
-    		throw new Error("<Area>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set showTicks(value) {
-    		throw new Error("<Area>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get color() {
-    		throw new Error("<Area>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set color(value) {
-    		throw new Error("<Area>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-    }
-
-    /* src/labels/Label.svelte generated by Svelte v3.21.0 */
-    const file$5 = "src/labels/Label.svelte";
-
-    function create_fragment$5(ctx) {
     	let div;
     	let raw_value = /*obj*/ ctx[4].label + "";
     	let div_style_value;
@@ -8143,7 +5727,7 @@ var app = (function () {
     			div = element("div");
     			attr_dev(div, "class", "label svelte-j5whdb");
     			attr_dev(div, "style", div_style_value = "top:" + /*obj*/ ctx[4].value + "px; opacity:" + /*opacity*/ ctx[3] + "; border-" + /*side*/ ctx[2] + ": 4px solid " + /*color*/ ctx[0] + ";\n  color:" + /*color*/ ctx[0] + "; text-align: " + /*align*/ ctx[1] + ";");
-    			add_location(div, file$5, 29, 0, 585);
+    			add_location(div, file$4, 29, 0, 585);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8166,7 +5750,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$5.name,
+    		id: create_fragment$4.name,
     		type: "component",
     		source: "",
     		ctx
@@ -8175,7 +5759,7 @@ var app = (function () {
     	return block;
     }
 
-    function instance$5($$self, $$props, $$invalidate) {
+    function instance$4($$self, $$props, $$invalidate) {
     	let { label = "" } = $$props;
     	let { align = "right" } = $$props;
     	let { side = "right" } = $$props;
@@ -8243,7 +5827,7 @@ var app = (function () {
     	constructor(options) {
     		super(options);
 
-    		init(this, options, instance$5, create_fragment$5, safe_not_equal, {
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, {
     			label: 5,
     			align: 1,
     			side: 2,
@@ -8256,7 +5840,7 @@ var app = (function () {
     			component: this,
     			tagName: "Label",
     			options,
-    			id: create_fragment$5.name
+    			id: create_fragment$4.name
     		});
     	}
 
@@ -8311,9 +5895,9 @@ var app = (function () {
 
     /* src/Column.svelte generated by Svelte v3.21.0 */
 
-    const file$6 = "src/Column.svelte";
+    const file$5 = "src/Column.svelte";
 
-    function create_fragment$6(ctx) {
+    function create_fragment$5(ctx) {
     	let div1;
     	let div0;
     	let t0;
@@ -8330,10 +5914,10 @@ var app = (function () {
     			t1 = space();
     			if (default_slot) default_slot.c();
     			attr_dev(div0, "class", "label svelte-gr5sfz");
-    			add_location(div0, file$6, 16, 2, 234);
+    			add_location(div0, file$5, 16, 2, 234);
     			attr_dev(div1, "class", "part column svelte-gr5sfz");
     			set_style(div1, "width", /*width*/ ctx[0]);
-    			add_location(div1, file$6, 15, 0, 183);
+    			add_location(div1, file$5, 15, 0, 183);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8380,7 +5964,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$6.name,
+    		id: create_fragment$5.name,
     		type: "component",
     		source: "",
     		ctx
@@ -8389,7 +5973,7 @@ var app = (function () {
     	return block;
     }
 
-    function instance$6($$self, $$props, $$invalidate) {
+    function instance$5($$self, $$props, $$invalidate) {
     	let { width = "30px" } = $$props;
     	let { label = "" } = $$props;
     	const writable_props = ["width", "label"];
@@ -8424,13 +6008,13 @@ var app = (function () {
     class Column extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$6, create_fragment$6, safe_not_equal, { width: 0, label: 1 });
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, { width: 0, label: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "Column",
     			options,
-    			id: create_fragment$6.name
+    			id: create_fragment$5.name
     		});
     	}
 
@@ -8452,9 +6036,9 @@ var app = (function () {
     }
 
     /* src/labels/WideLabel.svelte generated by Svelte v3.21.0 */
-    const file$7 = "src/labels/WideLabel.svelte";
+    const file$6 = "src/labels/WideLabel.svelte";
 
-    function create_fragment$7(ctx) {
+    function create_fragment$6(ctx) {
     	let div;
     	let t;
 
@@ -8466,7 +6050,7 @@ var app = (function () {
     			set_style(div, "top", /*y*/ ctx[3] + "px");
     			set_style(div, "text-align", /*align*/ ctx[1]);
     			set_style(div, "color", /*color*/ ctx[2]);
-    			add_location(div, file$7, 22, 0, 441);
+    			add_location(div, file$6, 22, 0, 441);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8495,7 +6079,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$7.name,
+    		id: create_fragment$6.name,
     		type: "component",
     		source: "",
     		ctx
@@ -8504,7 +6088,7 @@ var app = (function () {
     	return block;
     }
 
-    function instance$7($$self, $$props, $$invalidate) {
+    function instance$6($$self, $$props, $$invalidate) {
     	let { date = "" } = $$props;
     	let { label = "" } = $$props;
     	let { align = "right" } = $$props;
@@ -8556,13 +6140,13 @@ var app = (function () {
     class WideLabel extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { date: 4, label: 0, align: 1, color: 2 });
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, { date: 4, label: 0, align: 1, color: 2 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "WideLabel",
     			options,
-    			id: create_fragment$7.name
+    			id: create_fragment$6.name
     		});
     	}
 
@@ -8599,128 +6183,153 @@ var app = (function () {
     	}
     }
 
-    var mayors = [
-      // ['William Lyon Mackenzie', '1834', '1835'],
-      // ['Robert Baldwin Sullivan', '1835', '1836'],
-      // ['Thomas David Morrison', '1836', '1837'],
-      // ['George Gurnett', '1837', '1838'],
-      // ['John Powell', '1838', '1841'],
-      // ['George Monro', '1841', '1842'],
-      // ['Henry Sherwood', '1842', '1845'],
-      // ['William H. Boulton', '1845', '1848'],
-      // ['George Gurnett', '1848', '1851'],
-      // ['John George Bowes', '1851', '1854'],
-      // ['Joshua George Beard', '1854', '1855'],
-      // ['George William Allan', '1855', '1856'],
-      // ['John Beverley Robinson', '1856', '1857'],
-      // ['John Hutchison', '1857', '1858'],
-      // ['William H. Boulton', '1858', '1858'],
-      // ['David Breakenridge Read', '1858', '1858'],
-      // ['Adam Wilson', '1859', '1861'],
-      // ['John George Bowes', '1861', '1864'],
-      // ['Francis Henry Medcalf', '1864', '1867'],
-      // ['James Edward Smith', '1867', '1869'],
-      // ['Samuel Bickerton Harman', '1869', '1871'],
-      // ['Joseph Sheard', '1871', '1873'],
-      // ['Alexander Manning', '1873', '1874'],
-      // ['Francis Henry Medcalf', '1874', '1875'],
-      // ['Angus Morrison', '1876', '1878'],
-      // ['James Beaty', '1879', '1880'],
-      // ['William Barclay McMurrich', '1881', '1882'],
-      // ['Arthur Radcliffe Boswell', '1883', '1884'],
-      // ['Alexander Manning', '1885', '1885'],
-      // ['William Holmes Howland', '1886', '1887'],
-      // ['Edward Frederick Clarke', '1888', '1891'],
-      // ['Robert John Fleming', '1892', '1893'],
-      // ['Warring Kennedy', '1894', '1895'],
-      // ['Robert John Fleming', '1896', '1897'],
-      // ['John Shaw', '1897', '1899'],
-      ['Ernest A. Macdonald', '1900', '1900'],
-      ['Oliver Aiken Howland', '1901', '1902'],
-      ['Thomas Urquhart', '1903', '1905'],
-      ['Emerson Coatsworth', '1906', '1907'],
-      ['Joseph Oliver', '1908', '1909'],
-      ['George Reginald Geary', '1910', '1912'],
-      ['Horatio C. Hocken', '1912', '1914'],
-      ['Thomas Langton Church', '1915', '1921'],
-      ['Charles A. Maguire', '1922', '1923'],
-      ['W. W. Hiltz', '1924', '1924'],
-      ['Thomas Foster', '1925', '1927'],
-      ['Sam McBride', '1928', '1929'],
-      ['Bert Sterling Wemp', '1930', '1930'],
-      ['William James Stewart', '1931', '1934'],
-      ['James Simpson', '1935', '1935'],
-      ['Sam McBride', '1936', '1936'],
-      ['William D. Robbins', '1936', '1937'],
-      ['Ralph C. Day', '1938', '1940'],
-      ['Frederick J. Conboy', '1941', '1944'],
-      ['Robert Hood Saunders', '1945', '1948'],
-      ['Hiram E. McCallum', '1948', '1951'],
-      ['Allan Lamport', 'January 1, 1952', 'June 28, 1954'],
-      ['Leslie Howard Saunders', 'June 28, 1954', 'December 31, 1954'],
-      ['Nathan Phillips', 'January 1, 1955', 'December 31, 1962'],
-      ['Donald Dean Summerville', 'January 1, 1963', 'November 19, 1963'],
-      ['Philip Givens', 'November 19, 1963', 'December 31, 1966'],
-      ['William Dennison', 'January 1, 1967', 'December 31, 1972'],
-      ['David Crombie', 'January 1, 1973', 'August 31, 1978'],
-      ['Fred Beavis', 'September 1, 1978', 'November 30, 1978'],
-      ['John Sewell', 'December 1, 1978', 'November 30, 1980'],
-      ['Art Eggleton', 'December 1, 1980', 'November 30, 1991'],
-      ['June Rowlands', 'December 1, 1991', 'November 30, 1994'],
-      ['Barbara Hall', 'December 1, 1994', 'December 31, 1997'],
-      ['Mel Lastman', 'January 1, 1998', 'November 30, 2003'],
-      ['David Miller', 'December 1, 2003', 'November 30, 2010'],
-      ['Rob Ford', 'December 1, 2010', 'November 30, 2014'],
-      ['John Tory', 'December 1, 2014', 'November 30 2022'],
-    ];
+    /* examples/year-in-toronto/Graph.svelte generated by Svelte v3.21.0 */
 
-    var years = [
-      [
-        1825,
-        6000, //i made this number up
-      ],
-      [1834, 9252],
-      [1901, 238080],
-      [1931, 856955],
-      [1941, 951549],
-      [1951, 1176622],
-      [1961, 1824481],
-      [1971, 2089729],
-      [1976, 2124291],
-      [1981, 2137395],
-      [1986, 2192721],
-      [1991, 2275771],
-      [1996, 2385421],
-      [2001, 2481494],
-      [2006, 2503281],
-      [2011, 2615060],
-      [2016, 2731571],
-    ];
+    // (16:2) <Column width="25px">
+    function create_default_slot_10(ctx) {
+    	let current;
 
-    /* examples/history-of-toronto/Graph.svelte generated by Svelte v3.21.0 */
+    	const ticks = new Ticks({
+    			props: { every: "month" },
+    			$$inline: true
+    		});
 
-    // (29:2) <Column width="2px">
+    	const block = {
+    		c: function create() {
+    			create_component(ticks.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(ticks, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(ticks.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(ticks.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(ticks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_10.name,
+    		type: "slot",
+    		source: "(16:2) <Column width=\\\"25px\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (19:2) <Column width="15px">
+    function create_default_slot_9(ctx) {
+    	let current;
+    	const line = new Line({ $$inline: true });
+
+    	const block = {
+    		c: function create() {
+    			create_component(line.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(line, target, anchor);
+    			current = true;
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(line.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(line.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(line, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_9.name,
+    		type: "slot",
+    		source: "(19:2) <Column width=\\\"15px\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (22:2) <Column width="15px">
     function create_default_slot_8(ctx) {
+    	let current;
+
+    	const now_1 = new Now({
+    			props: { label: "today" },
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(now_1.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(now_1, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(now_1.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(now_1.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(now_1, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_8.name,
+    		type: "slot",
+    		source: "(22:2) <Column width=\\\"15px\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (26:2) <Column width="45px">
+    function create_default_slot_7(ctx) {
     	let t;
     	let current;
 
     	const line0 = new Line({
     			props: {
-    				width: "3px",
-    				start: "28 July 1914",
-    				end: "11 November 1918",
-    				color: "fire",
-    				label: ""
+    				space: "15px",
+    				end: "April 10 " + /*year*/ ctx[1],
+    				color: "red",
+    				label: "Raptors"
     			},
     			$$inline: true
     		});
 
     	const line1 = new Line({
     			props: {
-    				width: "3px",
-    				start: "1 September 1939",
-    				end: "2 September 1945",
-    				color: "fire",
+    				space: "15px",
+    				start: "October 16 " + /*year*/ ctx[1],
+    				end: "Dec 31 " + /*year*/ ctx[1],
+    				color: "red",
     				label: ""
     			},
     			$$inline: true
@@ -8759,96 +6368,69 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_8.name,
-    		type: "slot",
-    		source: "(29:2) <Column width=\\\"2px\\\">",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (33:2) <Column width="35px">
-    function create_default_slot_7(ctx) {
-    	let current;
-
-    	const now_1 = new Now({
-    			props: {
-    				color: "blue",
-    				width: "4px",
-    				label: "now"
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(now_1.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(now_1, target, anchor);
-    			current = true;
-    		},
-    		p: noop,
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(now_1.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(now_1.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(now_1, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
     		id: create_default_slot_7.name,
     		type: "slot",
-    		source: "(33:2) <Column width=\\\"35px\\\">",
+    		source: "(26:2) <Column width=\\\"45px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (36:2) <Column width="5px" label="Subway">
+    // (31:2) <Column width="45px">
     function create_default_slot_6(ctx) {
+    	let t;
     	let current;
 
-    	const line = new Line({
+    	const line0 = new Line({
     			props: {
     				space: "15px",
-    				start: "March 30 1954",
-    				color: "yellow",
-    				label: "Line 1"
+    				end: "April 6 " + /*year*/ ctx[1],
+    				color: "navy",
+    				label: "Leafs"
+    			},
+    			$$inline: true
+    		});
+
+    	const line1 = new Line({
+    			props: {
+    				space: "15px",
+    				start: "October 3 " + /*year*/ ctx[1],
+    				end: "Dec 31 " + /*year*/ ctx[1],
+    				color: "navy",
+    				label: "(Leafs)"
     			},
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(line.$$.fragment);
+    			create_component(line0.$$.fragment);
+    			t = space();
+    			create_component(line1.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(line, target, anchor);
+    			mount_component(line0, target, anchor);
+    			insert_dev(target, t, anchor);
+    			mount_component(line1, target, anchor);
     			current = true;
     		},
     		p: noop,
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(line.$$.fragment, local);
+    			transition_in(line0.$$.fragment, local);
+    			transition_in(line1.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(line.$$.fragment, local);
+    			transition_out(line0.$$.fragment, local);
+    			transition_out(line1.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(line, detaching);
+    			destroy_component(line0, detaching);
+    			if (detaching) detach_dev(t);
+    			destroy_component(line1, detaching);
     		}
     	};
 
@@ -8856,23 +6438,24 @@ var app = (function () {
     		block,
     		id: create_default_slot_6.name,
     		type: "slot",
-    		source: "(36:2) <Column width=\\\"5px\\\" label=\\\"Subway\\\">",
+    		source: "(31:2) <Column width=\\\"45px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (39:2) <Column width="5px">
+    // (36:2) <Column width="20px">
     function create_default_slot_5(ctx) {
     	let current;
 
     	const line = new Line({
     			props: {
     				space: "15px",
-    				start: "May 10, 1968",
-    				color: "green",
-    				label: "Line 2"
+    				start: "March 3 " + /*year*/ ctx[1],
+    				end: "Dec 1 " + /*year*/ ctx[1],
+    				color: "tulip",
+    				label: "TFC"
     			},
     			$$inline: true
     		});
@@ -8904,23 +6487,24 @@ var app = (function () {
     		block,
     		id: create_default_slot_5.name,
     		type: "slot",
-    		source: "(39:2) <Column width=\\\"5px\\\">",
+    		source: "(36:2) <Column width=\\\"20px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (42:2) <Column width="5px">
+    // (40:2) <Column width="80px">
     function create_default_slot_4(ctx) {
     	let current;
 
     	const line = new Line({
     			props: {
     				space: "15px",
-    				start: "March 22, 1985",
-    				color: "sky",
-    				label: "Line 3"
+    				start: "March 29 " + /*year*/ ctx[1],
+    				end: "Oct 1 " + /*year*/ ctx[1],
+    				color: "lightblue",
+    				label: "Blue Jays"
     			},
     			$$inline: true
     		});
@@ -8952,47 +6536,88 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(42:2) <Column width=\\\"5px\\\">",
+    		source: "(40:2) <Column width=\\\"80px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (46:2) <Column width="40px">
+    // (43:2) <Column width="10px">
     function create_default_slot_3(ctx) {
+    	let t0;
+    	let t1;
     	let current;
 
-    	const line = new Line({
+    	const line0 = new Line({
     			props: {
     				space: "15px",
-    				start: "November 22, 2002",
-    				color: "purple",
-    				label: "Line 4"
+    				start: "Jan 1 " + /*year*/ ctx[1],
+    				end: "Feb 10 " + /*year*/ ctx[1],
+    				color: "lighter",
+    				label: "snow"
+    			},
+    			$$inline: true
+    		});
+
+    	const line1 = new Line({
+    			props: {
+    				space: "15px",
+    				start: "Dec 10 " + /*year*/ ctx[1],
+    				end: "Dec 31 " + /*year*/ ctx[1],
+    				color: "lighter",
+    				label: "snow"
+    			},
+    			$$inline: true
+    		});
+
+    	const line2 = new Line({
+    			props: {
+    				space: "15px",
+    				start: "May 5 " + /*year*/ ctx[1],
+    				end: "Oct 1 " + /*year*/ ctx[1],
+    				color: "green",
+    				label: "Leaves<br/> on trees"
     			},
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(line.$$.fragment);
+    			create_component(line0.$$.fragment);
+    			t0 = space();
+    			create_component(line1.$$.fragment);
+    			t1 = space();
+    			create_component(line2.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(line, target, anchor);
+    			mount_component(line0, target, anchor);
+    			insert_dev(target, t0, anchor);
+    			mount_component(line1, target, anchor);
+    			insert_dev(target, t1, anchor);
+    			mount_component(line2, target, anchor);
     			current = true;
     		},
     		p: noop,
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(line.$$.fragment, local);
+    			transition_in(line0.$$.fragment, local);
+    			transition_in(line1.$$.fragment, local);
+    			transition_in(line2.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(line.$$.fragment, local);
+    			transition_out(line0.$$.fragment, local);
+    			transition_out(line1.$$.fragment, local);
+    			transition_out(line2.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(line, detaching);
+    			destroy_component(line0, detaching);
+    			if (detaching) detach_dev(t0);
+    			destroy_component(line1, detaching);
+    			if (detaching) detach_dev(t1);
+    			destroy_component(line2, detaching);
     		}
     	};
 
@@ -9000,24 +6625,24 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(46:2) <Column width=\\\"40px\\\">",
+    		source: "(43:2) <Column width=\\\"10px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (49:2) <Column width="5px">
+    // (48:2) <Column width="60px">
     function create_default_slot_2(ctx) {
     	let current;
 
     	const line = new Line({
     			props: {
     				space: "15px",
-    				start: "November 22, 2022",
-    				color: "pink",
-    				opacity: "0.5",
-    				label: "Crosstown"
+    				start: "May 24 " + /*year*/ ctx[1],
+    				end: "Sept 1 " + /*year*/ ctx[1],
+    				color: "purple",
+    				label: "shorts"
     			},
     			$$inline: true
     		});
@@ -9049,25 +6674,27 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(49:2) <Column width=\\\"5px\\\">",
+    		source: "(48:2) <Column width=\\\"60px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (52:2) <Column width="75px">
+    // (51:2) <Column width="40px">
     function create_default_slot_1(ctx) {
     	let t0;
     	let t1;
     	let t2;
+    	let t3;
+    	let t4;
     	let current;
 
     	const label0 = new Label({
     			props: {
-    				value: "September 13 1965",
-    				label: "City Hall",
-    				color: "rose",
+    				value: "April 20 " + /*year*/ ctx[1],
+    				label: "Patios",
+    				color: "green",
     				side: "left",
     				align: "left"
     			},
@@ -9076,8 +6703,8 @@ var app = (function () {
 
     	const label1 = new Label({
     			props: {
-    				value: "August 20 1968",
-    				label: "CN tower",
+    				value: "June 14 " + /*year*/ ctx[1],
+    				label: "Pride",
     				color: "rose",
     				side: "left",
     				align: "left"
@@ -9087,8 +6714,8 @@ var app = (function () {
 
     	const label2 = new Label({
     			props: {
-    				value: "August 20 1989",
-    				label: "Skydome",
+    				value: "July 14 " + /*year*/ ctx[1],
+    				label: "Fringe",
     				color: "rose",
     				side: "left",
     				align: "left"
@@ -9096,13 +6723,35 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const line = new Line({
+    	const label3 = new Label({
     			props: {
-    				space: "15px",
-    				start: "November 22, 2023",
-    				color: "grey",
-    				opacity: "0.5",
-    				label: "Finch West"
+    				value: "August 20 " + /*year*/ ctx[1],
+    				label: "CNE",
+    				color: "rose",
+    				side: "left",
+    				align: "left"
+    			},
+    			$$inline: true
+    		});
+
+    	const label4 = new Label({
+    			props: {
+    				value: "Sept 14 " + /*year*/ ctx[1],
+    				label: "Tiff",
+    				color: "rose",
+    				side: "left",
+    				align: "left"
+    			},
+    			$$inline: true
+    		});
+
+    	const label5 = new Label({
+    			props: {
+    				value: "Oct 14 " + /*year*/ ctx[1],
+    				label: "Nuit Blanche",
+    				color: "orange",
+    				side: "left",
+    				align: "left"
     			},
     			$$inline: true
     		});
@@ -9115,7 +6764,11 @@ var app = (function () {
     			t1 = space();
     			create_component(label2.$$.fragment);
     			t2 = space();
-    			create_component(line.$$.fragment);
+    			create_component(label3.$$.fragment);
+    			t3 = space();
+    			create_component(label4.$$.fragment);
+    			t4 = space();
+    			create_component(label5.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(label0, target, anchor);
@@ -9124,7 +6777,11 @@ var app = (function () {
     			insert_dev(target, t1, anchor);
     			mount_component(label2, target, anchor);
     			insert_dev(target, t2, anchor);
-    			mount_component(line, target, anchor);
+    			mount_component(label3, target, anchor);
+    			insert_dev(target, t3, anchor);
+    			mount_component(label4, target, anchor);
+    			insert_dev(target, t4, anchor);
+    			mount_component(label5, target, anchor);
     			current = true;
     		},
     		p: noop,
@@ -9133,14 +6790,18 @@ var app = (function () {
     			transition_in(label0.$$.fragment, local);
     			transition_in(label1.$$.fragment, local);
     			transition_in(label2.$$.fragment, local);
-    			transition_in(line.$$.fragment, local);
+    			transition_in(label3.$$.fragment, local);
+    			transition_in(label4.$$.fragment, local);
+    			transition_in(label5.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(label0.$$.fragment, local);
     			transition_out(label1.$$.fragment, local);
     			transition_out(label2.$$.fragment, local);
-    			transition_out(line.$$.fragment, local);
+    			transition_out(label3.$$.fragment, local);
+    			transition_out(label4.$$.fragment, local);
+    			transition_out(label5.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -9150,7 +6811,11 @@ var app = (function () {
     			if (detaching) detach_dev(t1);
     			destroy_component(label2, detaching);
     			if (detaching) detach_dev(t2);
-    			destroy_component(line, detaching);
+    			destroy_component(label3, detaching);
+    			if (detaching) detach_dev(t3);
+    			destroy_component(label4, detaching);
+    			if (detaching) detach_dev(t4);
+    			destroy_component(label5, detaching);
     		}
     	};
 
@@ -9158,14 +6823,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(52:2) <Column width=\\\"75px\\\">",
+    		source: "(51:2) <Column width=\\\"40px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (26:0) <Timeline {start} {end} {height} {title}>
+    // (15:0) <Timeline {start} {end} {height} {title}>
     function create_default_slot(ctx) {
     	let t0;
     	let t1;
@@ -9178,25 +6843,10 @@ var app = (function () {
     	let t8;
     	let current;
 
-    	const ticks0 = new Ticks({
-    			props: { every: "decade" },
-    			$$inline: true
-    		});
-
-    	const ticks1 = new Ticks({
-    			props: {
-    				every: "year",
-    				size: "8px",
-    				color: "lightgrey",
-    				underline: false
-    			},
-    			$$inline: true
-    		});
-
     	const column0 = new Column({
     			props: {
-    				width: "2px",
-    				$$slots: { default: [create_default_slot_8] },
+    				width: "25px",
+    				$$slots: { default: [create_default_slot_10] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -9204,8 +6854,8 @@ var app = (function () {
 
     	const column1 = new Column({
     			props: {
-    				width: "35px",
-    				$$slots: { default: [create_default_slot_7] },
+    				width: "15px",
+    				$$slots: { default: [create_default_slot_9] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -9213,9 +6863,8 @@ var app = (function () {
 
     	const column2 = new Column({
     			props: {
-    				width: "5px",
-    				label: "Subway",
-    				$$slots: { default: [create_default_slot_6] },
+    				width: "15px",
+    				$$slots: { default: [create_default_slot_8] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -9223,8 +6872,8 @@ var app = (function () {
 
     	const column3 = new Column({
     			props: {
-    				width: "5px",
-    				$$slots: { default: [create_default_slot_5] },
+    				width: "45px",
+    				$$slots: { default: [create_default_slot_7] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -9232,8 +6881,8 @@ var app = (function () {
 
     	const column4 = new Column({
     			props: {
-    				width: "5px",
-    				$$slots: { default: [create_default_slot_4] },
+    				width: "45px",
+    				$$slots: { default: [create_default_slot_6] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -9241,8 +6890,8 @@ var app = (function () {
 
     	const column5 = new Column({
     			props: {
-    				width: "40px",
-    				$$slots: { default: [create_default_slot_3] },
+    				width: "20px",
+    				$$slots: { default: [create_default_slot_5] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -9250,8 +6899,8 @@ var app = (function () {
 
     	const column6 = new Column({
     			props: {
-    				width: "5px",
-    				$$slots: { default: [create_default_slot_2] },
+    				width: "80px",
+    				$$slots: { default: [create_default_slot_4] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -9259,7 +6908,25 @@ var app = (function () {
 
     	const column7 = new Column({
     			props: {
-    				width: "75px",
+    				width: "10px",
+    				$$slots: { default: [create_default_slot_3] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const column8 = new Column({
+    			props: {
+    				width: "60px",
+    				$$slots: { default: [create_default_slot_2] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const column9 = new Column({
+    			props: {
+    				width: "40px",
     				$$slots: { default: [create_default_slot_1] },
     				$$scope: { ctx }
     			},
@@ -9268,110 +6935,122 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(ticks0.$$.fragment);
-    			t0 = space();
-    			create_component(ticks1.$$.fragment);
-    			t1 = space();
     			create_component(column0.$$.fragment);
-    			t2 = space();
+    			t0 = space();
     			create_component(column1.$$.fragment);
-    			t3 = space();
+    			t1 = space();
     			create_component(column2.$$.fragment);
-    			t4 = space();
+    			t2 = space();
     			create_component(column3.$$.fragment);
-    			t5 = space();
+    			t3 = space();
     			create_component(column4.$$.fragment);
-    			t6 = space();
+    			t4 = space();
     			create_component(column5.$$.fragment);
-    			t7 = space();
+    			t5 = space();
     			create_component(column6.$$.fragment);
-    			t8 = space();
+    			t6 = space();
     			create_component(column7.$$.fragment);
+    			t7 = space();
+    			create_component(column8.$$.fragment);
+    			t8 = space();
+    			create_component(column9.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(ticks0, target, anchor);
-    			insert_dev(target, t0, anchor);
-    			mount_component(ticks1, target, anchor);
-    			insert_dev(target, t1, anchor);
     			mount_component(column0, target, anchor);
-    			insert_dev(target, t2, anchor);
+    			insert_dev(target, t0, anchor);
     			mount_component(column1, target, anchor);
-    			insert_dev(target, t3, anchor);
+    			insert_dev(target, t1, anchor);
     			mount_component(column2, target, anchor);
-    			insert_dev(target, t4, anchor);
+    			insert_dev(target, t2, anchor);
     			mount_component(column3, target, anchor);
-    			insert_dev(target, t5, anchor);
+    			insert_dev(target, t3, anchor);
     			mount_component(column4, target, anchor);
-    			insert_dev(target, t6, anchor);
+    			insert_dev(target, t4, anchor);
     			mount_component(column5, target, anchor);
-    			insert_dev(target, t7, anchor);
+    			insert_dev(target, t5, anchor);
     			mount_component(column6, target, anchor);
-    			insert_dev(target, t8, anchor);
+    			insert_dev(target, t6, anchor);
     			mount_component(column7, target, anchor);
+    			insert_dev(target, t7, anchor);
+    			mount_component(column8, target, anchor);
+    			insert_dev(target, t8, anchor);
+    			mount_component(column9, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
     			const column0_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 64) {
     				column0_changes.$$scope = { dirty, ctx };
     			}
 
     			column0.$set(column0_changes);
     			const column1_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 64) {
     				column1_changes.$$scope = { dirty, ctx };
     			}
 
     			column1.$set(column1_changes);
     			const column2_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 64) {
     				column2_changes.$$scope = { dirty, ctx };
     			}
 
     			column2.$set(column2_changes);
     			const column3_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 64) {
     				column3_changes.$$scope = { dirty, ctx };
     			}
 
     			column3.$set(column3_changes);
     			const column4_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 64) {
     				column4_changes.$$scope = { dirty, ctx };
     			}
 
     			column4.$set(column4_changes);
     			const column5_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 64) {
     				column5_changes.$$scope = { dirty, ctx };
     			}
 
     			column5.$set(column5_changes);
     			const column6_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 64) {
     				column6_changes.$$scope = { dirty, ctx };
     			}
 
     			column6.$set(column6_changes);
     			const column7_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 64) {
     				column7_changes.$$scope = { dirty, ctx };
     			}
 
     			column7.$set(column7_changes);
+    			const column8_changes = {};
+
+    			if (dirty & /*$$scope*/ 64) {
+    				column8_changes.$$scope = { dirty, ctx };
+    			}
+
+    			column8.$set(column8_changes);
+    			const column9_changes = {};
+
+    			if (dirty & /*$$scope*/ 64) {
+    				column9_changes.$$scope = { dirty, ctx };
+    			}
+
+    			column9.$set(column9_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(ticks0.$$.fragment, local);
-    			transition_in(ticks1.$$.fragment, local);
     			transition_in(column0.$$.fragment, local);
     			transition_in(column1.$$.fragment, local);
     			transition_in(column2.$$.fragment, local);
@@ -9380,11 +7059,11 @@ var app = (function () {
     			transition_in(column5.$$.fragment, local);
     			transition_in(column6.$$.fragment, local);
     			transition_in(column7.$$.fragment, local);
+    			transition_in(column8.$$.fragment, local);
+    			transition_in(column9.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(ticks0.$$.fragment, local);
-    			transition_out(ticks1.$$.fragment, local);
     			transition_out(column0.$$.fragment, local);
     			transition_out(column1.$$.fragment, local);
     			transition_out(column2.$$.fragment, local);
@@ -9393,28 +7072,30 @@ var app = (function () {
     			transition_out(column5.$$.fragment, local);
     			transition_out(column6.$$.fragment, local);
     			transition_out(column7.$$.fragment, local);
+    			transition_out(column8.$$.fragment, local);
+    			transition_out(column9.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(ticks0, detaching);
-    			if (detaching) detach_dev(t0);
-    			destroy_component(ticks1, detaching);
-    			if (detaching) detach_dev(t1);
     			destroy_component(column0, detaching);
-    			if (detaching) detach_dev(t2);
+    			if (detaching) detach_dev(t0);
     			destroy_component(column1, detaching);
-    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(t1);
     			destroy_component(column2, detaching);
-    			if (detaching) detach_dev(t4);
+    			if (detaching) detach_dev(t2);
     			destroy_component(column3, detaching);
-    			if (detaching) detach_dev(t5);
+    			if (detaching) detach_dev(t3);
     			destroy_component(column4, detaching);
-    			if (detaching) detach_dev(t6);
+    			if (detaching) detach_dev(t4);
     			destroy_component(column5, detaching);
-    			if (detaching) detach_dev(t7);
+    			if (detaching) detach_dev(t5);
     			destroy_component(column6, detaching);
-    			if (detaching) detach_dev(t8);
+    			if (detaching) detach_dev(t6);
     			destroy_component(column7, detaching);
+    			if (detaching) detach_dev(t7);
+    			destroy_component(column8, detaching);
+    			if (detaching) detach_dev(t8);
+    			destroy_component(column9, detaching);
     		}
     	};
 
@@ -9422,21 +7103,21 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(26:0) <Timeline {start} {end} {height} {title}>",
+    		source: "(15:0) <Timeline {start} {end} {height} {title}>",
     		ctx
     	});
 
     	return block;
     }
 
-    function create_fragment$8(ctx) {
+    function create_fragment$7(ctx) {
     	let current;
 
     	const timeline = new Timeline({
     			props: {
-    				start: /*start*/ ctx[1],
-    				end: /*end*/ ctx[2],
-    				height: /*height*/ ctx[3],
+    				start: /*start*/ ctx[2],
+    				end: /*end*/ ctx[3],
+    				height: /*height*/ ctx[4],
     				title: /*title*/ ctx[0],
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
@@ -9458,7 +7139,7 @@ var app = (function () {
     		p: function update(ctx, [dirty]) {
     			const timeline_changes = {};
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope*/ 64) {
     				timeline_changes.$$scope = { dirty, ctx };
     			}
 
@@ -9480,7 +7161,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$8.name,
+    		id: create_fragment$7.name,
     		type: "component",
     		source: "",
     		ctx
@@ -9489,21 +7170,13 @@ var app = (function () {
     	return block;
     }
 
-    function instance$8($$self, $$props, $$invalidate) {
-    	let title = "History of Toronto";
+    function instance$7($$self, $$props, $$invalidate) {
+    	let title = "Year in Toronto";
     	let d = new Date();
     	let year = d.getFullYear();
-    	let start = "Jan 1 1900";
-    	let end = "Dec 31 2030";
-    	let height = 1800;
-
-    	let population = years.map(a => {
-    		return {
-    			value: src("jan 1 " + a[0]).format("iso-short"),
-    			x: a[1]
-    		};
-    	});
-
+    	let start = "Jan 1 " + year;
+    	let end = "Dec 31 " + year;
+    	let height = 900;
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -9521,47 +7194,40 @@ var app = (function () {
     		Now,
     		Column,
     		Label,
-    		Area,
-    		mayors,
-    		years,
-    		spacetime: src,
-    		colors: spencerColor,
     		title,
     		d,
     		year,
     		start,
     		end,
-    		height,
-    		population
+    		height
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
     		if ("d" in $$props) d = $$props.d;
-    		if ("year" in $$props) year = $$props.year;
-    		if ("start" in $$props) $$invalidate(1, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(2, end = $$props.end);
-    		if ("height" in $$props) $$invalidate(3, height = $$props.height);
-    		if ("population" in $$props) population = $$props.population;
+    		if ("year" in $$props) $$invalidate(1, year = $$props.year);
+    		if ("start" in $$props) $$invalidate(2, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(3, end = $$props.end);
+    		if ("height" in $$props) $$invalidate(4, height = $$props.height);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [title, start, end, height];
+    	return [title, year, start, end, height];
     }
 
     class Graph extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$8, create_fragment$8, safe_not_equal, {});
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "Graph",
     			options,
-    			id: create_fragment$8.name
+    			id: create_fragment$7.name
     		});
     	}
     }
