@@ -5,6 +5,8 @@
   export let color = 'steelblue'
   export let width = '5px'
   export let space = '5px'
+  export let size = '9px'
+  export let opacity = '1'
   export let label = ''
   export let start = getContext('start')
   export let end = getContext('end')
@@ -26,15 +28,16 @@
   }
   .label {
     position: absolute;
-    font-size: 9px;
     transform: translate(10px, -7px);
     white-space: nowrap;
   }
 </style>
 
-<div style="min-width:{space};">
+<div style="min-width:{space}; opacity:{opacity};">
   <div
     class="line"
     style="border-left: {width} solid {color}; top:{top}px; height:{height}px;" />
-  <div class="label" style="top:{bottom}px; color:{color};">{label}</div>
+  <div class="label" style="top:{bottom}px; color:{color}; font-size:{size};">
+    {@html label}
+  </div>
 </div>

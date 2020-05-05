@@ -4,7 +4,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 
-const example = 'toronto'
+const example = 'history-of-toronto'
 const production = false
 
 function serve() {

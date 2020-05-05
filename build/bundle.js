@@ -96,6 +96,9 @@ var app = (function () {
     function set_style(node, key, value, important) {
         node.style.setProperty(key, value, important ? 'important' : '');
     }
+    function toggle_class(element, name, toggle) {
+        element.classList[toggle ? 'add' : 'remove'](name);
+    }
     function custom_event(type, detail) {
         const e = document.createEvent('CustomEvent');
         e.initCustomEvent(type, false, false, detail);
@@ -204,6 +207,12 @@ var app = (function () {
             block.o(local);
         }
     }
+
+    const globals = (typeof window !== 'undefined'
+        ? window
+        : typeof globalThis !== 'undefined'
+            ? globalThis
+            : global);
     function create_component(block) {
         block && block.c();
     }
@@ -4638,28 +4647,28 @@ var app = (function () {
     function create_fragment$1(ctx) {
     	let div2;
     	let div0;
-    	let t0;
+    	let t;
     	let div1;
-    	let t1;
 
     	const block = {
     		c: function create() {
     			div2 = element("div");
     			div0 = element("div");
-    			t0 = space();
+    			t = space();
     			div1 = element("div");
-    			t1 = text(/*label*/ ctx[3]);
-    			attr_dev(div0, "class", "line svelte-f2yh10");
+    			attr_dev(div0, "class", "line svelte-ap98lx");
     			set_style(div0, "border-left", /*width*/ ctx[1] + " solid " + /*color*/ ctx[0]);
-    			set_style(div0, "top", /*top*/ ctx[4] + "px");
-    			set_style(div0, "height", /*height*/ ctx[6] + "px");
-    			add_location(div0, file$1, 35, 2, 776);
-    			attr_dev(div1, "class", "label svelte-f2yh10");
-    			set_style(div1, "top", /*bottom*/ ctx[5] + "px");
+    			set_style(div0, "top", /*top*/ ctx[6] + "px");
+    			set_style(div0, "height", /*height*/ ctx[8] + "px");
+    			add_location(div0, file$1, 36, 2, 828);
+    			attr_dev(div1, "class", "label svelte-ap98lx");
+    			set_style(div1, "top", /*bottom*/ ctx[7] + "px");
     			set_style(div1, "color", /*color*/ ctx[0]);
-    			add_location(div1, file$1, 38, 2, 883);
+    			set_style(div1, "font-size", /*size*/ ctx[3]);
+    			add_location(div1, file$1, 39, 2, 935);
     			set_style(div2, "min-width", /*space*/ ctx[2]);
-    			add_location(div2, file$1, 34, 0, 741);
+    			set_style(div2, "opacity", /*opacity*/ ctx[4]);
+    			add_location(div2, file$1, 35, 0, 774);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -4667,23 +4676,30 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
     			append_dev(div2, div0);
-    			append_dev(div2, t0);
+    			append_dev(div2, t);
     			append_dev(div2, div1);
-    			append_dev(div1, t1);
+    			div1.innerHTML = /*label*/ ctx[5];
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*width, color*/ 3) {
     				set_style(div0, "border-left", /*width*/ ctx[1] + " solid " + /*color*/ ctx[0]);
     			}
 
-    			if (dirty & /*label*/ 8) set_data_dev(t1, /*label*/ ctx[3]);
-
+    			if (dirty & /*label*/ 32) div1.innerHTML = /*label*/ ctx[5];
     			if (dirty & /*color*/ 1) {
     				set_style(div1, "color", /*color*/ ctx[0]);
     			}
 
+    			if (dirty & /*size*/ 8) {
+    				set_style(div1, "font-size", /*size*/ ctx[3]);
+    			}
+
     			if (dirty & /*space*/ 4) {
     				set_style(div2, "min-width", /*space*/ ctx[2]);
+    			}
+
+    			if (dirty & /*opacity*/ 16) {
+    				set_style(div2, "opacity", /*opacity*/ ctx[4]);
     			}
     		},
     		i: noop,
@@ -4708,6 +4724,8 @@ var app = (function () {
     	let { color = "steelblue" } = $$props;
     	let { width = "5px" } = $$props;
     	let { space = "5px" } = $$props;
+    	let { size = "9px" } = $$props;
+    	let { opacity = "1" } = $$props;
     	let { label = "" } = $$props;
     	let { start = getContext("start") } = $$props;
     	let { end = getContext("end") } = $$props;
@@ -4718,7 +4736,7 @@ var app = (function () {
     	let top = scale(start);
     	let bottom = scale(end);
     	let height = bottom - top;
-    	const writable_props = ["color", "width", "space", "label", "start", "end"];
+    	const writable_props = ["color", "width", "space", "size", "opacity", "label", "start", "end"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Line> was created with unknown prop '${key}'`);
@@ -4731,9 +4749,11 @@ var app = (function () {
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     		if ("width" in $$props) $$invalidate(1, width = $$props.width);
     		if ("space" in $$props) $$invalidate(2, space = $$props.space);
-    		if ("label" in $$props) $$invalidate(3, label = $$props.label);
-    		if ("start" in $$props) $$invalidate(7, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(8, end = $$props.end);
+    		if ("size" in $$props) $$invalidate(3, size = $$props.size);
+    		if ("opacity" in $$props) $$invalidate(4, opacity = $$props.opacity);
+    		if ("label" in $$props) $$invalidate(5, label = $$props.label);
+    		if ("start" in $$props) $$invalidate(9, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(10, end = $$props.end);
     	};
 
     	$$self.$capture_state = () => ({
@@ -4743,6 +4763,8 @@ var app = (function () {
     		color,
     		width,
     		space,
+    		size,
+    		opacity,
     		label,
     		start,
     		end,
@@ -4756,19 +4778,21 @@ var app = (function () {
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     		if ("width" in $$props) $$invalidate(1, width = $$props.width);
     		if ("space" in $$props) $$invalidate(2, space = $$props.space);
-    		if ("label" in $$props) $$invalidate(3, label = $$props.label);
-    		if ("start" in $$props) $$invalidate(7, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(8, end = $$props.end);
-    		if ("top" in $$props) $$invalidate(4, top = $$props.top);
-    		if ("bottom" in $$props) $$invalidate(5, bottom = $$props.bottom);
-    		if ("height" in $$props) $$invalidate(6, height = $$props.height);
+    		if ("size" in $$props) $$invalidate(3, size = $$props.size);
+    		if ("opacity" in $$props) $$invalidate(4, opacity = $$props.opacity);
+    		if ("label" in $$props) $$invalidate(5, label = $$props.label);
+    		if ("start" in $$props) $$invalidate(9, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(10, end = $$props.end);
+    		if ("top" in $$props) $$invalidate(6, top = $$props.top);
+    		if ("bottom" in $$props) $$invalidate(7, bottom = $$props.bottom);
+    		if ("height" in $$props) $$invalidate(8, height = $$props.height);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [color, width, space, label, top, bottom, height, start, end];
+    	return [color, width, space, size, opacity, label, top, bottom, height, start, end];
     }
 
     class Line extends SvelteComponentDev {
@@ -4779,9 +4803,11 @@ var app = (function () {
     			color: 0,
     			width: 1,
     			space: 2,
-    			label: 3,
-    			start: 7,
-    			end: 8
+    			size: 3,
+    			opacity: 4,
+    			label: 5,
+    			start: 9,
+    			end: 10
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -4813,6 +4839,22 @@ var app = (function () {
     	}
 
     	set space(value) {
+    		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get size() {
+    		throw new Error("<Line>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set size(value) {
+    		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get opacity() {
+    		throw new Error("<Line>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set opacity(value) {
     		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -5018,29 +5060,47 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[8] = list[i];
+    	child_ctx[11] = list[i];
     	return child_ctx;
     }
 
-    // (49:2) {#each ticks as tick}
+    // (55:2) {#each ticks as tick}
     function create_each_block(ctx) {
     	let div;
-    	let t_value = /*tick*/ ctx[8].label + "";
-    	let t;
+    	let t0_value = /*tick*/ ctx[11].label + "";
+    	let t0;
+    	let t1;
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			t = text(t_value);
-    			attr_dev(div, "class", "label svelte-1nylwok");
-    			set_style(div, "top", /*tick*/ ctx[8].value + "px");
-    			add_location(div, file$3, 49, 4, 1087);
+    			t0 = text(t0_value);
+    			t1 = space();
+    			attr_dev(div, "class", "label svelte-1oegkdx");
+    			set_style(div, "top", /*tick*/ ctx[11].value + "px");
+    			set_style(div, "color", /*color*/ ctx[0]);
+    			set_style(div, "font-size", /*size*/ ctx[1]);
+    			toggle_class(div, "underline", /*underline*/ ctx[2]);
+    			add_location(div, file$3, 55, 4, 1241);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
-    			append_dev(div, t);
+    			append_dev(div, t0);
+    			append_dev(div, t1);
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*color*/ 1) {
+    				set_style(div, "color", /*color*/ ctx[0]);
+    			}
+
+    			if (dirty & /*size*/ 2) {
+    				set_style(div, "font-size", /*size*/ ctx[1]);
+    			}
+
+    			if (dirty & /*underline*/ 4) {
+    				toggle_class(div, "underline", /*underline*/ ctx[2]);
+    			}
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
     		}
@@ -5050,7 +5110,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(49:2) {#each ticks as tick}",
+    		source: "(55:2) {#each ticks as tick}",
     		ctx
     	});
 
@@ -5059,7 +5119,7 @@ var app = (function () {
 
     function create_fragment$3(ctx) {
     	let div;
-    	let each_value = /*ticks*/ ctx[0];
+    	let each_value = /*ticks*/ ctx[3];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -5075,8 +5135,8 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div, "class", "part container svelte-1nylwok");
-    			add_location(div, file$3, 47, 0, 1030);
+    			attr_dev(div, "class", "part container svelte-1oegkdx");
+    			add_location(div, file$3, 53, 0, 1184);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5089,8 +5149,8 @@ var app = (function () {
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*ticks*/ 1) {
-    				each_value = /*ticks*/ ctx[0];
+    			if (dirty & /*ticks, color, size, underline*/ 15) {
+    				each_value = /*ticks*/ ctx[3];
     				validate_each_argument(each_value);
     				let i;
 
@@ -5135,6 +5195,10 @@ var app = (function () {
     function instance$3($$self, $$props, $$invalidate) {
     	let { format = "" } = $$props;
     	let { every = "month" } = $$props;
+    	let { size = "12px" } = $$props;
+    	let { underline = true } = $$props;
+    	let { color = "grey" } = $$props;
+    	color = spencerColor.colors[color] || color;
 
     	const formats = {
     		month: "{month-short}",
@@ -5157,7 +5221,7 @@ var app = (function () {
     		return { value: y, label: s.format(format) };
     	});
 
-    	const writable_props = ["format", "every"];
+    	const writable_props = ["format", "every", "size", "underline", "color"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Ticks> was created with unknown prop '${key}'`);
@@ -5167,15 +5231,22 @@ var app = (function () {
     	validate_slots("Ticks", $$slots, []);
 
     	$$self.$set = $$props => {
-    		if ("format" in $$props) $$invalidate(1, format = $$props.format);
-    		if ("every" in $$props) $$invalidate(2, every = $$props.every);
+    		if ("format" in $$props) $$invalidate(4, format = $$props.format);
+    		if ("every" in $$props) $$invalidate(5, every = $$props.every);
+    		if ("size" in $$props) $$invalidate(1, size = $$props.size);
+    		if ("underline" in $$props) $$invalidate(2, underline = $$props.underline);
+    		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     	};
 
     	$$self.$capture_state = () => ({
     		spacetime: src,
     		getContext,
+    		c: spencerColor,
     		format,
     		every,
+    		size,
+    		underline,
+    		color,
     		formats,
     		start,
     		end,
@@ -5185,24 +5256,34 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("format" in $$props) $$invalidate(1, format = $$props.format);
-    		if ("every" in $$props) $$invalidate(2, every = $$props.every);
+    		if ("format" in $$props) $$invalidate(4, format = $$props.format);
+    		if ("every" in $$props) $$invalidate(5, every = $$props.every);
+    		if ("size" in $$props) $$invalidate(1, size = $$props.size);
+    		if ("underline" in $$props) $$invalidate(2, underline = $$props.underline);
+    		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     		if ("start" in $$props) start = $$props.start;
     		if ("arr" in $$props) arr = $$props.arr;
-    		if ("ticks" in $$props) $$invalidate(0, ticks = $$props.ticks);
+    		if ("ticks" in $$props) $$invalidate(3, ticks = $$props.ticks);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [ticks, format, every];
+    	return [color, size, underline, ticks, format, every];
     }
 
     class Ticks extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { format: 1, every: 2 });
+
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, {
+    			format: 4,
+    			every: 5,
+    			size: 1,
+    			underline: 2,
+    			color: 0
+    		});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -5225,6 +5306,30 @@ var app = (function () {
     	}
 
     	set every(value) {
+    		throw new Error("<Ticks>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get size() {
+    		throw new Error("<Ticks>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set size(value) {
+    		throw new Error("<Ticks>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get underline() {
+    		throw new Error("<Ticks>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set underline(value) {
+    		throw new Error("<Ticks>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get color() {
+    		throw new Error("<Ticks>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set color(value) {
     		throw new Error("<Ticks>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -5703,40 +5808,53 @@ var app = (function () {
     const file$5 = "src/Column.svelte";
 
     function create_fragment$5(ctx) {
-    	let div;
+    	let div1;
+    	let div0;
+    	let t0;
+    	let t1;
     	let current;
-    	const default_slot_template = /*$$slots*/ ctx[2].default;
-    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[1], null);
+    	const default_slot_template = /*$$slots*/ ctx[3].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[2], null);
 
     	const block = {
     		c: function create() {
-    			div = element("div");
+    			div1 = element("div");
+    			div0 = element("div");
+    			t0 = text(/*label*/ ctx[1]);
+    			t1 = space();
     			if (default_slot) default_slot.c();
-    			attr_dev(div, "class", "part column svelte-15zq0or");
-    			set_style(div, "width", /*width*/ ctx[0]);
-    			add_location(div, file$5, 10, 0, 106);
+    			attr_dev(div0, "class", "label svelte-gr5sfz");
+    			add_location(div0, file$5, 16, 2, 234);
+    			attr_dev(div1, "class", "part column svelte-gr5sfz");
+    			set_style(div1, "width", /*width*/ ctx[0]);
+    			add_location(div1, file$5, 15, 0, 183);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			append_dev(div0, t0);
+    			append_dev(div1, t1);
 
     			if (default_slot) {
-    				default_slot.m(div, null);
+    				default_slot.m(div1, null);
     			}
 
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
+    			if (!current || dirty & /*label*/ 2) set_data_dev(t0, /*label*/ ctx[1]);
+
     			if (default_slot) {
-    				if (default_slot.p && dirty & /*$$scope*/ 2) {
-    					default_slot.p(get_slot_context(default_slot_template, ctx, /*$$scope*/ ctx[1], null), get_slot_changes(default_slot_template, /*$$scope*/ ctx[1], dirty, null));
+    				if (default_slot.p && dirty & /*$$scope*/ 4) {
+    					default_slot.p(get_slot_context(default_slot_template, ctx, /*$$scope*/ ctx[2], null), get_slot_changes(default_slot_template, /*$$scope*/ ctx[2], dirty, null));
     				}
     			}
 
     			if (!current || dirty & /*width*/ 1) {
-    				set_style(div, "width", /*width*/ ctx[0]);
+    				set_style(div1, "width", /*width*/ ctx[0]);
     			}
     		},
     		i: function intro(local) {
@@ -5749,7 +5867,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(div1);
     			if (default_slot) default_slot.d(detaching);
     		}
     	};
@@ -5767,7 +5885,8 @@ var app = (function () {
 
     function instance$5($$self, $$props, $$invalidate) {
     	let { width = "30px" } = $$props;
-    	const writable_props = ["width"];
+    	let { label = "" } = $$props;
+    	const writable_props = ["width", "label"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Column> was created with unknown prop '${key}'`);
@@ -5778,26 +5897,28 @@ var app = (function () {
 
     	$$self.$set = $$props => {
     		if ("width" in $$props) $$invalidate(0, width = $$props.width);
-    		if ("$$scope" in $$props) $$invalidate(1, $$scope = $$props.$$scope);
+    		if ("label" in $$props) $$invalidate(1, label = $$props.label);
+    		if ("$$scope" in $$props) $$invalidate(2, $$scope = $$props.$$scope);
     	};
 
-    	$$self.$capture_state = () => ({ width });
+    	$$self.$capture_state = () => ({ width, label });
 
     	$$self.$inject_state = $$props => {
     		if ("width" in $$props) $$invalidate(0, width = $$props.width);
+    		if ("label" in $$props) $$invalidate(1, label = $$props.label);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [width, $$scope, $$slots];
+    	return [width, label, $$scope, $$slots];
     }
 
     class Column extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$5, create_fragment$5, safe_not_equal, { width: 0 });
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, { width: 0, label: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -5812,6 +5933,14 @@ var app = (function () {
     	}
 
     	set width(value) {
+    		throw new Error("<Column>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get label() {
+    		throw new Error("<Column>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set label(value) {
     		throw new Error("<Column>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -5964,62 +6093,262 @@ var app = (function () {
     	}
     }
 
-    /* examples/toronto/Graph.svelte generated by Svelte v3.21.0 */
+    var mayors = [
+      // ['William Lyon Mackenzie', '1834', '1835'],
+      // ['Robert Baldwin Sullivan', '1835', '1836'],
+      // ['Thomas David Morrison', '1836', '1837'],
+      // ['George Gurnett', '1837', '1838'],
+      // ['John Powell', '1838', '1841'],
+      // ['George Monro', '1841', '1842'],
+      // ['Henry Sherwood', '1842', '1845'],
+      // ['William H. Boulton', '1845', '1848'],
+      // ['George Gurnett', '1848', '1851'],
+      // ['John George Bowes', '1851', '1854'],
+      // ['Joshua George Beard', '1854', '1855'],
+      // ['George William Allan', '1855', '1856'],
+      // ['John Beverley Robinson', '1856', '1857'],
+      // ['John Hutchison', '1857', '1858'],
+      // ['William H. Boulton', '1858', '1858'],
+      // ['David Breakenridge Read', '1858', '1858'],
+      // ['Adam Wilson', '1859', '1861'],
+      // ['John George Bowes', '1861', '1864'],
+      // ['Francis Henry Medcalf', '1864', '1867'],
+      // ['James Edward Smith', '1867', '1869'],
+      // ['Samuel Bickerton Harman', '1869', '1871'],
+      // ['Joseph Sheard', '1871', '1873'],
+      // ['Alexander Manning', '1873', '1874'],
+      // ['Francis Henry Medcalf', '1874', '1875'],
+      // ['Angus Morrison', '1876', '1878'],
+      // ['James Beaty', '1879', '1880'],
+      // ['William Barclay McMurrich', '1881', '1882'],
+      // ['Arthur Radcliffe Boswell', '1883', '1884'],
+      // ['Alexander Manning', '1885', '1885'],
+      // ['William Holmes Howland', '1886', '1887'],
+      // ['Edward Frederick Clarke', '1888', '1891'],
+      // ['Robert John Fleming', '1892', '1893'],
+      // ['Warring Kennedy', '1894', '1895'],
+      // ['Robert John Fleming', '1896', '1897'],
+      // ['John Shaw', '1897', '1899'],
+      ['Ernest A. Macdonald', '1900', '1900'],
+      ['Oliver Aiken Howland', '1901', '1902'],
+      ['Thomas Urquhart', '1903', '1905'],
+      ['Emerson Coatsworth', '1906', '1907'],
+      ['Joseph Oliver', '1908', '1909'],
+      ['George Reginald Geary', '1910', '1912'],
+      ['Horatio C. Hocken', '1912', '1914'],
+      ['Thomas Langton Church', '1915', '1921'],
+      ['Charles A. Maguire', '1922', '1923'],
+      ['W. W. Hiltz', '1924', '1924'],
+      ['Thomas Foster', '1925', '1927'],
+      ['Sam McBride', '1928', '1929'],
+      ['Bert Sterling Wemp', '1930', '1930'],
+      ['William James Stewart', '1931', '1934'],
+      ['James Simpson', '1935', '1935'],
+      ['Sam McBride', '1936', '1936'],
+      ['William D. Robbins', '1936', '1937'],
+      ['Ralph C. Day', '1938', '1940'],
+      ['Frederick J. Conboy', '1941', '1944'],
+      ['Robert Hood Saunders', '1945', '1948'],
+      ['Hiram E. McCallum', '1948', '1951'],
+      ['Allan Lamport', 'January 1, 1952', 'June 28, 1954'],
+      ['Leslie Howard Saunders', 'June 28, 1954', 'December 31, 1954'],
+      ['Nathan Phillips', 'January 1, 1955', 'December 31, 1962'],
+      ['Donald Dean Summerville', 'January 1, 1963', 'November 19, 1963'],
+      ['Philip Givens', 'November 19, 1963', 'December 31, 1966'],
+      ['William Dennison', 'January 1, 1967', 'December 31, 1972'],
+      ['David Crombie', 'January 1, 1973', 'August 31, 1978'],
+      ['Fred Beavis', 'September 1, 1978', 'November 30, 1978'],
+      ['John Sewell', 'December 1, 1978', 'November 30, 1980'],
+      ['Art Eggleton', 'December 1, 1980', 'November 30, 1991'],
+      ['June Rowlands', 'December 1, 1991', 'November 30, 1994'],
+      ['Barbara Hall', 'December 1, 1994', 'December 31, 1997'],
+      ['Mel Lastman', 'January 1, 1998', 'November 30, 2003'],
+      ['David Miller', 'December 1, 2003', 'November 30, 2010'],
+      ['Rob Ford', 'December 1, 2010', 'November 30, 2014'],
+      ['John Tory', 'December 1, 2014', 'November 30 2022'],
+    ];
 
-    // (28:2) <Column width="30px">
-    function create_default_slot_4(ctx) {
-    	let t;
+    /* examples/history-of-toronto/Graph.svelte generated by Svelte v3.21.0 */
+
+    const { console: console_1 } = globals;
+
+    // (29:2) <Column width="35px">
+    function create_default_slot_7(ctx) {
     	let current;
 
-    	const line0 = new Line({
+    	const now_1 = new Now({
     			props: {
-    				space: "15px",
-    				end: "April 10 " + /*year*/ ctx[1],
-    				color: "red",
-    				label: "Raptors"
-    			},
-    			$$inline: true
-    		});
-
-    	const line1 = new Line({
-    			props: {
-    				space: "15px",
-    				start: "October 16 " + /*year*/ ctx[1],
-    				end: "Dec 31 " + /*year*/ ctx[1],
-    				color: "red",
-    				label: ""
+    				color: "blue",
+    				width: "4px",
+    				label: "now"
     			},
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(line0.$$.fragment);
-    			t = space();
-    			create_component(line1.$$.fragment);
+    			create_component(now_1.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(line0, target, anchor);
-    			insert_dev(target, t, anchor);
-    			mount_component(line1, target, anchor);
+    			mount_component(now_1, target, anchor);
     			current = true;
     		},
     		p: noop,
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(line0.$$.fragment, local);
-    			transition_in(line1.$$.fragment, local);
+    			transition_in(now_1.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(line0.$$.fragment, local);
-    			transition_out(line1.$$.fragment, local);
+    			transition_out(now_1.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(line0, detaching);
-    			if (detaching) detach_dev(t);
-    			destroy_component(line1, detaching);
+    			destroy_component(now_1, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_7.name,
+    		type: "slot",
+    		source: "(29:2) <Column width=\\\"35px\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (32:2) <Column width="5px" label="Subway">
+    function create_default_slot_6(ctx) {
+    	let current;
+
+    	const line = new Line({
+    			props: {
+    				space: "15px",
+    				start: "March 30 1954",
+    				color: "yellow",
+    				label: "Line 1"
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(line.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(line, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(line.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(line.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(line, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_6.name,
+    		type: "slot",
+    		source: "(32:2) <Column width=\\\"5px\\\" label=\\\"Subway\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (35:2) <Column width="5px">
+    function create_default_slot_5(ctx) {
+    	let current;
+
+    	const line = new Line({
+    			props: {
+    				space: "15px",
+    				start: "May 10, 1968",
+    				color: "green",
+    				label: "Line 2"
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(line.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(line, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(line.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(line.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(line, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_5.name,
+    		type: "slot",
+    		source: "(35:2) <Column width=\\\"5px\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (38:2) <Column width="5px">
+    function create_default_slot_4(ctx) {
+    	let current;
+
+    	const line = new Line({
+    			props: {
+    				space: "15px",
+    				start: "March 22, 1985",
+    				color: "sky",
+    				label: "Line 3"
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(line.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(line, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(line.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(line.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(line, detaching);
     		}
     	};
 
@@ -6027,67 +6356,47 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(28:2) <Column width=\\\"30px\\\">",
+    		source: "(38:2) <Column width=\\\"5px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (38:2) <Column width="30px">
+    // (42:2) <Column width="40px">
     function create_default_slot_3(ctx) {
-    	let t;
     	let current;
 
-    	const line0 = new Line({
+    	const line = new Line({
     			props: {
     				space: "15px",
-    				end: "April 6 " + /*year*/ ctx[1],
-    				color: "navy",
-    				label: "Leafs"
-    			},
-    			$$inline: true
-    		});
-
-    	const line1 = new Line({
-    			props: {
-    				space: "15px",
-    				start: "October 3 " + /*year*/ ctx[1],
-    				end: "Dec 31 " + /*year*/ ctx[1],
-    				color: "navy",
-    				label: "(Leafs)"
+    				start: "November 22, 2002",
+    				color: "purple",
+    				label: "Line 4"
     			},
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(line0.$$.fragment);
-    			t = space();
-    			create_component(line1.$$.fragment);
+    			create_component(line.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(line0, target, anchor);
-    			insert_dev(target, t, anchor);
-    			mount_component(line1, target, anchor);
+    			mount_component(line, target, anchor);
     			current = true;
     		},
     		p: noop,
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(line0.$$.fragment, local);
-    			transition_in(line1.$$.fragment, local);
+    			transition_in(line.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(line0.$$.fragment, local);
-    			transition_out(line1.$$.fragment, local);
+    			transition_out(line.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(line0, detaching);
-    			if (detaching) detach_dev(t);
-    			destroy_component(line1, detaching);
+    			destroy_component(line, detaching);
     		}
     	};
 
@@ -6095,24 +6404,24 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(38:2) <Column width=\\\"30px\\\">",
+    		source: "(42:2) <Column width=\\\"40px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (48:2) <Column width="80px">
+    // (49:2) <Column width="5px">
     function create_default_slot_2(ctx) {
     	let current;
 
     	const line = new Line({
     			props: {
     				space: "15px",
-    				start: "March 29 " + /*year*/ ctx[1],
-    				end: "Oct 1 " + /*year*/ ctx[1],
-    				color: "lightblue",
-    				label: "Blue Jays"
+    				start: "November 22, 2022",
+    				color: "pink",
+    				opacity: "0.5",
+    				label: "Crosstown"
     			},
     			$$inline: true
     		});
@@ -6144,25 +6453,23 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(48:2) <Column width=\\\"80px\\\">",
+    		source: "(49:2) <Column width=\\\"5px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (56:2) <Column width="60px">
+    // (57:2) <Column width="150px">
     function create_default_slot_1(ctx) {
     	let t0;
     	let t1;
-    	let t2;
-    	let t3;
     	let current;
 
     	const label0 = new Label({
     			props: {
-    				value: "June 14 " + /*year*/ ctx[1],
-    				label: "Pride",
+    				value: "August 20 1968",
+    				label: "CN tower",
     				color: "rose",
     				side: "left",
     				align: "left"
@@ -6172,8 +6479,8 @@ var app = (function () {
 
     	const label1 = new Label({
     			props: {
-    				value: "July 14 " + /*year*/ ctx[1],
-    				label: "Fringe",
+    				value: "August 20 1989",
+    				label: "Skydome",
     				color: "rose",
     				side: "left",
     				align: "left"
@@ -6181,35 +6488,13 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const label2 = new Label({
+    	const line = new Line({
     			props: {
-    				value: "August 20 " + /*year*/ ctx[1],
-    				label: "CNE",
-    				color: "rose",
-    				side: "left",
-    				align: "left"
-    			},
-    			$$inline: true
-    		});
-
-    	const label3 = new Label({
-    			props: {
-    				value: "Sept 14 " + /*year*/ ctx[1],
-    				label: "Tiff",
-    				color: "rose",
-    				side: "left",
-    				align: "left"
-    			},
-    			$$inline: true
-    		});
-
-    	const label4 = new Label({
-    			props: {
-    				value: "Oct 14 " + /*year*/ ctx[1],
-    				label: "Nuit Blanche",
-    				color: "rose",
-    				side: "left",
-    				align: "left"
+    				space: "15px",
+    				start: "November 22, 2023",
+    				color: "grey",
+    				opacity: "0.5",
+    				label: "Finch West"
     			},
     			$$inline: true
     		});
@@ -6220,22 +6505,14 @@ var app = (function () {
     			t0 = space();
     			create_component(label1.$$.fragment);
     			t1 = space();
-    			create_component(label2.$$.fragment);
-    			t2 = space();
-    			create_component(label3.$$.fragment);
-    			t3 = space();
-    			create_component(label4.$$.fragment);
+    			create_component(line.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(label0, target, anchor);
     			insert_dev(target, t0, anchor);
     			mount_component(label1, target, anchor);
     			insert_dev(target, t1, anchor);
-    			mount_component(label2, target, anchor);
-    			insert_dev(target, t2, anchor);
-    			mount_component(label3, target, anchor);
-    			insert_dev(target, t3, anchor);
-    			mount_component(label4, target, anchor);
+    			mount_component(line, target, anchor);
     			current = true;
     		},
     		p: noop,
@@ -6243,17 +6520,13 @@ var app = (function () {
     			if (current) return;
     			transition_in(label0.$$.fragment, local);
     			transition_in(label1.$$.fragment, local);
-    			transition_in(label2.$$.fragment, local);
-    			transition_in(label3.$$.fragment, local);
-    			transition_in(label4.$$.fragment, local);
+    			transition_in(line.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(label0.$$.fragment, local);
     			transition_out(label1.$$.fragment, local);
-    			transition_out(label2.$$.fragment, local);
-    			transition_out(label3.$$.fragment, local);
-    			transition_out(label4.$$.fragment, local);
+    			transition_out(line.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -6261,11 +6534,7 @@ var app = (function () {
     			if (detaching) detach_dev(t0);
     			destroy_component(label1, detaching);
     			if (detaching) detach_dev(t1);
-    			destroy_component(label2, detaching);
-    			if (detaching) detach_dev(t2);
-    			destroy_component(label3, detaching);
-    			if (detaching) detach_dev(t3);
-    			destroy_component(label4, detaching);
+    			destroy_component(line, detaching);
     		}
     	};
 
@@ -6273,14 +6542,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(56:2) <Column width=\\\"60px\\\">",
+    		source: "(57:2) <Column width=\\\"150px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (23:0) <Timeline {start} {end} {height} {title}>
+    // (26:0) <Timeline {start} {end} {height} {title}>
     function create_default_slot(ctx) {
     	let t0;
     	let t1;
@@ -6288,24 +6557,29 @@ var app = (function () {
     	let t3;
     	let t4;
     	let t5;
+    	let t6;
+    	let t7;
     	let current;
 
-    	const ticks = new Ticks({
-    			props: { every: "month" },
+    	const ticks0 = new Ticks({
+    			props: { every: "decade" },
     			$$inline: true
     		});
 
-    	const line = new Line({ $$inline: true });
-
-    	const now_1 = new Now({
-    			props: { label: "today" },
+    	const ticks1 = new Ticks({
+    			props: {
+    				every: "year",
+    				size: "8px",
+    				color: "lightgrey",
+    				underline: false
+    			},
     			$$inline: true
     		});
 
     	const column0 = new Column({
     			props: {
-    				width: "30px",
-    				$$slots: { default: [create_default_slot_4] },
+    				width: "35px",
+    				$$slots: { default: [create_default_slot_7] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -6313,8 +6587,9 @@ var app = (function () {
 
     	const column1 = new Column({
     			props: {
-    				width: "30px",
-    				$$slots: { default: [create_default_slot_3] },
+    				width: "5px",
+    				label: "Subway",
+    				$$slots: { default: [create_default_slot_6] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -6322,8 +6597,8 @@ var app = (function () {
 
     	const column2 = new Column({
     			props: {
-    				width: "80px",
-    				$$slots: { default: [create_default_slot_2] },
+    				width: "5px",
+    				$$slots: { default: [create_default_slot_5] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -6331,7 +6606,34 @@ var app = (function () {
 
     	const column3 = new Column({
     			props: {
-    				width: "60px",
+    				width: "5px",
+    				$$slots: { default: [create_default_slot_4] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const column4 = new Column({
+    			props: {
+    				width: "40px",
+    				$$slots: { default: [create_default_slot_3] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const column5 = new Column({
+    			props: {
+    				width: "5px",
+    				$$slots: { default: [create_default_slot_2] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const column6 = new Column({
+    			props: {
+    				width: "150px",
     				$$slots: { default: [create_default_slot_1] },
     				$$scope: { ctx }
     			},
@@ -6340,34 +6642,42 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(ticks.$$.fragment);
+    			create_component(ticks0.$$.fragment);
     			t0 = space();
-    			create_component(line.$$.fragment);
+    			create_component(ticks1.$$.fragment);
     			t1 = space();
-    			create_component(now_1.$$.fragment);
-    			t2 = space();
     			create_component(column0.$$.fragment);
-    			t3 = space();
+    			t2 = space();
     			create_component(column1.$$.fragment);
-    			t4 = space();
+    			t3 = space();
     			create_component(column2.$$.fragment);
-    			t5 = space();
+    			t4 = space();
     			create_component(column3.$$.fragment);
+    			t5 = space();
+    			create_component(column4.$$.fragment);
+    			t6 = space();
+    			create_component(column5.$$.fragment);
+    			t7 = space();
+    			create_component(column6.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(ticks, target, anchor);
+    			mount_component(ticks0, target, anchor);
     			insert_dev(target, t0, anchor);
-    			mount_component(line, target, anchor);
+    			mount_component(ticks1, target, anchor);
     			insert_dev(target, t1, anchor);
-    			mount_component(now_1, target, anchor);
-    			insert_dev(target, t2, anchor);
     			mount_component(column0, target, anchor);
-    			insert_dev(target, t3, anchor);
+    			insert_dev(target, t2, anchor);
     			mount_component(column1, target, anchor);
-    			insert_dev(target, t4, anchor);
+    			insert_dev(target, t3, anchor);
     			mount_component(column2, target, anchor);
-    			insert_dev(target, t5, anchor);
+    			insert_dev(target, t4, anchor);
     			mount_component(column3, target, anchor);
+    			insert_dev(target, t5, anchor);
+    			mount_component(column4, target, anchor);
+    			insert_dev(target, t6, anchor);
+    			mount_component(column5, target, anchor);
+    			insert_dev(target, t7, anchor);
+    			mount_component(column6, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -6399,42 +6709,71 @@ var app = (function () {
     			}
 
     			column3.$set(column3_changes);
+    			const column4_changes = {};
+
+    			if (dirty & /*$$scope*/ 64) {
+    				column4_changes.$$scope = { dirty, ctx };
+    			}
+
+    			column4.$set(column4_changes);
+    			const column5_changes = {};
+
+    			if (dirty & /*$$scope*/ 64) {
+    				column5_changes.$$scope = { dirty, ctx };
+    			}
+
+    			column5.$set(column5_changes);
+    			const column6_changes = {};
+
+    			if (dirty & /*$$scope*/ 64) {
+    				column6_changes.$$scope = { dirty, ctx };
+    			}
+
+    			column6.$set(column6_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(ticks.$$.fragment, local);
-    			transition_in(line.$$.fragment, local);
-    			transition_in(now_1.$$.fragment, local);
+    			transition_in(ticks0.$$.fragment, local);
+    			transition_in(ticks1.$$.fragment, local);
     			transition_in(column0.$$.fragment, local);
     			transition_in(column1.$$.fragment, local);
     			transition_in(column2.$$.fragment, local);
     			transition_in(column3.$$.fragment, local);
+    			transition_in(column4.$$.fragment, local);
+    			transition_in(column5.$$.fragment, local);
+    			transition_in(column6.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(ticks.$$.fragment, local);
-    			transition_out(line.$$.fragment, local);
-    			transition_out(now_1.$$.fragment, local);
+    			transition_out(ticks0.$$.fragment, local);
+    			transition_out(ticks1.$$.fragment, local);
     			transition_out(column0.$$.fragment, local);
     			transition_out(column1.$$.fragment, local);
     			transition_out(column2.$$.fragment, local);
     			transition_out(column3.$$.fragment, local);
+    			transition_out(column4.$$.fragment, local);
+    			transition_out(column5.$$.fragment, local);
+    			transition_out(column6.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(ticks, detaching);
+    			destroy_component(ticks0, detaching);
     			if (detaching) detach_dev(t0);
-    			destroy_component(line, detaching);
+    			destroy_component(ticks1, detaching);
     			if (detaching) detach_dev(t1);
-    			destroy_component(now_1, detaching);
-    			if (detaching) detach_dev(t2);
     			destroy_component(column0, detaching);
-    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(t2);
     			destroy_component(column1, detaching);
-    			if (detaching) detach_dev(t4);
+    			if (detaching) detach_dev(t3);
     			destroy_component(column2, detaching);
-    			if (detaching) detach_dev(t5);
+    			if (detaching) detach_dev(t4);
     			destroy_component(column3, detaching);
+    			if (detaching) detach_dev(t5);
+    			destroy_component(column4, detaching);
+    			if (detaching) detach_dev(t6);
+    			destroy_component(column5, detaching);
+    			if (detaching) detach_dev(t7);
+    			destroy_component(column6, detaching);
     		}
     	};
 
@@ -6442,7 +6781,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(23:0) <Timeline {start} {end} {height} {title}>",
+    		source: "(26:0) <Timeline {start} {end} {height} {title}>",
     		ctx
     	});
 
@@ -6454,9 +6793,9 @@ var app = (function () {
 
     	const timeline = new Timeline({
     			props: {
-    				start: /*start*/ ctx[2],
-    				end: /*end*/ ctx[3],
-    				height: /*height*/ ctx[4],
+    				start: /*start*/ ctx[1],
+    				end: /*end*/ ctx[2],
+    				height: /*height*/ ctx[3],
     				title: /*title*/ ctx[0],
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
@@ -6510,16 +6849,17 @@ var app = (function () {
     }
 
     function instance$7($$self, $$props, $$invalidate) {
-    	let title = "Year in Toronto";
+    	let title = "History of Toronto";
     	let d = new Date();
     	let year = d.getFullYear();
-    	let start = "Jan 1 " + year;
-    	let end = "Dec 31 " + year;
-    	let height = 900;
+    	let start = "Jan 1 1900";
+    	let end = "Dec 31 2030";
+    	let height = 1800;
+    	console.log(spencerColor);
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Graph> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<Graph> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
@@ -6533,6 +6873,8 @@ var app = (function () {
     		Now,
     		Column,
     		Label,
+    		mayors,
+    		colors: spencerColor,
     		title,
     		d,
     		year,
@@ -6544,17 +6886,17 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
     		if ("d" in $$props) d = $$props.d;
-    		if ("year" in $$props) $$invalidate(1, year = $$props.year);
-    		if ("start" in $$props) $$invalidate(2, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(3, end = $$props.end);
-    		if ("height" in $$props) $$invalidate(4, height = $$props.height);
+    		if ("year" in $$props) year = $$props.year;
+    		if ("start" in $$props) $$invalidate(1, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(2, end = $$props.end);
+    		if ("height" in $$props) $$invalidate(3, height = $$props.height);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [title, year, start, end, height];
+    	return [title, start, end, height];
     }
 
     class Graph extends SvelteComponentDev {

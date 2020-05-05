@@ -1,8 +1,13 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
+  import c from 'spencer-color'
   export let format = ''
   export let every = 'month'
+  export let size = '12px'
+  export let underline = true
+  export let color = 'grey'
+  color = c.colors[color] || color
 
   const formats = {
     month: '{month-short}',
@@ -38,15 +43,21 @@
     padding-right: 4px;
     white-space: nowrap;
     text-align: left;
-    color: grey;
     font-size: 10px;
-    border-bottom: 1px solid grey;
     transform: translate(0px, -8px);
+  }
+  .underline {
+    border-bottom: 1px solid grey;
   }
 </style>
 
 <div class="part container">
   {#each ticks as tick}
-    <div class="label" style="top:{tick.value}px;">{tick.label}</div>
+    <div
+      class="label"
+      class:underline
+      style="top:{tick.value}px; color:{color}; font-size:{size};">
+      {tick.label}
+    </div>
   {/each}
 </div>
