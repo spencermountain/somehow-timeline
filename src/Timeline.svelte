@@ -22,6 +22,9 @@
       val
     )
   })
+
+  // let m = { x: 0, y: 0 }
+  // setContext('m', m)
 </script>
 
 <style>
