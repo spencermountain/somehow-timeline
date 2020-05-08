@@ -2,6 +2,7 @@
   export let number = 0
   export let min = 0
   export let max = 100
+  export let hasSlider = true
   const handle_pointerdown = e => {
     if (!e.isPrimary) return
 
@@ -45,16 +46,16 @@
 </script>
 
 <style>
-  .slider-container {
+  .number-row {
     display: flex;
     position: relative;
     user-select: none;
     margin: 1rem;
     -moz-user-select: none;
-    color: #333;
+    color: #50617a;
   }
 
-  .slider-container span {
+  .number-row span {
     display: block;
     font-size: 2em;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
@@ -64,19 +65,27 @@
     cursor: ew-resize;
   }
 
-  .slider-container button {
+  .number-row button[disabled] {
+    opacity: 0.2;
+  }
+  .number-row button {
     background: none;
     border: none;
     font-size: 2em;
     margin: 0;
     padding: 0 0.2em;
     cursor: pointer;
+    color: #50617a;
   }
 </style>
 
-<div class="slider-container">
-
-  <button disabled={number === min} on:click={minus}>&larr;</button>
-  <span on:pointerdown={handle_pointerdown}>{number}</span>
-  <button disabled={number === max} on:click={add}>&rarr;</button>
+<div class="container">
+  <div class="number-row">
+    <button disabled={Number(number) === Number(min)} on:click={minus}>&larr;</button>
+    <span on:pointerdown={handle_pointerdown}>{number}</span>
+    <button disabled={Number(number) === Number(max)} on:click={add}>&rarr;</button>
+  </div>
+  {#if hasSlider}
+    <input type="range" bind:value={number} {min} {max} />
+  {/if}
 </div>

@@ -8,5 +8,5 @@
 </style>
 
 {#if page === name}
-  <div>{name}</div>
+  <slot />
 {/if}

@@ -1,5 +1,6 @@
 <script>
   import { Timeline, Ticks, Line, WideLabel, Now, Column, Label, Page } from '../../src'
+
   import Number from './Number.svelte'
   let title = 'Year in Toronto'
   let d = new Date()
@@ -7,14 +8,15 @@
   let start = 'Jan 1 ' + year
   let end = 'Dec 31 ' + year
   let height = 900
-  let page = 'sports'
+  let pages = [null, 'sports', 'weather', 'more']
+  let index = 1
 </script>
 
 <style>
 
 </style>
 
-<Number number="5" min="2" />
+<Number bind:number={index} min="1" max="4" hasSlider={false} />
 <Timeline {start} {end} {height} {title}>
   <Column width="25px">
     <Ticks every="month" />
@@ -25,7 +27,8 @@
   <Column width="15px">
     <Now label="today" />
   </Column>
-  <Page name="sports" {page}>
+  <!-- sports -->
+  <Page name="sports" page={pages[index]}>
     <!-- basketball -->
     <Column width="45px">
       <Line space="15px" end="April 10 {year}" color="red" label="Raptors" />
@@ -46,7 +49,7 @@
     </Column>
   </Page>
 
-  <Page name="weather" {page}>
+  <Page name="weather" page={pages[index]}>
     <Column width="10px">
       <Line space="15px" start="Jan 1 {year}" end="Feb 10 {year}" color="lighter" label="snow" />
       <Line space="15px" start="Dec 10 {year}" end="Dec 31 {year}" color="lighter" label="snow" />
@@ -63,6 +66,10 @@
       <Label value="Sept 14 {year}" label="Tiff" color="rose" side="left" align="left" />
       <Label value="Oct 14 {year}" label="Nuit Blanche" color="orange" side="left" align="left" />
     </Column>
+  </Page>
+
+  <Page name="more" page={pages[index]}>
+    <div>more</div>
   </Page>
 
 </Timeline>

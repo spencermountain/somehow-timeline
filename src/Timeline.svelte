@@ -46,7 +46,7 @@
     flex-wrap: nowrap;
   }
   .title {
-    margin: 12px;
+    margin: 1.5rem;
   }
 </style>
 
