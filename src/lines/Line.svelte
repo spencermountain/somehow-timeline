@@ -8,6 +8,7 @@
   export let size = '14px'
   export let opacity = '1'
   export let label = ''
+  export let duration = ''
   export let start = getContext('start')
   export let end = getContext('end')
 
@@ -15,6 +16,12 @@
   const scale = getContext('scale')
   start = spacetime(start).epoch
   end = spacetime(end).epoch
+
+  if (duration) {
+    let split = duration.split(' ')
+    end = spacetime(start).add(Number(split[0]), split[1]).epoch
+  }
+
   let top = scale(start)
   let bottom = scale(end)
   let height = bottom - top

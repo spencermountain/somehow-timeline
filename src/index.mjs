@@ -8,7 +8,9 @@ export { default as Ticks } from './ticks/Ticks.svelte'
 export { default as Area } from './graphs/Area.svelte'
 
 export { default as Label } from './labels/Label.svelte'
+export { default as Section } from './labels/Section.svelte'
 export { default as Column } from './Column.svelte'
 export { default as WideLabel } from './labels/WideLabel.svelte'
+export { default as Page } from './Page.svelte'
 
 export { default as colors } from 'spencer-color'
