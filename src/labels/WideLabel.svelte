@@ -12,14 +12,11 @@
 <style>
   .wide {
     position: absolute;
-    width: 80%;
+    width: 90%;
     left: 10%;
     min-height: 3px;
-    border-bottom: 1px dotted grey;
     font-size: 0.8rem;
   }
 </style>
 
-<div class="wide" style="top:{y}px; text-align:{align}; color:{color};">
-  {label}
-</div>
+<div class="wide" style="top:{y}px; text-align:{align}; color:{color}; border-bottom: 1px solid {color};">{label}</div>

@@ -5,11 +5,12 @@
   export let color = 'green'
   export let width = '3px'
   export let label = ''
+  export let now = spacetime.now().epoch
   color = c.colors[color] || color
   let start = getContext('start')
   let end = getContext('end')
   const scale = getContext('scale')
-  let height = scale(spacetime.now().epoch)
+  let height = scale(now)
 </script>
 
 <style>

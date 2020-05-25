@@ -5,9 +5,11 @@
   export let color = 'steelblue'
   export let width = '5px'
   export let space = '5px'
+  export let margin = 0
   export let size = '14px'
   export let opacity = '1'
   export let label = ''
+  export let dotted = false
   export let duration = ''
   export let start = getContext('start')
   export let end = getContext('end')
@@ -64,7 +66,6 @@
     /* visibility: hidden; */
     transform: translate(10px, -7px);
     white-space: nowrap;
-    background-color: #fbfbfb;
     z-index: 4;
     padding: 5px;
     user-select: none;
@@ -104,8 +105,8 @@
       freeze_label = false
     }
   }}
-  style="min-width:{space}; opacity:{opacity}; top:{top}px; height:{height}px;">
-  <div class="line" style="border-left: {width} solid {color};" />
+  style="min-width:{space}; opacity:{opacity}; top:{top}px; height:{height - margin}px; ">
+  <div class="line" style="border-left: {width} {dotted ? 'dotted' : 'solid'} {color}; " />
   <div class="label" style="top:20%; color:{color}; font-size:{size};">
     {@html label}
   </div>
