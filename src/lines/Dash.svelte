@@ -1,0 +1,27 @@
+<script>
+  import spacetime from 'spacetime'
+  import { getContext } from 'svelte'
+  import c from 'spencer-color'
+  export let color = 'steelblue'
+  export let width = '25px'
+  export let height = '3px'
+  export let opacity = '1'
+  export let start = getContext('start')
+
+  start = spacetime(start)
+  color = c.colors[color] || color
+  const scale = getContext('scale')
+  start = start.epoch
+  let top = scale(start)
+</script>
+
+<style>
+  .container {
+    position: absolute;
+    border-radius: 2px;
+  }
+</style>
+
+<div
+  class="container"
+  style="min-width:{width}; opacity:{opacity}; top:{top}px; height:{height}; background-color:{color};" />

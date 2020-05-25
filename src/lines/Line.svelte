@@ -10,13 +10,19 @@
   export let opacity = '1'
   export let label = ''
   export let dotted = false
-  export let duration = ''
+  export let duration = '1 day'
   export let start = getContext('start')
   export let end = getContext('end')
 
+  start = spacetime(start)
+  if (!end && duration) {
+    let words = duration.split(' ')
+    end = start.add(words[0], words[1])
+  }
+
   color = c.colors[color] || color
   const scale = getContext('scale')
-  start = spacetime(start).epoch
+  start = start.epoch
   end = spacetime(end).epoch
 
   if (duration) {
