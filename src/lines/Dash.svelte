@@ -7,7 +7,11 @@
   export let height = '3px'
   export let opacity = '1'
   export let start = getContext('start')
-
+  let ignore = false
+  if (!spacetime(start).epoch) {
+    start = null
+    ignore = true
+  }
   start = spacetime(start)
   color = c.colors[color] || color
   const scale = getContext('scale')
@@ -22,6 +26,10 @@
   }
 </style>
 
-<div
-  class="container"
-  style="min-width:{width}; opacity:{opacity}; top:{top}px; height:{height}; background-color:{color};" />
+{#if ignore === true}
+  <div />
+{:else}
+  <div
+    class="container"
+    style="min-width:{width}; opacity:{opacity}; top:{top}px; height:{height}; background-color:{color};" />
+{/if}
