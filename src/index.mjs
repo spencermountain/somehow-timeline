@@ -9,6 +9,7 @@ export { default as Area } from './graphs/Area.svelte'
 
 export { default as Label } from './labels/Label.svelte'
 export { default as Dash } from './lines/Dash.svelte'
+export { default as Bar } from './lines/Bar.svelte'
 export { default as Section } from './labels/Section.svelte'
 export { default as Column } from './Column.svelte'
 export { default as WideLabel } from './labels/WideLabel.svelte'
