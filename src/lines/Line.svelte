@@ -4,12 +4,14 @@
   import c from 'spencer-color'
   export let color = 'steelblue'
   export let width = '5px'
+  export let title = ''
   export let space = '5px'
   export let margin = 0
   export let size = '14px'
   export let opacity = '1'
   export let label = ''
   export let dotted = false
+  export let rotate = false
   export let duration = '1 day'
   export let start = getContext('start')
   export let end = getContext('end')
@@ -28,6 +30,7 @@
   if (duration) {
     let split = duration.split(' ')
     end = spacetime(start).add(Number(split[0]), split[1]).epoch
+    // console.log(spacetime(start).format(), split, spacetime(end).format())
   }
 
   let top = scale(start)
@@ -88,6 +91,10 @@
     /* border: 1px solid lightgrey; */
     border-radius: 5px;
   }
+  .rotate {
+    writing-mode: vertical-lr;
+    transform: rotate(-180deg);
+  }
 </style>
 
 <div
@@ -111,9 +118,10 @@
       freeze_label = false
     }
   }}
-  style="min-width:{space}; opacity:{opacity}; top:{top}px; height:{height - margin}px; ">
-  <div class="line" style="border-left: {width} {dotted ? 'dotted' : 'solid'} {color}; " />
-  <div class="label" style="top:20%; color:{color}; font-size:{size};">
+  style="min-width:{space}; opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; "
+  {title}>
+  <div class="line" style="border-left: {width} {dotted ? 'dotted' : 'solid'} {color};" />
+  <div class="label" style="top:20%; color:{color}; font-size:{size};" class:rotate>
     {@html label}
   </div>
   <!-- {#if show_label}
