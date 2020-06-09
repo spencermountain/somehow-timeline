@@ -12,6 +12,9 @@
   .label {
     color: grey;
     font-size: 12px;
+    background-color: #fbfbfb;
+    display: block;
+    z-index: 4;
   }
 </style>
 

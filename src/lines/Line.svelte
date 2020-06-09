@@ -12,11 +12,18 @@
   export let label = ''
   export let dotted = false
   export let rotate = false
-  export let duration = '1 day'
+  export let duration = ''
   export let start = getContext('start')
   export let end = getContext('end')
-
+  // console.log(start, end)
   start = spacetime(start)
+  // console.log(spacetime.version)
+  // console.log(
+  //   spacetime('2012-01-01')
+  //     // .add(7, 'years')
+  //     .add(12 * 7, 'months')
+  //     .format()
+  // )
   if (!end && duration) {
     let words = duration.split(' ')
     end = start.add(words[0], words[1])
