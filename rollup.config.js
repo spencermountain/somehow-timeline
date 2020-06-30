@@ -5,7 +5,7 @@ import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 
 // const example = 'history-of-toronto'
-const example = 'year-in-toronto'
+const example = 'split-view'
 const production = false
 
 function serve() {
