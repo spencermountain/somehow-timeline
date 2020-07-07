@@ -9,7 +9,6 @@
   import spacetime from 'spacetime'
   const scale = getContext('scale')
   let y = scale(spacetime(date).epoch)
-  console.log(left)
 </script>
 
 <style>

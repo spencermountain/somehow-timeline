@@ -10,10 +10,11 @@
   color = c.colors[color] || color
 
   const formats = {
+    hour: '{hour}{ampm}',
+    day: '{month-short} {date}',
+    week: '{month-short} {date}',
     month: '{month-short}',
     year: 'year',
-    week: '{month-short} {date}',
-    day: '{month-short} {date}',
     quarter: '{quarter}',
     decade: 'year',
   }
