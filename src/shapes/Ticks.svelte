@@ -7,6 +7,7 @@
   export let size = '12px'
   export let underline = true
   export let color = 'grey'
+  export let opacity = '1'
   color = c.colors[color] || color
 
   const formats = {
@@ -17,6 +18,7 @@
     year: 'year',
     quarter: '{quarter}',
     decade: 'year',
+    century: 'year',
   }
   format = format || formats[every] || '{month-short} {date}'
   let start = getContext('start')
@@ -52,7 +54,7 @@
   }
 </style>
 
-<div class="container">
+<div class="container" style="opacity:{opacity};">
   {#each ticks as tick}
     <div class="label" class:underline style="top:{tick.value}px; color:{color}; font-size:{size};">{tick.label}</div>
   {/each}

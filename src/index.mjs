@@ -12,5 +12,8 @@ export { default as Column } from './shapes/Column.svelte'
 export { default as WideLabel } from './shapes/WideLabel.svelte'
 export { default as Page } from './shapes/Page.svelte'
 export { default as Img } from './shapes/Img.svelte'
+export { default as Duration } from './shapes/Duration.svelte'
+export { default as MainLine } from './shapes/MainLine.svelte'
+export { default as Point } from './shapes/Point.svelte'
 
 export { default as colors } from 'spencer-color'

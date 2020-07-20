@@ -9,7 +9,7 @@ function serve() {
     writeBundle() {
       if (!started) {
         started = true
-        require('child_process').spawn('npm', ['run', 'serve'], {
+        require('child_process').spawn('serve', ['.'], {
           stdio: ['ignore', 'inherit', 'inherit'],
           shell: true,
         })
