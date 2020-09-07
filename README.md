@@ -1,8 +1,8 @@
 <div align="center">
   <div><b>somehow-timeline</b></div>
+  <div>— part of <a href="https://github.com/spencermountain/somehow">somehow</a> —</div>
   <img src="https://user-images.githubusercontent.com/399657/68222691-6597f180-ffb9-11e9-8a32-a7f38aa8bded.png"/>
-  <div>WIP svelte time-series infographics</div>
-  <div><b>Part of <a href="https://github.com/spencermountain/somehow">somehow</a></b></div>
+  <div>WIP svelte time-based infographics</div>
   <div align="center">
     <sub>
       by
