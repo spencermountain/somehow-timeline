@@ -1,15 +1,17 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
+  import Dots from './Dots.svelte'
   import c from 'spencer-color'
   export let color = 'steelblue'
   export let width = '50px'
   export let title = ''
   export let space = '5px'
-  export let margin = 0
-  export let size = '18px'
+  export let margin = 2
+  export let size = '20px'
   export let opacity = '1'
   export let label = ''
+  export let underline = 'none'
   export let dotted = false
   export let rotate = false
   export let duration = ''
@@ -57,6 +59,13 @@
     cursor: pointer;
     border-radius: 3px;
   }
+  .dots {
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+  }
   .label {
     position: absolute;
     transform: translate(14px, -7px);
@@ -64,6 +73,7 @@
     z-index: 4;
     padding: 5px;
     user-select: none;
+    /* text-decoration: underline; */
   }
   .rotate {
     writing-mode: vertical-lr;
@@ -76,7 +86,17 @@
   style="min-width:{space}; opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; "
   {title}>
   <div class="line" style="width:{width}; background-color:{color};" />
-  <div class="label" style="top:20%; left:{width}; color:{color}; font-size:{size};" class:rotate>
+
+  {#if dotted === true}
+    <div class="dots" style="background-color: {'white'};">
+      <Dots {color} />
+    </div>
+  {/if}
+
+  <div
+    class="label"
+    style="top:37%; left:{width}; color:{color}; font-size:{size}; text-decoration:{underline === true ? 'underline' : 'none'};"
+    class:rotate>
     {@html label}
   </div>
 </div>
