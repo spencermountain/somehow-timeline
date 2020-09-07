@@ -1,6 +1,6 @@
 {
   "name": "somehow-timeline",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "./src/index.mjs",
   "scripts": {
     "build": "rollup -c",
