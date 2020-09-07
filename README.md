@@ -19,25 +19,13 @@ work-in-progress!
 
 ```html
 <script>
-  import { Timeline, Column, Line, Label } from 'somehow-timeline'
+  import { Timeline, Column, Line } from 'somehow-timeline'
 </script>
 <Timeline start="Jan 1 2020" end="Dec 30 2020" height="500">
-  <Column width="15px">
-    <Line start="January 1 2020" width="20px" end="Feb 20 2020" color="pink" />
-    <Line start="Feb 20 2020" width="20px" end="November 11 2020" color="#6699cc" />
-    <Line start="November 11 2020" width="20px" end="December 20 2020" color="fire" />
-  </Column>
   <Column width="75">
-    <Line start="January 1 2020" end="Feb 20 2020" color="pink" width="15px" dotted="{true}" label="Typing" />
-    <Line start="Feb 20 2020" end="November 11 2020" width="15px" dotted="{true}" color="#6699cc" label="Refactoring" />
-    <Line
-      start="November 11 2020"
-      end="December 20 2020"
-      width="15px"
-      dotted="{true}"
-      color="fire"
-      label="Proof-reading"
-    />
+    <Line start="January 1 2020" end="Feb 20 2020" color="pink" width="15px" dotted="{true}" label="Before" />
+    <Line start="Feb 20 2020" end="November 11 2020" width="15px" dotted="{true}" color="#6699cc" label="Middle" />
+    <Line start="November 11 2020" end="December 20 2020" width="15px" color="fire" label="After" />
   </Column>
 </Timeline>
 ```
