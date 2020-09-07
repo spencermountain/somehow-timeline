@@ -49,4 +49,6 @@ work-in-progress!
 - MainLine
 - Point
 
+**Part of [somehow](https://github.com/spencermountain/somehow)**
+
 MIT
