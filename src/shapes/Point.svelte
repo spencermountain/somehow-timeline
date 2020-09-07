@@ -6,6 +6,10 @@
   export let end = ''
   export let text = ''
   export let subtitle = ''
+  export let font = '1.2rem'
+  export let size = '20'
+  export let width = '100%'
+  export let color = 'steelblue'
   export let label = text
   start = spacetime(start)
   end = spacetime(end)
@@ -27,13 +31,9 @@
     align-self: stretch;
   }
   .circle {
-    height: 20px;
-    width: 20px;
-    background-color: steelblue;
     border-radius: 50%;
   }
   .text {
-    font-size: 1.2rem;
     margin-left: 1rem;
   }
   .subtitle {
@@ -47,8 +47,12 @@
   }
 </style>
 
-<div class="container row nowrap" style="top:{top}px;">
-  <div class="circle" />
-  <div class="text">{label}</div>
-  <div class="subtitle">{subtitle}</div>
+<div class="container row nowrap" style="top:{top}px; width:{width};">
+  <div class="circle" style="min-height:{size}px; min-width:{size}px; background-color:{color};" />
+  <div class="text" style="font-size:{font};">
+    {@html label}
+  </div>
+  <div class="subtitle">
+    {@html subtitle}
+  </div>
 </div>

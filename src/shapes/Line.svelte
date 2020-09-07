@@ -3,11 +3,11 @@
   import { getContext } from 'svelte'
   import c from 'spencer-color'
   export let color = 'steelblue'
-  export let width = '5px'
+  export let width = '50px'
   export let title = ''
   export let space = '5px'
   export let margin = 0
-  export let size = '14px'
+  export let size = '18px'
   export let opacity = '1'
   export let label = ''
   export let dotted = false
@@ -40,19 +40,26 @@
 
 <style>
   .container {
-    display: block;
     margin: 10px;
     position: absolute;
     border-radius: 5px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    align-self: stretch;
   }
   .line {
-    margin: 0px;
     height: 100%;
     cursor: pointer;
+    border-radius: 3px;
   }
   .label {
     position: absolute;
-    transform: translate(10px, -7px);
+    transform: translate(14px, -7px);
     white-space: nowrap;
     z-index: 4;
     padding: 5px;
@@ -68,8 +75,8 @@
   class="container"
   style="min-width:{space}; opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; "
   {title}>
-  <div class="line" style="border-left: {width} {dotted ? 'dotted' : 'solid'} {color};" />
-  <div class="label" style="top:20%; color:{color}; font-size:{size};" class:rotate>
+  <div class="line" style="width:{width}; background-color:{color};" />
+  <div class="label" style="top:20%; left:{width}; color:{color}; font-size:{size};" class:rotate>
     {@html label}
   </div>
 </div>

@@ -6,7 +6,6 @@
   export let start = null
   export let end = null
   export let height = 800
-  export let title = ''
   start = spacetime(start)
   end = spacetime(end)
   setContext('height', height)
@@ -45,13 +44,9 @@
     flex-direction: row;
     flex-wrap: nowrap;
   }
-  .title {
-    margin: 1.5rem;
-  }
 </style>
 
 <div class="container">
-  <div class="title">{title}</div>
   <div class="slot" style="min-height:{height}px">
     <slot />
   </div>
