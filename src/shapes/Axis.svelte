@@ -56,7 +56,7 @@
   start = start.minus(1, 'second')
   let arr = spacetime(start).every(every, end)
   let ticks = arr.map(s => {
-    let y = scale(s.epoch)
+    let y = scale(s.epoch) - 5
     let label = s.format(format)
     return {
       value: y,

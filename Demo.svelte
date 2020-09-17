@@ -1,10 +1,10 @@
 <script>
-  import { Timeline, Axis, Ticks, Line, Column, Img, Label, Duration, MainLine, Point } from './src'
+  import { Timeline, Axis, Line, Column, Point } from './src'
 </script>
 
 <style>
   .container {
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     width: 500px;
     margin-bottom: 5rem;
   }
@@ -39,16 +39,16 @@
     <Timeline start="1660" height="900">
       <Axis />
       <Column>
-        <Line start="1740" end="1744" label="irish famine" opacity="0.5" color="red" align="left" size="14px" />
-        <Line start="1775" end="1783" label="U.S. independence" opacity="0.5" color="red" align="left" size="14px" />
-        <Line start="1804" end="1821" label="napoleon" opacity="0.5" color="red" align="left" size="14px" />
-        <Line start="1861" end="1865" label="maxwell's equations" opacity="0.5" color="red" align="left" size="14px" />
-        <Line start="1905" end="1909" label="e=mc²" opacity="0.5" color="red" align="left" size="14px" />
-        <Line start="1919" duration="4 years" label="ww1" opacity="0.5" color="red" align="left" size="14px" />
-        <Line start="1945" duration="4 years" label="ww2" opacity="0.5" color="red" align="left" size="14px" />
+        <Line start="1740" end="1744" label="irish famine" color="red" />
+        <Line start="1775" end="1783" label="U.S. independence" color="red" />
+        <Line start="1804" end="1821" label="napoleon" color="red" />
+        <Line start="1861" end="1865" label="maxwell's equations" color="red" />
+        <Line start="1905" end="1909" label="e=mc²" color="red" />
+        <Line start="1919" duration="4 years" label="ww1" color="red" />
+        <Line start="1945" duration="4 years" label="ww2" color="red" />
       </Column>
       <Column>
-        <Line start="1887" label="Canada" opacity="0.5" color="blue" align="left" size="14px" />
+        <Line start="1867" label="Canada" color="blue" />
       </Column>
 
     </Timeline>

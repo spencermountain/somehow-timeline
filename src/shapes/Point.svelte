@@ -2,39 +2,45 @@
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
   import c from 'spencer-color'
+
   export let start = ''
-  export let end = ''
+  export let date = start
+
   export let text = ''
+  export let label = text
   export let subtitle = ''
   export let font = '1.2rem'
   export let size = '20'
-  export let width = '100%'
-  export let color = 'steelblue'
-  export let label = text
-  start = spacetime(start)
-  end = spacetime(end)
+
+  export let color = 'blue'
+  color = c.colors[color] || color
+
+  start = spacetime(date)
   const scale = getContext('scale')
   let top = scale(start.epoch)
-  let bottom = scale(end.epoch)
-  let height = bottom - top
 </script>
 
 <style>
   .container {
-    position: absolute;
+    position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    text-align: left;
+    text-align: center;
     flex-wrap: nowrap;
     align-self: stretch;
+    transform: translate(0px, -12px);
   }
   .circle {
     border-radius: 50%;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
+  }
+  .circle:hover {
+    box-shadow: 2px 2px 8px 0px steelblue;
   }
   .text {
-    margin-left: 1rem;
+    color: #8c8c8c;
   }
   .subtitle {
     margin-top: 3.5rem;
@@ -47,12 +53,12 @@
   }
 </style>
 
-<div class="container row nowrap" style="top:{top}px; width:{width};">
-  <div class="circle" style="min-height:{size}px; min-width:{size}px; background-color:{color};" />
+<div class="container row nowrap" style="top:{top}px; width:100%;">
   <div class="text" style="font-size:{font};">
     {@html label}
   </div>
   <div class="subtitle">
     {@html subtitle}
   </div>
+  <div class="circle" style="min-height:{size}px; min-width:{size}px; background-color:{color};" />
 </div>

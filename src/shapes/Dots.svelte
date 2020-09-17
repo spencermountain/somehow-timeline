@@ -1,5 +1,6 @@
 <script>
   export let color = 'steelblue'
+  export let opacity = '0.6'
   function uuid() {
     return 'xxxxxx'.replace(/[xy]/g, function(c) {
       var r = (Math.random() * 16) | 0,

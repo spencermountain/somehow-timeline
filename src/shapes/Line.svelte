@@ -6,10 +6,8 @@
   export let color = 'steelblue'
   export let width = '100%'
   export let title = ''
-  export let space = '5px'
   export let margin = 2
-  export let size = '20px'
-  export let opacity = '1'
+  export let opacity = '0.7'
   export let label = ''
   export let underline = 'none'
   export let dotted = false
