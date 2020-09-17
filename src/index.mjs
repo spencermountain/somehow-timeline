@@ -1,5 +1,6 @@
 export { default as Timeline } from './Timeline.svelte'
 
+export { default as Axis } from './shapes/Axis.svelte'
 export { default as Line } from './shapes/Line.svelte'
 export { default as Now } from './shapes/Now.svelte'
 export { default as Ticks } from './shapes/Ticks.svelte'

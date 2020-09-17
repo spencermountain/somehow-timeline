@@ -4,7 +4,7 @@
   import Dots from './Dots.svelte'
   import c from 'spencer-color'
   export let color = 'steelblue'
-  export let width = '50px'
+  export let width = '100%'
   export let title = ''
   export let space = '5px'
   export let margin = 2
@@ -42,7 +42,7 @@
 
 <style>
   .container {
-    margin: 10px;
+    width: 100%;
     position: absolute;
     border-radius: 5px;
 
@@ -56,6 +56,7 @@
   }
   .line {
     height: 100%;
+    width: 100%;
     cursor: pointer;
     border-radius: 3px;
   }
@@ -67,13 +68,12 @@
     z-index: 0;
   }
   .label {
-    position: absolute;
-    transform: translate(14px, -7px);
+    width: 100%;
+    position: relative;
     white-space: nowrap;
     z-index: 4;
-    padding: 5px;
     user-select: none;
-    /* text-decoration: underline; */
+    font-size: 11px;
   }
   .rotate {
     writing-mode: vertical-lr;
@@ -81,10 +81,14 @@
   }
 </style>
 
-<div
-  class="container"
-  style="min-width:{space}; opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; "
-  {title}>
+<div class="container" style="opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; " {title}>
+
+  <!-- label -->
+  <div class="label" style="color:{color}; text-decoration:{underline === true ? 'underline' : 'none'};" class:rotate>
+    {@html label}
+  </div>
+
+  <!-- line -->
   <div class="line" style="width:{width}; background-color:{color};" />
 
   {#if dotted === true}
@@ -93,10 +97,4 @@
     </div>
   {/if}
 
-  <div
-    class="label"
-    style="top:37%; left:{width}; color:{color}; font-size:{size}; text-decoration:{underline === true ? 'underline' : 'none'};"
-    class:rotate>
-    {@html label}
-  </div>
 </div>

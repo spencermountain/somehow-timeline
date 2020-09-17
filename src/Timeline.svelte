@@ -34,20 +34,18 @@
     min-height: 100%;
     /* background-color: lightgrey; */
   }
-  .container {
-    display: inline-flex;
-    flex-direction: column;
-  }
-  .slot {
+
+  .timeline {
     position: relative;
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
     flex-wrap: nowrap;
+    align-self: stretch;
   }
 </style>
 
-<div class="container">
-  <div class="slot" style="min-height:{height}px">
-    <slot />
-  </div>
+<div class="timeline" style="min-height:{height}px">
+  <slot />
 </div>
