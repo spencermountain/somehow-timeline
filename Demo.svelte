@@ -6,6 +6,7 @@
   .container {
     border: 1px solid grey;
     width: 500px;
+    margin-bottom: 5rem;
   }
   .col {
     display: flex;
@@ -47,7 +48,7 @@
         <Line start="1945" duration="4 years" label="ww2" opacity="0.5" color="red" align="left" size="14px" />
       </Column>
       <Column>
-        <Line start="1845" duration="4 years" label="ww2" opacity="0.5" color="blue" align="left" size="14px" />
+        <Line start="1887" label="Canada" opacity="0.5" color="blue" align="left" size="14px" />
       </Column>
 
     </Timeline>

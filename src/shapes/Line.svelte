@@ -57,8 +57,14 @@
   .line {
     height: 100%;
     width: 100%;
-    cursor: pointer;
+    cursor: default;
     border-radius: 3px;
+    z-index: 1;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
+  }
+  .line:hover {
+    opacity: 1;
+    box-shadow: 2px 2px 8px 0px steelblue;
   }
   .dots {
     position: absolute;
@@ -67,13 +73,18 @@
     width: 100%;
     z-index: 0;
   }
-  .label {
+  .topLabel {
     width: 100%;
     position: relative;
     white-space: nowrap;
     z-index: 4;
     user-select: none;
     font-size: 11px;
+  }
+  .midLabel {
+    position: absolute;
+    z-index: 3;
+    color: #fbfbfb;
   }
   .rotate {
     writing-mode: vertical-lr;
@@ -84,9 +95,18 @@
 <div class="container" style="opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; " {title}>
 
   <!-- label -->
-  <div class="label" style="color:{color}; text-decoration:{underline === true ? 'underline' : 'none'};" class:rotate>
-    {@html label}
-  </div>
+  {#if height > 20}
+    <div class="midLabel" class:rotate>
+      {@html label}
+    </div>
+  {:else}
+    <div
+      class="topLabel"
+      style="color:{color}; text-decoration:{underline === true ? 'underline' : 'none'};"
+      class:rotate>
+      {@html label}
+    </div>
+  {/if}
 
   <!-- line -->
   <div class="line" style="width:{width}; background-color:{color};" />

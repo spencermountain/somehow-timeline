@@ -28,11 +28,7 @@
 
 <style>
   :global(.part) {
-    min-width: 2px;
-    margin-left: 5px;
-    margin-right: 5px;
     min-height: 100%;
-    /* background-color: lightgrey; */
   }
 
   .timeline {
