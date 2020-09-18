@@ -33,7 +33,7 @@
 <div class="col">
   <div class="m3 f1">
     <a class="f2" href="https://github.com/spencermountain/somehow-timeline">somehow-timeline</a>
-    <span class="f08 grey">- its a svelte component rendered using spacetime.</span>
+    <span class="grey">- its a svelte component rendered using spacetime.</span>
   </div>
   <div class="container">
     <Timeline start="1660" height="900">

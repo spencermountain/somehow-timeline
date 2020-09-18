@@ -5284,24 +5284,24 @@ var app = (function () {
     			attr_dev(circle, "cx", "3");
     			attr_dev(circle, "cy", "3");
     			attr_dev(circle, "r", "1.5");
-    			add_location(circle, file$3, 20, 6, 442);
+    			add_location(circle, file$3, 19, 6, 413);
     			attr_dev(pattern, "id", /*id*/ ctx[1]);
     			attr_dev(pattern, "x", "0");
     			attr_dev(pattern, "y", "0");
     			attr_dev(pattern, "width", "5");
     			attr_dev(pattern, "height", "5");
     			attr_dev(pattern, "patternUnits", "userSpaceOnUse");
-    			add_location(pattern, file$3, 19, 4, 358);
-    			add_location(defs, file$3, 18, 2, 347);
+    			add_location(pattern, file$3, 18, 4, 329);
+    			add_location(defs, file$3, 17, 2, 318);
     			attr_dev(rect, "x", "0");
     			attr_dev(rect, "y", "0");
     			attr_dev(rect, "width", "100%");
     			attr_dev(rect, "height", "100%");
     			attr_dev(rect, "fill", rect_fill_value = "url(#" + /*id*/ ctx[1] + ")");
-    			add_location(rect, file$3, 24, 2, 516);
+    			add_location(rect, file$3, 23, 2, 487);
     			attr_dev(svg, "width", "100%");
     			attr_dev(svg, "height", "100%");
-    			add_location(svg, file$3, 17, 0, 312);
+    			add_location(svg, file$3, 16, 0, 283);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5345,9 +5345,8 @@ var app = (function () {
 
     function instance$3($$self, $$props, $$invalidate) {
     	let { color = "steelblue" } = $$props;
-    	let { opacity = "0.6" } = $$props;
     	let id = uuid();
-    	const writable_props = ["color", "opacity"];
+    	const writable_props = ["color"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Dots> was created with unknown prop '${key}'`);
@@ -5358,14 +5357,12 @@ var app = (function () {
 
     	$$self.$$set = $$props => {
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
-    		if ("opacity" in $$props) $$invalidate(2, opacity = $$props.opacity);
     	};
 
-    	$$self.$capture_state = () => ({ color, opacity, uuid, id });
+    	$$self.$capture_state = () => ({ color, uuid, id });
 
     	$$self.$inject_state = $$props => {
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
-    		if ("opacity" in $$props) $$invalidate(2, opacity = $$props.opacity);
     		if ("id" in $$props) $$invalidate(1, id = $$props.id);
     	};
 
@@ -5373,13 +5370,13 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [color, id, opacity];
+    	return [color, id];
     }
 
     class Dots extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { color: 0, opacity: 2 });
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, { color: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -5394,14 +5391,6 @@ var app = (function () {
     	}
 
     	set color(value) {
-    		throw new Error("<Dots>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get opacity() {
-    		throw new Error("<Dots>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set opacity(value) {
     		throw new Error("<Dots>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -6498,7 +6487,7 @@ var app = (function () {
     function add_css$5() {
     	var style = element("style");
     	style.id = "svelte-4xf458-style";
-    	style.textContent = ".container.svelte-4xf458{width:500px;margin-bottom:5rem}.col.svelte-4xf458{display:flex;flex-direction:column;justify-content:space-around;align-items:center;text-align:center;flex-wrap:wrap;align-self:stretch}a.svelte-4xf458{color:steelblue;text-decoration:none}.f2.svelte-4xf458{font-size:2rem}.f1.svelte-4xf458{font-size:1.2rem;margin:3rem}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGVtby5zdmVsdGUiLCJzb3VyY2VzIjpbIkRlbW8uc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCB7IFRpbWVsaW5lLCBBeGlzLCBMaW5lLCBDb2x1bW4sIFBvaW50IH0gZnJvbSAnLi9zcmMnXG48L3NjcmlwdD5cblxuPHN0eWxlPlxuICAuY29udGFpbmVyIHtcbiAgICAvKiBib3JkZXI6IDFweCBzb2xpZCBncmV5OyAqL1xuICAgIHdpZHRoOiA1MDBweDtcbiAgICBtYXJnaW4tYm90dG9tOiA1cmVtO1xuICB9XG4gIC5jb2wge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWFyb3VuZDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBmbGV4LXdyYXA6IHdyYXA7XG4gICAgYWxpZ24tc2VsZjogc3RyZXRjaDtcbiAgfVxuICBhIHtcbiAgICBjb2xvcjogc3RlZWxibHVlO1xuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgfVxuICAuZjIge1xuICAgIGZvbnQtc2l6ZTogMnJlbTtcbiAgfVxuICAuZjEge1xuICAgIGZvbnQtc2l6ZTogMS4ycmVtO1xuICAgIG1hcmdpbjogM3JlbTtcbiAgfVxuPC9zdHlsZT5cblxuPGRpdiBjbGFzcz1cImNvbFwiPlxuICA8ZGl2IGNsYXNzPVwibTMgZjFcIj5cbiAgICA8YSBjbGFzcz1cImYyXCIgaHJlZj1cImh0dHBzOi8vZ2l0aHViLmNvbS9zcGVuY2VybW91bnRhaW4vc29tZWhvdy10aW1lbGluZVwiPnNvbWVob3ctdGltZWxpbmU8L2E+XG4gICAgPHNwYW4gY2xhc3M9XCJmMDggZ3JleVwiPi0gaXRzIGEgc3ZlbHRlIGNvbXBvbmVudCByZW5kZXJlZCB1c2luZyBzcGFjZXRpbWUuPC9zcGFuPlxuICA8L2Rpdj5cbiAgPGRpdiBjbGFzcz1cImNvbnRhaW5lclwiPlxuICAgIDxUaW1lbGluZSBzdGFydD1cIjE2NjBcIiBoZWlnaHQ9XCI5MDBcIj5cbiAgICAgIDxBeGlzIC8+XG4gICAgICA8Q29sdW1uPlxuICAgICAgICA8TGluZSBzdGFydD1cIjE3NDBcIiBlbmQ9XCIxNzQ0XCIgbGFiZWw9XCJpcmlzaCBmYW1pbmVcIiBjb2xvcj1cInJlZFwiIC8+XG4gICAgICAgIDxMaW5lIHN0YXJ0PVwiMTc3NVwiIGVuZD1cIjE3ODNcIiBsYWJlbD1cIlUuUy4gaW5kZXBlbmRlbmNlXCIgY29sb3I9XCJyZWRcIiAvPlxuICAgICAgICA8TGluZSBzdGFydD1cIjE4MDRcIiBlbmQ9XCIxODIxXCIgbGFiZWw9XCJuYXBvbGVvblwiIGNvbG9yPVwicmVkXCIgLz5cbiAgICAgICAgPExpbmUgc3RhcnQ9XCIxODYxXCIgZW5kPVwiMTg2NVwiIGxhYmVsPVwibWF4d2VsbCdzIGVxdWF0aW9uc1wiIGNvbG9yPVwicmVkXCIgLz5cbiAgICAgICAgPExpbmUgc3RhcnQ9XCIxOTA1XCIgZW5kPVwiMTkwOVwiIGxhYmVsPVwiZT1tY8KyXCIgY29sb3I9XCJyZWRcIiAvPlxuICAgICAgICA8TGluZSBzdGFydD1cIjE5MTlcIiBkdXJhdGlvbj1cIjQgeWVhcnNcIiBsYWJlbD1cInd3MVwiIGNvbG9yPVwicmVkXCIgLz5cbiAgICAgICAgPExpbmUgc3RhcnQ9XCIxOTQ1XCIgZHVyYXRpb249XCI0IHllYXJzXCIgbGFiZWw9XCJ3dzJcIiBjb2xvcj1cInJlZFwiIC8+XG4gICAgICA8L0NvbHVtbj5cbiAgICAgIDxDb2x1bW4+XG4gICAgICAgIDxMaW5lIHN0YXJ0PVwiMTg2N1wiIGxhYmVsPVwiQ2FuYWRhXCIgY29sb3I9XCJibHVlXCIgLz5cbiAgICAgIDwvQ29sdW1uPlxuXG4gICAgPC9UaW1lbGluZT5cbiAgPC9kaXY+XG48L2Rpdj5cbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFLRSxVQUFVLGNBQUMsQ0FBQyxBQUVWLEtBQUssQ0FBRSxLQUFLLENBQ1osYUFBYSxDQUFFLElBQUksQUFDckIsQ0FBQyxBQUNELElBQUksY0FBQyxDQUFDLEFBQ0osT0FBTyxDQUFFLElBQUksQ0FDYixjQUFjLENBQUUsTUFBTSxDQUN0QixlQUFlLENBQUUsWUFBWSxDQUM3QixXQUFXLENBQUUsTUFBTSxDQUNuQixVQUFVLENBQUUsTUFBTSxDQUNsQixTQUFTLENBQUUsSUFBSSxDQUNmLFVBQVUsQ0FBRSxPQUFPLEFBQ3JCLENBQUMsQUFDRCxDQUFDLGNBQUMsQ0FBQyxBQUNELEtBQUssQ0FBRSxTQUFTLENBQ2hCLGVBQWUsQ0FBRSxJQUFJLEFBQ3ZCLENBQUMsQUFDRCxHQUFHLGNBQUMsQ0FBQyxBQUNILFNBQVMsQ0FBRSxJQUFJLEFBQ2pCLENBQUMsQUFDRCxHQUFHLGNBQUMsQ0FBQyxBQUNILFNBQVMsQ0FBRSxNQUFNLENBQ2pCLE1BQU0sQ0FBRSxJQUFJLEFBQ2QsQ0FBQyJ9 */";
+    	style.textContent = ".container.svelte-4xf458{width:500px;margin-bottom:5rem}.col.svelte-4xf458{display:flex;flex-direction:column;justify-content:space-around;align-items:center;text-align:center;flex-wrap:wrap;align-self:stretch}a.svelte-4xf458{color:steelblue;text-decoration:none}.f2.svelte-4xf458{font-size:2rem}.f1.svelte-4xf458{font-size:1.2rem;margin:3rem}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGVtby5zdmVsdGUiLCJzb3VyY2VzIjpbIkRlbW8uc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCB7IFRpbWVsaW5lLCBBeGlzLCBMaW5lLCBDb2x1bW4sIFBvaW50IH0gZnJvbSAnLi9zcmMnXG48L3NjcmlwdD5cblxuPHN0eWxlPlxuICAuY29udGFpbmVyIHtcbiAgICAvKiBib3JkZXI6IDFweCBzb2xpZCBncmV5OyAqL1xuICAgIHdpZHRoOiA1MDBweDtcbiAgICBtYXJnaW4tYm90dG9tOiA1cmVtO1xuICB9XG4gIC5jb2wge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWFyb3VuZDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBmbGV4LXdyYXA6IHdyYXA7XG4gICAgYWxpZ24tc2VsZjogc3RyZXRjaDtcbiAgfVxuICBhIHtcbiAgICBjb2xvcjogc3RlZWxibHVlO1xuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgfVxuICAuZjIge1xuICAgIGZvbnQtc2l6ZTogMnJlbTtcbiAgfVxuICAuZjEge1xuICAgIGZvbnQtc2l6ZTogMS4ycmVtO1xuICAgIG1hcmdpbjogM3JlbTtcbiAgfVxuPC9zdHlsZT5cblxuPGRpdiBjbGFzcz1cImNvbFwiPlxuICA8ZGl2IGNsYXNzPVwibTMgZjFcIj5cbiAgICA8YSBjbGFzcz1cImYyXCIgaHJlZj1cImh0dHBzOi8vZ2l0aHViLmNvbS9zcGVuY2VybW91bnRhaW4vc29tZWhvdy10aW1lbGluZVwiPnNvbWVob3ctdGltZWxpbmU8L2E+XG4gICAgPHNwYW4gY2xhc3M9XCJncmV5XCI+LSBpdHMgYSBzdmVsdGUgY29tcG9uZW50IHJlbmRlcmVkIHVzaW5nIHNwYWNldGltZS48L3NwYW4+XG4gIDwvZGl2PlxuICA8ZGl2IGNsYXNzPVwiY29udGFpbmVyXCI+XG4gICAgPFRpbWVsaW5lIHN0YXJ0PVwiMTY2MFwiIGhlaWdodD1cIjkwMFwiPlxuICAgICAgPEF4aXMgLz5cbiAgICAgIDxDb2x1bW4+XG4gICAgICAgIDxMaW5lIHN0YXJ0PVwiMTc0MFwiIGVuZD1cIjE3NDRcIiBsYWJlbD1cImlyaXNoIGZhbWluZVwiIGNvbG9yPVwicmVkXCIgLz5cbiAgICAgICAgPExpbmUgc3RhcnQ9XCIxNzc1XCIgZW5kPVwiMTc4M1wiIGxhYmVsPVwiVS5TLiBpbmRlcGVuZGVuY2VcIiBjb2xvcj1cInJlZFwiIC8+XG4gICAgICAgIDxMaW5lIHN0YXJ0PVwiMTgwNFwiIGVuZD1cIjE4MjFcIiBsYWJlbD1cIm5hcG9sZW9uXCIgY29sb3I9XCJyZWRcIiAvPlxuICAgICAgICA8TGluZSBzdGFydD1cIjE4NjFcIiBlbmQ9XCIxODY1XCIgbGFiZWw9XCJtYXh3ZWxsJ3MgZXF1YXRpb25zXCIgY29sb3I9XCJyZWRcIiAvPlxuICAgICAgICA8TGluZSBzdGFydD1cIjE5MDVcIiBlbmQ9XCIxOTA5XCIgbGFiZWw9XCJlPW1jwrJcIiBjb2xvcj1cInJlZFwiIC8+XG4gICAgICAgIDxMaW5lIHN0YXJ0PVwiMTkxOVwiIGR1cmF0aW9uPVwiNCB5ZWFyc1wiIGxhYmVsPVwid3cxXCIgY29sb3I9XCJyZWRcIiAvPlxuICAgICAgICA8TGluZSBzdGFydD1cIjE5NDVcIiBkdXJhdGlvbj1cIjQgeWVhcnNcIiBsYWJlbD1cInd3MlwiIGNvbG9yPVwicmVkXCIgLz5cbiAgICAgIDwvQ29sdW1uPlxuICAgICAgPENvbHVtbj5cbiAgICAgICAgPExpbmUgc3RhcnQ9XCIxODY3XCIgbGFiZWw9XCJDYW5hZGFcIiBjb2xvcj1cImJsdWVcIiAvPlxuICAgICAgPC9Db2x1bW4+XG5cbiAgICA8L1RpbWVsaW5lPlxuICA8L2Rpdj5cbjwvZGl2PlxuIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUtFLFVBQVUsY0FBQyxDQUFDLEFBRVYsS0FBSyxDQUFFLEtBQUssQ0FDWixhQUFhLENBQUUsSUFBSSxBQUNyQixDQUFDLEFBQ0QsSUFBSSxjQUFDLENBQUMsQUFDSixPQUFPLENBQUUsSUFBSSxDQUNiLGNBQWMsQ0FBRSxNQUFNLENBQ3RCLGVBQWUsQ0FBRSxZQUFZLENBQzdCLFdBQVcsQ0FBRSxNQUFNLENBQ25CLFVBQVUsQ0FBRSxNQUFNLENBQ2xCLFNBQVMsQ0FBRSxJQUFJLENBQ2YsVUFBVSxDQUFFLE9BQU8sQUFDckIsQ0FBQyxBQUNELENBQUMsY0FBQyxDQUFDLEFBQ0QsS0FBSyxDQUFFLFNBQVMsQ0FDaEIsZUFBZSxDQUFFLElBQUksQUFDdkIsQ0FBQyxBQUNELEdBQUcsY0FBQyxDQUFDLEFBQ0gsU0FBUyxDQUFFLElBQUksQUFDakIsQ0FBQyxBQUNELEdBQUcsY0FBQyxDQUFDLEFBQ0gsU0FBUyxDQUFFLE1BQU0sQ0FDakIsTUFBTSxDQUFFLElBQUksQUFDZCxDQUFDIn0= */";
     	append_dev(document.head, style);
     }
 
@@ -6846,12 +6835,12 @@ var app = (function () {
     			attr_dev(a, "class", "f2 svelte-4xf458");
     			attr_dev(a, "href", "https://github.com/spencermountain/somehow-timeline");
     			add_location(a, file$6, 34, 4, 575);
-    			attr_dev(span, "class", "f08 grey");
+    			attr_dev(span, "class", "grey");
     			add_location(span, file$6, 35, 4, 673);
     			attr_dev(div0, "class", "m3 f1 svelte-4xf458");
     			add_location(div0, file$6, 33, 2, 551);
     			attr_dev(div1, "class", "container svelte-4xf458");
-    			add_location(div1, file$6, 37, 2, 765);
+    			add_location(div1, file$6, 37, 2, 761);
     			attr_dev(div2, "class", "col svelte-4xf458");
     			add_location(div2, file$6, 32, 0, 531);
     		},
