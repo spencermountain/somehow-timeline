@@ -9,6 +9,7 @@ export { default as WideLabel } from './shapes/WideLabel.svelte'
 export { default as Now } from './shapes/Now.svelte'
 
 export { default as Line } from './shapes/Line.svelte'
+export { default as Era } from './shapes/Era.svelte'
 export { default as Area } from './shapes/Area.svelte'
 export { default as Dash } from './shapes/Dash.svelte'
 export { default as Bar } from './shapes/Bar.svelte'

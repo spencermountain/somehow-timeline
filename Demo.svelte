@@ -1,5 +1,5 @@
 <script>
-  import { Timeline, Axis, Line, Column, Point } from './src'
+  import { Timeline, Axis, Line, Column, Point, Era } from './src'
 </script>
 
 <style>
@@ -37,6 +37,11 @@
   </div>
   <div class="container">
     <Timeline start="1660" height="900">
+      <Column>
+        <Era start="1700" end="1800" label="1700s" />
+        <Era start="1800" end="1900" label="1800s" />
+        <Era start="1900" label="1900s" />
+      </Column>
       <Axis />
       <Column>
         <Line start="1740" end="1744" label="irish famine" color="red" />
