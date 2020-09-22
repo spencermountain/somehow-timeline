@@ -1,11 +1,16 @@
 <script>
   import { Timeline, Axis, Line, Column, Point, Era, Dash } from './src'
-  let dashes = [1773, 1823, 1853, 1873, 1973]
+  let dashes = [1773]
+  let height = 900
+  let start = '1660'
   setTimeout(() => {
-    dashes.push(1892)
-    dashes.push(1792)
-    dashes.push(1692)
-    dashes = dashes
+    // dashes.push(1892)
+    // dashes.push(1792)
+    // dashes.push(1692)
+    // dashes[0] += 140
+    // dashes = dashes
+    // height = 300
+    // start = 'jan 1 1560'
   }, 1200)
 </script>
 
@@ -43,13 +48,13 @@
     <span class="grey">- its a svelte component rendered using spacetime.</span>
   </div>
   <div class="container">
-    <Timeline start="1660" height="900">
+    <Timeline {start} {height}>
       <Column>
         {#each dashes as d}
           <Dash date={'jan 1 ' + d} />
         {/each}
       </Column>
-      <Column>
+      <!-- <Column>
         <Era start="1700" end="1800" label="1700s" />
         <Era start="1800" end="1900" label="1800s" />
         <Era start="1900" label="1900s" />
@@ -67,7 +72,7 @@
       <Column>
         <Line start="1867" label="Canada" color="blue" />
       </Column>
-
+-->
     </Timeline>
   </div>
 </div>
