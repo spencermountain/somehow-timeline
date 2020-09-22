@@ -34,7 +34,7 @@
     font-size: 16px;
     margin-right: 0.75rem;
     color: #606c74;
-    border-bottom: 1px solid lightgrey;
+    /* border-bottom: 1px solid lightgrey; */
   }
   .line {
     height: 100%;

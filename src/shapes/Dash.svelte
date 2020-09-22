@@ -7,16 +7,17 @@
   export let height = '3px'
   export let opacity = '1'
   export let start = getContext('start')
+  export let date = start
   let ignore = false
-  if (!spacetime(start).epoch) {
-    start = null
+  if (!spacetime(date).epoch) {
+    date = null
     ignore = true
   }
-  start = spacetime(start)
+  date = spacetime(date)
   color = c.colors[color] || color
   const scale = getContext('scale')
-  start = start.epoch
-  let top = scale(start)
+  date = date.epoch
+  let top = scale(date)
 </script>
 
 <style>

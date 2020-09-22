@@ -1,5 +1,12 @@
 <script>
-  import { Timeline, Axis, Line, Column, Point, Era } from './src'
+  import { Timeline, Axis, Line, Column, Point, Era, Dash } from './src'
+  let dashes = [1773, 1823, 1853, 1873, 1973]
+  setTimeout(() => {
+    dashes.push(1892)
+    dashes.push(1792)
+    dashes.push(1692)
+    dashes = dashes
+  }, 1200)
 </script>
 
 <style>
@@ -37,6 +44,11 @@
   </div>
   <div class="container">
     <Timeline start="1660" height="900">
+      <Column>
+        {#each dashes as d}
+          <Dash date={'jan 1 ' + d} />
+        {/each}
+      </Column>
       <Column>
         <Era start="1700" end="1800" label="1700s" />
         <Era start="1800" end="1900" label="1800s" />

@@ -23,7 +23,7 @@
   }
 </style>
 
-<div class="part column" style="margin:0px {margin} 0px {margin};">
+<div class="part column" style="margin:0px {margin} 0px {margin}; ">
   <div class="label">{label}</div>
   <slot />
 </div>
