@@ -17,8 +17,29 @@
 <style>
   .container {
     /* border: 1px solid grey; */
-    width: 500px;
+    flex: 1;
+    height: 100%;
+    height: 100%;
+    width: 800px;
     margin-bottom: 5rem;
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    align-self: stretch;
+  }
+  .text {
+    color: #b8b9ba;
+    font-size: 2rem;
+    margin-right: 1.5rem;
+    height: 100%;
+    line-height: 3rem;
+    width: 120px;
+    text-align: center;
   }
   .col {
     display: flex;
@@ -40,6 +61,14 @@
     font-size: 1.2rem;
     margin: 3rem;
   }
+  .dash {
+    border-left: 3px dashed #b8b9ba;
+    min-width: 20px;
+    min-height: 92%;
+    align-self: stretch;
+    margin-top: 4%;
+    margin-bottom: 4%;
+  }
 </style>
 
 <div class="col">
@@ -47,32 +76,21 @@
     <a class="f2" href="https://github.com/spencermountain/somehow-timeline">somehow-timeline</a>
     <span class="grey">- its a svelte component rendered using spacetime.</span>
   </div>
-  <div class="container">
-    <Timeline {start} {height}>
-      <Column>
-        {#each dashes as d}
-          <Dash date={'jan 1 ' + d} />
-        {/each}
-      </Column>
-      <!-- <Column>
-        <Era start="1700" end="1800" label="1700s" />
-        <Era start="1800" end="1900" label="1800s" />
-        <Era start="1900" label="1900s" />
-      </Column>-->
-      <!-- <Axis /> -->
-      <Ticks every="decade" />
-      <Column>
-        <Line start="1740" end="1744" label="irish famine" color="red" />
-        <Line start="1775" end="1783" label="U.S. independence" color="red" />
-        <Line start="1804" end="1821" label="napoleon" color="red" />
-        <Line start="1861" end="1865" label="maxwell's equations" color="red" />
-        <Line start="1905" end="1909" label="e=mc²" color="red" />
-        <Line start="1919" duration="4 years" label="ww1" color="red" />
-        <Line start="1945" duration="4 years" label="ww2" color="red" />
-      </Column>
-      <Column>
-        <Line start="1867" label="Canada" color="blue" />
-      </Column>
-    </Timeline>
+  <div class="container row">
+    <div class="text">
+      time
+      <br />
+      spent
+      <br />
+      writing
+    </div>
+    <div class="dash" />
+    <div style="height:100%; max-width:300px; flex:1;">
+      <Timeline start="Jan 1 2020" end="Dec 30 2020" height="600" width="500">
+        <Line start="January 1 2020" end="Feb 20 2020" color="pink" dotted={true} label="Typing" />
+        <Line start="Feb 20 2020" end="November 11 2020" dotted={true} color="#6699cc" label="Refactoring" />
+        <Line start="November 11 2020" end="December 20 2020" dotted={true} color="fire" label="Proof-reading" />
+      </Timeline>
+    </div>
   </div>
 </div>
