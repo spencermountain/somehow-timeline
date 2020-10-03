@@ -3,6 +3,8 @@
   import { getContext } from 'svelte'
   import Dots from './Dots.svelte'
   import c from 'spencer-color'
+
+  let myScale = getContext('scale')
   export let color = 'steelblue'
   export let width = '100%'
   export let title = ''
@@ -24,7 +26,6 @@
   }
 
   color = c.colors[color] || color
-  const scale = getContext('scale')
   start = start.epoch
   end = spacetime(end).epoch
 
@@ -33,9 +34,10 @@
     end = spacetime(start).add(Number(split[0]), split[1]).epoch
   }
 
-  let top = scale(start)
-  let bottom = scale(end)
-  let height = bottom - top
+  const scale = getContext('scale')
+  $: top = myScale(start)
+  $: bottom = myScale(end)
+  $: height = bottom - top
 </script>
 
 <style>
@@ -89,6 +91,8 @@
     transform: rotate(-180deg);
   }
 </style>
+
+<div>{' -'}</div>
 
 <div class="container" style="opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; " {title}>
 

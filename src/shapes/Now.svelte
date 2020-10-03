@@ -9,8 +9,10 @@
   color = c.colors[color] || color
   let start = getContext('start')
   let end = getContext('end')
+
   const scale = getContext('scale')
-  let height = scale(now)
+  $: top = myScale(start)
+  $: height = bottom - top
 </script>
 
 <style>

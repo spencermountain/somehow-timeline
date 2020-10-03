@@ -6,14 +6,14 @@
   export let end = ''
   export let text = ''
   export let color = 'black'
-  export let subtitle = ''
+  // export let subtitle = ''
   export let label = text
   start = spacetime(start)
   end = spacetime(end)
   const scale = getContext('scale')
-  let top = scale(start.epoch)
-  let bottom = scale(end.epoch)
-  let height = bottom - top
+  $: top = myScale(start)
+  $: bottom = myScale(end)
+  $: height = bottom - top
 </script>
 
 <style>

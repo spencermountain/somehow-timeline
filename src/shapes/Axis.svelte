@@ -11,8 +11,8 @@
   let start = getContext('start')
   const end = getContext('end')
   const scale = getContext('scale')
+  let diff = $start.diff($end)
 
-  let diff = start.diff(end)
   // choose the scale automatically
   if (diff.years > 400) {
     every = 'century'
@@ -44,17 +44,12 @@
 
   const underline = {
     hour: /12:00/,
-    // day://,
-    // week://,
-    // month://,
-    // quarter://,
     year: /00$/,
     decade: /00$/,
-    // century://,
   }
 
-  start = start.minus(1, 'second')
-  let arr = spacetime(start).every(every, end)
+  $start = $start.minus(1, 'second')
+  let arr = $start.every(every, end)
   let ticks = arr.map(s => {
     let y = scale(s.epoch) - 5
     let label = s.format(format)
@@ -76,11 +71,13 @@
     white-space: nowrap;
     left: 6px;
     text-align: left;
-    font-size: 10px;
     transform: translate(0px, -8px);
     opacity: 0.5;
+    height: 1.3rem;
+    font-size: 8px;
   }
   .underline {
+    font-size: 10px;
     border-bottom: 1px solid grey;
     opacity: 1;
   }

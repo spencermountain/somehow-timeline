@@ -1,14 +1,14 @@
 <script>
-  import { Timeline, Axis, Line, Column, Point, Era, Dash } from './src'
-  let dashes = [1773]
+  import { Timeline, Axis, Line, Column, Point, Era, Dash, Ticks } from './src'
+  let dashes = [1773, 1992, 1823, 1850]
   let height = 900
   let start = '1660'
   setTimeout(() => {
-    // dashes.push(1892)
-    // dashes.push(1792)
-    // dashes.push(1692)
+    dashes.push(1892)
+    dashes.push(1792)
+    dashes.push(1692)
     // dashes[0] += 140
-    // dashes = dashes
+    dashes = dashes
     // height = 300
     // start = 'jan 1 1560'
   }, 1200)
@@ -58,8 +58,9 @@
         <Era start="1700" end="1800" label="1700s" />
         <Era start="1800" end="1900" label="1800s" />
         <Era start="1900" label="1900s" />
-      </Column>
-      <Axis />
+      </Column>-->
+      <!-- <Axis /> -->
+      <Ticks every="decade" />
       <Column>
         <Line start="1740" end="1744" label="irish famine" color="red" />
         <Line start="1775" end="1783" label="U.S. independence" color="red" />
@@ -72,7 +73,6 @@
       <Column>
         <Line start="1867" label="Canada" color="blue" />
       </Column>
--->
     </Timeline>
   </div>
 </div>

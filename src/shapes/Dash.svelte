@@ -2,7 +2,7 @@
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
   import c from 'spencer-color'
-  let myScale = getContext('myScale')
+  let myScale = getContext('scale')
   export let width = '25px'
   export let height = '3px'
   export let opacity = '1'
@@ -23,7 +23,6 @@
   }
 </style>
 
-${top}
 <div
   class="container"
   style="min-width:{width}; opacity:{opacity}; top:{top}px; height:{height}; background-color:{color};" />

@@ -17,7 +17,7 @@
 
   start = spacetime(date)
   const scale = getContext('scale')
-  let top = scale(start.epoch)
+  $: top = myScale(start.epoch)
 </script>
 
 <style>
