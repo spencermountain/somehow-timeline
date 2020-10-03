@@ -1,8 +1,8 @@
 <script>
-  // import { fade } from 'svelte/transition'
-  // in:fly={{ x: 200, duration: 500 }}
-  // export let width = ''
+  import c from 'spencer-color'
   export let label = ''
+  export let color = 'steelblue'
+  color = c.colors[color] || color
   export let title = ''
   export let margin = '20px'
   label = label || title
@@ -24,6 +24,6 @@
 </style>
 
 <div class="part column" style="margin:0px {margin} 0px {margin}; ">
-  <div class="label">{label}</div>
+  <div class="label" style="color:{color};">{label}</div>
   <slot />
 </div>

@@ -92,8 +92,6 @@
   }
 </style>
 
-<div>{' -'}</div>
-
 <div class="container" style="opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; " {title}>
 
   <!-- label -->
