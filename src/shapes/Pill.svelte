@@ -5,6 +5,7 @@
   import c from 'spencer-color'
   let w = 100
   $: isTiny = w < 100
+  let show = false
 
   let myScale = getContext('scale')
   export let color = 'steelblue'
@@ -14,6 +15,7 @@
   export let opacity = '0.7'
   export let size = '1rem'
   export let label = ''
+  export let sub = ''
   export let duration = ''
   export let onClick = () => {}
   export let start = getContext('start')
@@ -68,22 +70,37 @@
     box-shadow: 2px 2px 8px 0px steelblue;
   }
   .label {
+    position: absolute;
+    width: 150px;
+    left: 30px;
+    min-height: 50px;
     flex: 1;
-    margin-left: 10%;
+    z-index: 6;
+    font-size: 1.6rem;
+    /* background-color: #fbfbfb; */
+    /* border-radius: 5px; */
     /* max-width:50%; */
   }
-  .isTiny {
-    font-size: 0.7rem;
+  .sub {
+    color: grey;
+    font-size: 1rem;
   }
 </style>
 
 <div class="container" style="opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; " {title}>
 
   <!-- line -->
-  <div class="line" style="max-width:{width}; background-color:{color};" />
-  <div class="label" bind:clientWidth={w} style="color:{color}; font-size:{size};" class:isTiny on:click={onClick}>
-    {label}
-  </div>
+  <div
+    class="line"
+    style="max-width:{width}; background-color:{color};"
+    on:mouseover={() => (show = true)}
+    on:mouseout={() => (show = false)} />
+  {#if show}
+    <div class="label" bind:clientWidth={w} style="color:{color}; font-size:{size};" on:click={onClick}>
+      {label}
+      <div class="sub">{sub}</div>
+    </div>
+  {/if}
 
   <!-- {#if dotted === true}
     <div class="dots" style="background-color: {'white'};">

@@ -24,6 +24,7 @@
 
   let start = getContext('start')
   const end = getContext('end')
+
   const scale = getContext('scale')
 
   const doUnderline = {

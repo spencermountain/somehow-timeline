@@ -49,7 +49,7 @@
   }
 
   $start = $start.minus(1, 'second')
-  let arr = $start.every(every, end)
+  let arr = $start.every(every, $end)
   let ticks = arr.map(s => {
     let y = scale(s.epoch) - 5
     let label = s.format(format)
