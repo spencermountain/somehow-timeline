@@ -1,5 +1,5 @@
 <script>
-  import { Timeline, Axis, Line, Column, Point, Era, Dash, Ticks } from './src'
+  import { Timeline, Axis, Line, Column, Point, Era, Dash, Ticks, Label } from './src'
   let dashes = [1773, 1992, 1823, 1850]
   let height = 900
   let start = '1660'
@@ -77,19 +77,23 @@
     <span class="grey">- its a svelte component rendered using spacetime.</span>
   </div>
   <div class="container row">
-    <div class="text">
+    <!-- <div class="text">
       time
       <br />
       spent
       <br />
       writing
     </div>
-    <div class="dash" />
-    <div style="height:100%; max-width:300px; flex:1;">
-      <Timeline start="Jan 1 2020" end="Dec 30 2020" height="600" width="500">
-        <Line start="January 1 2020" end="Feb 20 2020" color="pink" dotted={true} label="Typing" />
-        <Line start="Feb 20 2020" end="November 11 2020" dotted={true} color="#6699cc" label="Refactoring" />
-        <Line start="November 11 2020" end="December 20 2020" dotted={true} color="fire" label="Proof-reading" />
+    <div class="dash" /> -->
+    <div style="height:100%; width:400px;">
+      <Timeline start="Jan 1 2020" end="Dec 30 2020" height="600" width="200">
+        <Column width="100px">
+
+          <Label start="January 1 2020" end="Feb 20 2020" color="pink" dotted={true} label="Typing" />
+          <Label start="Feb 20 2020" end="November 11 2020" color="#6699cc" label="Refactoring" />
+          <Label start="November 11 2020" end="December 20 2020" dotted={true} color="fire" label="Proof-reading" />
+        </Column>
+        <Column width="100px" />
       </Timeline>
     </div>
   </div>

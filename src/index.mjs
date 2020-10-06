@@ -17,6 +17,7 @@ export { default as Img } from './shapes/Img.svelte'
 export { default as Duration } from './shapes/Duration.svelte'
 export { default as Point } from './shapes/Point.svelte'
 export { default as Text } from './shapes/Text.svelte'
+export { default as Label } from './shapes/Label.svelte'
 
 export { default as colors } from 'spencer-color'
 

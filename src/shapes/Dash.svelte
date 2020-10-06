@@ -1,8 +1,8 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
-  import c from 'spencer-color'
   let myScale = getContext('scale')
+  import c from 'spencer-color'
   export let width = '25px'
   export let height = '3px'
   export let opacity = '1'
