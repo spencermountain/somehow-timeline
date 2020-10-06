@@ -94,9 +94,10 @@
     class="line"
     style="max-width:{width}; background-color:{color};"
     on:mouseover={() => (show = true)}
-    on:mouseout={() => (show = false)} />
+    on:mouseout={() => (show = false)}
+    on:click={() => onClick()} />
   {#if show}
-    <div class="label" bind:clientWidth={w} style="color:{color}; font-size:{size};" on:click={onClick}>
+    <div class="label" bind:clientWidth={w} style="color:{color}; font-size:{size};">
       {label}
       <div class="sub">{sub}</div>
     </div>
