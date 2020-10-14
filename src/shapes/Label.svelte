@@ -94,7 +94,7 @@
   {title}>
 
   {#if topLabel}
-    <div class="top" class:hide style="color:{color};">{topLabel}</div>
+    <div class="top" class:hide style="color:{color}; color:{color}; font-size:{size};">{topLabel}</div>
   {/if}
   <!-- line -->
   <div class="line" style="max-width:{width}; background-color:{color};" />

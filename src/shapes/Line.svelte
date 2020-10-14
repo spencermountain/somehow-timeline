@@ -7,6 +7,7 @@
   let myScale = getContext('scale')
   export let color = 'steelblue'
   export let width = '100%'
+  export let hide = false
   export let title = ''
   export let margin = 2
   export let opacity = '0.7'
@@ -90,20 +91,24 @@
     writing-mode: vertical-lr;
     transform: rotate(-180deg);
   }
+  .hide {
+    display: none;
+  }
 </style>
 
 <div class="container" style="opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; " {title}>
 
   <!-- label -->
   {#if height > 20}
-    <div class="midLabel" class:rotate>
+    <div class="midLabel" class:rotate class:hide>
       {@html label}
     </div>
   {:else}
     <div
       class="topLabel"
       style="color:{color}; text-decoration:{underline === true ? 'underline' : 'none'};"
-      class:rotate>
+      class:rotate
+      class:hide>
       {@html label}
     </div>
   {/if}

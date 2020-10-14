@@ -7,6 +7,7 @@
   export let opacity = '1'
   export let size = '1rem'
   export let start = null
+  export let underline = false
   export let date = start
   export let label = ''
 
@@ -20,10 +21,16 @@
 <style>
   .container {
     position: absolute;
-    border-radius: 2px;
+  }
+  .underline {
+    border-bottom: 1px solid steelblue;
+    /* text-decoration:underline; */
   }
 </style>
 
-<div class="container" style="min-width:{width}; color:{color}; opacity:{opacity}; top:{top}px; font-size:{size};">
+<div
+  class="container"
+  class:underline
+  style="min-width:{width}; color:{color}; opacity:{opacity}; top:{top}px; font-size:{size};">
   {label}
 </div>

@@ -6,6 +6,7 @@
   export let width = '25px'
   export let height = '3px'
   export let opacity = '1'
+  export let title = ''
   export let start = null //getContext('start')
   export let date = start
 
@@ -26,4 +27,5 @@
 
 <div
   class="container"
+  {title}
   style="min-width:{width}; opacity:{opacity}; top:{top}px; height:{height}; background-color:{color};" />
