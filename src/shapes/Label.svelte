@@ -7,12 +7,15 @@
   $: isTiny = w < 100
 
   let myScale = getContext('scale')
+  export let topLabel = ''
   export let color = 'steelblue'
   export let width = '100%'
   export let title = ''
+  export let hide = false
+  export let dodge = '0px'
   export let margin = 2
   export let opacity = '0.7'
-  export let size = '1rem'
+  export let size = '0.8rem'
   export let label = ''
   export let duration = ''
   export let onClick = () => {}
@@ -69,19 +72,39 @@
   }
   .label {
     flex: 1;
-    margin-left: 10%;
+    margin-left: 0.8rem;
     /* max-width:50%; */
   }
   .isTiny {
     font-size: 0.7rem;
   }
+  .top {
+    position: absolute;
+    top: -1.8rem;
+    width: 100%;
+  }
+  .hide {
+    display: none;
+  }
 </style>
 
-<div class="container" style="opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; " {title}>
+<div
+  class="container"
+  style="opacity:{opacity}; top:{top + margin}px; left:{dodge}; height:{height - margin * 2}px; "
+  {title}>
 
+  {#if topLabel}
+    <div class="top" class:hide style="color:{color};">{topLabel}</div>
+  {/if}
   <!-- line -->
   <div class="line" style="max-width:{width}; background-color:{color};" />
-  <div class="label" bind:clientWidth={w} style="color:{color}; font-size:{size};" class:isTiny on:click={onClick}>
+  <div
+    class="label"
+    class:hide
+    bind:clientWidth={w}
+    style="color:{color}; font-size:{size};"
+    class:isTiny
+    on:click={onClick}>
     {label}
   </div>
 

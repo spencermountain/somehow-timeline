@@ -7,6 +7,7 @@
   export let date = start
 
   export let text = ''
+  export let hide = true
   export let label = text
   export let subtitle = ''
   export let font = '1.2rem'
@@ -17,7 +18,7 @@
 
   start = spacetime(date)
   const scale = getContext('scale')
-  $: top = myScale(start.epoch)
+  $: top = scale(start.epoch)
 </script>
 
 <style>
@@ -51,14 +52,22 @@
     min-width: 8rem;
     margin-left: 3rem;
   }
+  .hide {
+    display: none;
+  }
+  .circle:hover {
+    display: block;
+  }
 </style>
 
-<div class="container row nowrap" style="top:{top}px; width:100%;">
-  <div class="text" style="font-size:{font};">
-    {@html label}
+<div style="position:absolute; top:{top}px; width:100%;">
+  <div class="container row nowrap">
+    <div class="text" class:hide style="font-size:{font};">
+      {@html label}
+    </div>
+    <div class="subtitle">
+      {@html subtitle}
+    </div>
+    <div class="circle" style="min-height:{size}px; min-width:{size}px; background-color:{color};" />
   </div>
-  <div class="subtitle">
-    {@html subtitle}
-  </div>
-  <div class="circle" style="min-height:{size}px; min-width:{size}px; background-color:{color};" />
 </div>

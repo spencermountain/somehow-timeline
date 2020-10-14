@@ -6,6 +6,7 @@ export { default as Axis } from './shapes/Axis.svelte'
 export { default as Column } from './shapes/Column.svelte'
 
 export { default as WideLabel } from './shapes/WideLabel.svelte'
+export { default as Horizontal } from './shapes/Horizontal.svelte'
 export { default as Now } from './shapes/Now.svelte'
 
 export { default as Line } from './shapes/Line.svelte'

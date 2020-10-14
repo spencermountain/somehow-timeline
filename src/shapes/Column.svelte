@@ -1,6 +1,7 @@
 <script>
   import c from 'spencer-color'
   export let label = ''
+  export let width = ''
   export let color = 'steelblue'
   color = c.colors[color] || color
   export let title = ''
@@ -23,7 +24,7 @@
   }
 </style>
 
-<div class="part column" style="margin:0px {margin} 0px {margin}; ">
+<div class="part column" style="margin:0px {margin} 0px {margin}; max-width:{width}; min-width:{width};">
   <div class="label" style="color:{color};">{label}</div>
   <slot />
 </div>
