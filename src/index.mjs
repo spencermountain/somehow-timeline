@@ -7,6 +7,7 @@ export { default as Column } from './shapes/Column.svelte'
 
 export { default as WideLabel } from './shapes/WideLabel.svelte'
 export { default as Horizontal } from './shapes/Horizontal.svelte'
+export { default as Region } from './shapes/Region.svelte'
 export { default as Now } from './shapes/Now.svelte'
 
 export { default as Line } from './shapes/Line.svelte'
