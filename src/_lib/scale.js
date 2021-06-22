@@ -7,4 +7,4 @@ const scaleLinear = function (obj, num) {
   let size = world[1] - world[0]
   return parseInt(size * percent, 10)
 }
-module.exports = scaleLinear
+export default scaleLinear
