@@ -20,7 +20,7 @@
   setContext('end', e)
   setContext('colors', colors)
 
-  let myScale = epoch => {
+  let myScale = (epoch) => {
     return linear(
       {
         world: [0, $h],
@@ -32,15 +32,18 @@
   setContext('scale', myScale)
 
   afterUpdate(() => {
-    console.log('update')
     $h = height
     $s = spacetime(start)
     $e = spacetime(end)
-    setContext('height', h)
-    setContext('start', s)
-    setContext('end', e)
+    setContext('height', height)
+    setContext('start', spacetime(start))
+    setContext('end', spacetime(end))
   })
 </script>
+
+<div class="timeline" style="height:{$h}px">
+  <slot />
+</div>
 
 <style>
   :global(.part) {
@@ -58,7 +61,3 @@
     /* border: 1px solid grey; */
   }
 </style>
-
-<div class="timeline" style="height:{$h}px">
-  <slot />
-</div>
