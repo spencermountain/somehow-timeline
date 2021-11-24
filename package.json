@@ -1,7 +1,17 @@
 {
   "name": "somehow-timeline",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "./src/index.mjs",
+  "module": "./src/index.mjs",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "require": "./src/index.mjs",
+      "import": "./src/index.mjs",
+      "default": "./src/index.mjs"
+    }
+  },
   "scripts": {
     "build": "rollup -c",
     "start": "rollup -c -w",
