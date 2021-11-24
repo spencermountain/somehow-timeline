@@ -29,7 +29,7 @@
     "d3-shape": "2.0.0",
     "somehow-ticks": "0.0.3",
     "spacetime": "6.6.3",
-    "spencer-color": "^0.1.0"
+    "spencer-color": "0.2.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "15.0.0",

@@ -1,14 +1,14 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
-  import c from 'spencer-color'
+  import { colors } from 'spencer-color'
   export let format = ''
   export let every = 'month'
   export let size = '12px'
   export let underline = false
   export let color = 'grey'
   export let opacity = '1'
-  color = c.colors[color] || color
+  color = colors[color] || color
 
   const formats = {
     hour: '{hour}{ampm}',
@@ -35,7 +35,7 @@
 
   $start = $start.minus(1, 'second')
   let arr = $start.every(every, end)
-  let ticks = arr.map(s => {
+  let ticks = arr.map((s) => {
     let y = scale(s.epoch)
     let label = s.format(format)
     return {
@@ -45,6 +45,18 @@
     }
   })
 </script>
+
+<div class="container" style="opacity:{opacity};">
+  {#each ticks as tick}
+    <div
+      class="label"
+      class:underline={underline || tick.underline}
+      style="top:{tick.value}px; color:{color}; font-size:{size};"
+    >
+      {tick.label}
+    </div>
+  {/each}
+</div>
 
 <style>
   .container {
@@ -67,14 +79,3 @@
     border-bottom: 1px solid grey;
   }
 </style>
-
-<div class="container" style="opacity:{opacity};">
-  {#each ticks as tick}
-    <div
-      class="label"
-      class:underline={underline || tick.underline}
-      style="top:{tick.value}px; color:{color}; font-size:{size};">
-      {tick.label}
-    </div>
-  {/each}
-</div>

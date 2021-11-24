@@ -2,7 +2,7 @@
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
   import Dots from './Dots.svelte'
-  import c from 'spencer-color'
+  import { colors } from 'spencer-color'
 
   let myScale = getContext('scale')
   export let color = 'steelblue'
@@ -26,7 +26,7 @@
     end = start.add(words[0], words[1])
   }
 
-  color = c.colors[color] || color
+  color = colors[color] || color
   start = start.epoch
   end = spacetime(end).epoch
 
@@ -40,6 +40,33 @@
   $: bottom = myScale(end)
   $: height = bottom - top
 </script>
+
+<div class="container" style="opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; " {title}>
+  <!-- label -->
+  {#if height > 20}
+    <div class="midLabel" class:rotate class:hide>
+      {@html label}
+    </div>
+  {:else}
+    <div
+      class="topLabel"
+      style="color:{color}; text-decoration:{underline === true ? 'underline' : 'none'};"
+      class:rotate
+      class:hide
+    >
+      {@html label}
+    </div>
+  {/if}
+
+  <!-- line -->
+  <div class="line" style="width:{width}; background-color:{color};" />
+
+  {#if dotted === true}
+    <div class="dots" style="background-color: {'white'};">
+      <Dots {color} />
+    </div>
+  {/if}
+</div>
 
 <style>
   .container {
@@ -95,31 +122,3 @@
     display: none;
   }
 </style>
-
-<div class="container" style="opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; " {title}>
-
-  <!-- label -->
-  {#if height > 20}
-    <div class="midLabel" class:rotate class:hide>
-      {@html label}
-    </div>
-  {:else}
-    <div
-      class="topLabel"
-      style="color:{color}; text-decoration:{underline === true ? 'underline' : 'none'};"
-      class:rotate
-      class:hide>
-      {@html label}
-    </div>
-  {/if}
-
-  <!-- line -->
-  <div class="line" style="width:{width}; background-color:{color};" />
-
-  {#if dotted === true}
-    <div class="dots" style="background-color: {'white'};">
-      <Dots {color} />
-    </div>
-  {/if}
-
-</div>

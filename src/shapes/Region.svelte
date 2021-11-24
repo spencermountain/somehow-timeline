@@ -4,8 +4,8 @@
   export let left = '10%'
   export let align = 'left'
   export let color = 'black'
-  import c from 'spencer-color'
-  color = c.colors[color] || color
+  import { colors } from 'spencer-color'
+  color = colors[color] || color
   import { getContext } from 'svelte'
   import spacetime from 'spacetime'
   const scale = getContext('scale')
@@ -32,6 +32,12 @@
   $: height = bottom - top
 </script>
 
+<div
+  class="region"
+  style="top:{top}px; width: {width}; opacity:{opacity}; height: {height}px; left:{left}; text-align:{align}; color:{color};
+  background-color:{color};"
+/>
+
 <style>
   .region {
     height: 100%;
@@ -49,8 +55,3 @@
     box-shadow: 2px 2px 8px 0px steelblue;
   }
 </style>
-
-<div
-  class="region"
-  style="top:{top}px; width: {width}; opacity:{opacity}; height: {height}px; left:{left}; text-align:{align}; color:{color};
-  background-color:{color};" />

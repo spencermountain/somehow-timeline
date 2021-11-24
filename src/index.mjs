@@ -22,6 +22,6 @@ export { default as Text } from './shapes/Text.svelte'
 export { default as Label } from './shapes/Label.svelte'
 export { default as Pill } from './shapes/Pill.svelte'
 
-export { default as colors } from 'spencer-color'
+// export { colors } from 'spencer-color'
 
 export { default as MainLine } from './shapes/MainLine.svelte'

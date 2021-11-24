@@ -1,7 +1,6 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
-  import c from 'spencer-color'
   export let start = ''
   export let end = ''
   export let text = ''
@@ -15,6 +14,12 @@
   $: bottom = myScale(end)
   $: height = bottom - top
 </script>
+
+<div class="row container" style="top:{top}px; height:{height}px;">
+  <div class="side" />
+  <div class="line" />
+  <div class="side label" style="color:{color};">{label}</div>
+</div>
 
 <style>
   .container {
@@ -39,9 +44,3 @@
     font-size: 1.4rem;
   }
 </style>
-
-<div class="row container" style="top:{top}px; height:{height}px;">
-  <div class="side" />
-  <div class="line" />
-  <div class="side label" style="color:{color};">{label}</div>
-</div>

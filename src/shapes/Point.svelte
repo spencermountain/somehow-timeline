@@ -1,7 +1,7 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
-  import c from 'spencer-color'
+  import { colors } from 'spencer-color'
 
   export let start = ''
   export let date = start
@@ -14,12 +14,24 @@
   export let size = '20'
 
   export let color = 'blue'
-  color = c.colors[color] || color
+  color = colors[color] || color
 
   start = spacetime(date)
   const scale = getContext('scale')
   $: top = scale(start.epoch)
 </script>
+
+<div style="position:absolute; top:{top}px; width:100%;">
+  <div class="container row nowrap">
+    <div class="text" class:hide style="font-size:{font};">
+      {@html label}
+    </div>
+    <div class="subtitle">
+      {@html subtitle}
+    </div>
+    <div class="circle" style="min-height:{size}px; min-width:{size}px; background-color:{color};" />
+  </div>
+</div>
 
 <style>
   .container {
@@ -59,15 +71,3 @@
     display: block;
   }
 </style>
-
-<div style="position:absolute; top:{top}px; width:100%;">
-  <div class="container row nowrap">
-    <div class="text" class:hide style="font-size:{font};">
-      {@html label}
-    </div>
-    <div class="subtitle">
-      {@html subtitle}
-    </div>
-    <div class="circle" style="min-height:{size}px; min-width:{size}px; background-color:{color};" />
-  </div>
-</div>

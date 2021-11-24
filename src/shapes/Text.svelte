@@ -1,7 +1,7 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
-  import c from 'spencer-color'
+  import { colors } from 'spencer-color'
   let myScale = getContext('scale')
   export let width = '25px'
   export let opacity = '1'
@@ -12,11 +12,19 @@
   export let label = ''
 
   export let color = 'steelblue'
-  color = c.colors[color] || color
+  color = colors[color] || color
 
   $: d = spacetime(date)
   $: top = myScale(d.epoch)
 </script>
+
+<div
+  class="container"
+  class:underline
+  style="min-width:{width}; color:{color}; opacity:{opacity}; top:{top}px; font-size:{size};"
+>
+  {label}
+</div>
 
 <style>
   .container {
@@ -27,10 +35,3 @@
     /* text-decoration:underline; */
   }
 </style>
-
-<div
-  class="container"
-  class:underline
-  style="min-width:{width}; color:{color}; opacity:{opacity}; top:{top}px; font-size:{size};">
-  {label}
-</div>

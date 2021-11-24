@@ -1,6 +1,6 @@
 <script>
   import { getContext } from 'svelte'
-  import c from 'spencer-color'
+  import { colors } from 'spencer-color'
   import spacetime from 'spacetime'
   export let start = ''
   export let end = ''
@@ -8,7 +8,7 @@
   export let label = ''
   export let opacity = 1
   export let margin = 1
-  color = c.colors[color] || color
+  color = colors[color] || color
   start = spacetime(start)
   end = spacetime(end)
 
@@ -17,6 +17,11 @@
   let bottom = scale(end.epoch)
   let height = bottom - top
 </script>
+
+<div class="container" style=" opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; ">
+  <div class="label" style="color:{color};">{label}</div>
+  <div class="line" style="background-color:{color};" />
+</div>
 
 <style>
   .container {
@@ -42,9 +47,3 @@
     border-radius: 3px;
   }
 </style>
-
-<div class="container" style=" opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; ">
-  <div class="label" style="color:{color};">{label}</div>
-  <div class="line" style="background-color:{color};" />
-
-</div>

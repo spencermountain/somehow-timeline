@@ -6,13 +6,20 @@
   export let left = '10%'
   export let align = 'left'
   export let color = 'black'
-  import c from 'spencer-color'
-  color = c.colors[color] || color
+  import { colors } from 'spencer-color'
+  color = colors[color] || color
   import { getContext } from 'svelte'
   import spacetime from 'spacetime'
   const scale = getContext('scale')
   let y = scale(spacetime(date).epoch)
 </script>
+
+<div
+  class="wide line"
+  style="top:{y}px; width: {width}; left:{left}; text-align:{align}; color:{color}; background-color:{color};"
+>
+  <div class="label" class:hide>{label}</div>
+</div>
 
 <style>
   .line {
@@ -40,9 +47,3 @@
     display: none;
   }
 </style>
-
-<div
-  class="wide line"
-  style="top:{y}px; width: {width}; left:{left}; text-align:{align}; color:{color}; background-color:{color};">
-  <div class="label" class:hide>{label}</div>
-</div>

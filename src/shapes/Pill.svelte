@@ -1,8 +1,7 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
-  import Dots from './Dots.svelte'
-  import c from 'spencer-color'
+  import { colors } from 'spencer-color'
   let w = 100
   $: isTiny = w < 100
   let show = false
@@ -28,7 +27,7 @@
     end = start.add(words[0], words[1])
   }
 
-  color = c.colors[color] || color
+  color = colors[color] || color
   start = start.epoch
   end = spacetime(end).epoch
 
@@ -42,6 +41,29 @@
   $: bottom = myScale(end)
   $: height = bottom - top
 </script>
+
+<div class="container" style="opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; " {title}>
+  <!-- line -->
+  <div
+    class="line"
+    style="max-width:{width}; background-color:{color};"
+    on:mouseover={() => (show = true)}
+    on:mouseout={() => (show = false)}
+    on:click={() => onClick()}
+  />
+  {#if show}
+    <div class="label" bind:clientWidth={w} style="color:{color}; font-size:{size};">
+      {label}
+      <div class="sub">{sub}</div>
+    </div>
+  {/if}
+
+  <!-- {#if dotted === true}
+    <div class="dots" style="background-color: {'white'};">
+      <Dots {color} />
+    </div>
+  {/if} -->
+</div>
 
 <style>
   .container {
@@ -86,27 +108,3 @@
     font-size: 1rem;
   }
 </style>
-
-<div class="container" style="opacity:{opacity}; top:{top + margin}px; height:{height - margin * 2}px; " {title}>
-
-  <!-- line -->
-  <div
-    class="line"
-    style="max-width:{width}; background-color:{color};"
-    on:mouseover={() => (show = true)}
-    on:mouseout={() => (show = false)}
-    on:click={() => onClick()} />
-  {#if show}
-    <div class="label" bind:clientWidth={w} style="color:{color}; font-size:{size};">
-      {label}
-      <div class="sub">{sub}</div>
-    </div>
-  {/if}
-
-  <!-- {#if dotted === true}
-    <div class="dots" style="background-color: {'white'};">
-      <Dots {color} />
-    </div>
-  {/if} -->
-
-</div>

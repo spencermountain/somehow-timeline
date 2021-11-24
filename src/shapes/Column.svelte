@@ -1,13 +1,18 @@
 <script>
-  import c from 'spencer-color'
+  import { colors } from 'spencer-color'
   export let label = ''
   export let width = ''
   export let color = 'steelblue'
-  color = c.colors[color] || color
+  color = colors[color] || color
   export let title = ''
   export let margin = '20px'
   label = label || title
 </script>
+
+<div class="part column" style="margin:0px {margin} 0px {margin}; max-width:{width}; min-width:{width};">
+  <div class="label" style="color:{color};">{label}</div>
+  <slot />
+</div>
 
 <style>
   .column {
@@ -23,8 +28,3 @@
     text-align: center;
   }
 </style>
-
-<div class="part column" style="margin:0px {margin} 0px {margin}; max-width:{width}; min-width:{width};">
-  <div class="label" style="color:{color};">{label}</div>
-  <slot />
-</div>

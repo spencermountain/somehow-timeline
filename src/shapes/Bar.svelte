@@ -1,7 +1,7 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
-  import c from 'spencer-color'
+  import { colors } from 'spencer-color'
   export let color = 'steelblue'
   export let width = '25px'
   export let height = '3px'
@@ -14,11 +14,20 @@
     ignore = true
   }
   start = spacetime(start)
-  color = c.colors[color] || color
+  color = colors[color] || color
   const scale = getContext('scale')
   start = start.epoch
   let top = scale(start)
 </script>
+
+{#if ignore === true}
+  <div />
+{:else}
+  <div
+    class="container"
+    style="min-width:{width}; opacity:{opacity}; top:{top}px; height:{height}; left:{left}; background-color:{color};"
+  />
+{/if}
 
 <style>
   .container {
@@ -26,11 +35,3 @@
     border-radius: 2px;
   }
 </style>
-
-{#if ignore === true}
-  <div />
-{:else}
-  <div
-    class="container"
-    style="min-width:{width}; opacity:{opacity}; top:{top}px; height:{height}; left:{left}; background-color:{color};" />
-{/if}

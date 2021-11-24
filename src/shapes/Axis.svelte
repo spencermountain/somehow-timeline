@@ -1,12 +1,12 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
-  import c from 'spencer-color'
+  import { colors } from 'spencer-color'
   export let format = ''
   export let every = 'month'
   export let size = '12px'
   export let color = '#949a9e'
-  color = c.colors[color] || color
+  color = colors[color] || color
 
   let start = getContext('start')
   const end = getContext('end')
@@ -50,7 +50,7 @@
 
   $start = $start.minus(1, 'second')
   let arr = $start.every(every, $end)
-  let ticks = arr.map(s => {
+  let ticks = arr.map((s) => {
     let y = scale(s.epoch) - 5
     let label = s.format(format)
     return {
@@ -60,6 +60,14 @@
     }
   })
 </script>
+
+<div class="container">
+  {#each ticks as tick}
+    <div class="label" class:underline={tick.underline} style="top:{tick.value}px; color:{color}; font-size:{size};">
+      {tick.label}
+    </div>
+  {/each}
+</div>
 
 <style>
   .container {
@@ -82,11 +90,3 @@
     opacity: 1;
   }
 </style>
-
-<div class="container">
-  {#each ticks as tick}
-    <div class="label" class:underline={tick.underline} style="top:{tick.value}px; color:{color}; font-size:{size};">
-      {tick.label}
-    </div>
-  {/each}
-</div>

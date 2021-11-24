@@ -4,7 +4,7 @@
   import scale from '../_lib/scale'
   import * as d3Shape from 'd3-shape'
   import { getContext } from 'svelte'
-  import c from 'spencer-color'
+  import { colors } from 'spencer-color'
   let start = getContext('start')
   let end = getContext('end')
   export let data = []
@@ -12,18 +12,18 @@
   export let opacity = '1'
   export let showTicks = true
   export let color = 'blue'
-  color = c.colors[color] || color
+  color = colors[color] || color
   const yScale = getContext('scale')
 
   // find max x
   let max = 0
-  data.forEach(o => {
+  data.forEach((o) => {
     if (o.x > max) {
       max = o.x
     }
   })
 
-  let xScale = val => {
+  let xScale = (val) => {
     return scale(
       {
         world: [0, width],
@@ -33,7 +33,7 @@
     )
   }
 
-  let points = data.map(obj => {
+  let points = data.map((obj) => {
     let d = spacetime(obj.value)
     return {
       x: xScale(obj.x),
@@ -43,15 +43,15 @@
 
   let path = d3Shape
     .area()
-    .x0(d => d.x)
-    .y0(d => d.y)
+    .x0((d) => d.x)
+    .y0((d) => d.y)
     .y1(6070129)
     .curve(d3Shape.curveMonotoneX)(points)
 
   let line = d3Shape
     .line()
-    .x(d => d.x)
-    .y(d => d.y)
+    .x((d) => d.x)
+    .y((d) => d.y)
     .curve(d3Shape.curveMonotoneX)(points)
 
   let ticks = makeTicks(0, max, 4)
@@ -59,6 +59,19 @@
     ticks = []
   }
 </script>
+
+<div class="container" style="width:{width}px; opacity:{opacity};">
+  <svg preserveAspectRatio="none">
+    <path d={path} fill={color} stroke={color} stroke-width="0" fill-opacity="0.5" />
+    <path d={line} fill="none" stroke={color} stroke-width="3px" />
+  </svg>
+  <div class="ticks">
+    {#each ticks as tick}
+      <div class="tick" style="left:{tick.value * 100}%; transform:translate(5px)">∣</div>
+      <div class="tick" style="top:12px; left:{tick.value * 100}%;">{tick.label}</div>
+    {/each}
+  </div>
+</div>
 
 <style>
   .container {
@@ -83,16 +96,3 @@
     font-size: 12px;
   }
 </style>
-
-<div class="container" style="width:{width}px; opacity:{opacity};">
-  <svg preserveAspectRatio="none">
-    <path d={path} fill={color} stroke={color} stroke-width="0" fill-opacity="0.5" />
-    <path d={line} fill="none" stroke={color} stroke-width="3px" />
-  </svg>
-  <div class="ticks">
-    {#each ticks as tick}
-      <div class="tick" style="left:{tick.value * 100}%; transform:translate(5px)">∣</div>
-      <div class="tick" style="top:12px; left:{tick.value * 100}%;">{tick.label}</div>
-    {/each}
-  </div>
-</div>
