@@ -1,7 +1,7 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
-  import { colors } from 'spencer-color'
+  import colors from '../_lib/colors.js'
   export let color = 'light'
   export let width = '2px'
   export let label = ''

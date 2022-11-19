@@ -1,7 +1,7 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
-  import { colors } from 'spencer-color'
+  import colors from '../_lib/colors.js'
   let w = 100
   $: isTiny = w < 100
 
@@ -37,7 +37,6 @@
     end = spacetime(start).add(Number(split[0]), split[1]).epoch
   }
 
-  const scale = getContext('scale')
   $: top = myScale(start)
   $: bottom = myScale(end)
   $: height = bottom - top
@@ -52,7 +51,7 @@
     <div class="top" class:hide style="color:{color}; color:{color}; font-size:{size};">{topLabel}</div>
   {/if}
   <!-- line -->
-  <div class="line" style="max-width:{width}; background-color:{color};" />
+  <div class="line" style="max-width:{width}; min-width:10px; background-color:{color};" />
   <div
     class="label"
     class:hide
@@ -107,7 +106,7 @@
   }
   .top {
     position: absolute;
-    top: -1.8rem;
+    top: -1.2rem;
     width: 100%;
   }
   .hide {

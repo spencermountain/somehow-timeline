@@ -1,5 +1,5 @@
 <script>
-  import { colors } from 'spencer-color'
+  import colors from '../_lib/colors.js'
   export let label = ''
   export let width = ''
   export let color = 'steelblue'

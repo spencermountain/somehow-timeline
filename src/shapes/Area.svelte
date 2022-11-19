@@ -4,7 +4,7 @@
   import scale from '../_lib/scale'
   import * as d3Shape from 'd3-shape'
   import { getContext } from 'svelte'
-  import { colors } from 'spencer-color'
+  import colors from '../_lib/colors.js'
   let start = getContext('start')
   let end = getContext('end')
   export let data = []

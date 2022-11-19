@@ -2,7 +2,7 @@
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
   let myScale = getContext('scale')
-  import { colors } from 'spencer-color'
+  import colors from '../_lib/colors.js'
   export let width = '25px'
   export let height = '3px'
   export let opacity = '1'

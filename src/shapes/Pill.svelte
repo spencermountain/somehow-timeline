@@ -1,7 +1,7 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
-  import { colors } from 'spencer-color'
+  import colors from '../_lib/colors.js'
   let w = 100
   $: isTiny = w < 100
   let show = false

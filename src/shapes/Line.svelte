@@ -2,7 +2,7 @@
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
   import Dots from './Dots.svelte'
-  import { colors } from 'spencer-color'
+  import colors from '../_lib/colors.js'
 
   let myScale = getContext('scale')
   export let color = 'steelblue'

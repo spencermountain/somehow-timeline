@@ -1,7 +1,7 @@
 <script>
   import spacetime from 'spacetime'
   import { getContext } from 'svelte'
-  import { colors } from 'spencer-color'
+  import colors from '../_lib/colors.js'
   export let color = 'steelblue'
   export let width = '25px'
   export let height = '3px'

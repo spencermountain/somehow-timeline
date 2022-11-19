@@ -1,6 +1,6 @@
 <script>
   import { getContext } from 'svelte'
-  import { colors } from 'spencer-color'
+  import colors from '../_lib/colors.js'
   import spacetime from 'spacetime'
   export let start = ''
   export let end = ''

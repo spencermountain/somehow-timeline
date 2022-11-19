@@ -6,7 +6,7 @@
   export let left = '10%'
   export let align = 'left'
   export let color = 'black'
-  import { colors } from 'spencer-color'
+  import colors from '../_lib/colors.js'
   color = colors[color] || color
   import { getContext } from 'svelte'
   import spacetime from 'spacetime'
