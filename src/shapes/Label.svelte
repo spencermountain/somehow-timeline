@@ -44,19 +44,19 @@
 
 <div
   class="container"
-  style="opacity:{opacity}; top:{top + margin}px; left:{dodge}; height:{height - margin * 2}px; "
+  style="position:relative; opacity:{opacity}; top:{top + margin}px; left:{dodge}; height:{height - margin * 2}px; "
   {title}
 >
   {#if topLabel}
     <div class="top" class:hide style="color:{color}; color:{color}; font-size:{size};">{topLabel}</div>
   {/if}
   <!-- line -->
-  <div class="line" style="max-width:{width}; min-width:10px; background-color:{color};" />
+  <div class="line" style="    min-width: 100%; background-color:{color};" />
   <div
     class="label"
     class:hide
     bind:clientWidth={w}
-    style="color:{color}; font-size:{size};"
+    style=" position:absolute; color:{color}; font-size:{size}; transform: rotate(270deg);white-space: nowrap;"
     class:isTiny
     on:click={onClick}
   >
@@ -73,7 +73,7 @@
 <style>
   .container {
     width: 100%;
-    position: absolute;
+    position: relative;
     border-radius: 5px;
     display: flex;
     flex-direction: row;
@@ -99,6 +99,7 @@
   .label {
     flex: 1;
     margin-left: 0.8rem;
+    bottom: 0px;
     /* max-width:50%; */
   }
   .isTiny {
