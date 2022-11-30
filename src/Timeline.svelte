@@ -58,6 +58,7 @@
     text-align: center;
     flex-wrap: nowrap;
     align-self: stretch;
+    margin: 1rem;
     /* border: 1px solid grey; */
   }
 </style>

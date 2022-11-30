@@ -8,7 +8,6 @@
   let myScale = getContext('scale')
   export let topLabel = ''
   export let color = 'steelblue'
-  export let width = '100%'
   export let title = ''
   export let hide = false
   export let dodge = '0px'
@@ -44,14 +43,15 @@
 
 <div
   class="container"
-  style="position:relative; opacity:{opacity}; top:{top + margin}px; left:{dodge}; height:{height - margin * 2}px; "
+  style="position:absolute; opacity:{opacity}; width:150px; top:{top + margin}px; left:{dodge}; height:{height -
+    margin * 2}px; "
   {title}
 >
   {#if topLabel}
     <div class="top" class:hide style="color:{color}; color:{color}; font-size:{size};">{topLabel}</div>
   {/if}
   <!-- line -->
-  <div class="line" style="    min-width: 100%; background-color:{color};" />
+  <div class="line" style="    background-color:{color};" />
   <div
     class="label"
     class:hide
@@ -100,6 +100,8 @@
     flex: 1;
     margin-left: 0.8rem;
     bottom: 0px;
+    width: 50px;
+    height: 20px;
     /* max-width:50%; */
   }
   .isTiny {
