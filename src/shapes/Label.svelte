@@ -15,6 +15,7 @@
   export let opacity = '0.7'
   export let size = '0.8rem'
   export let label = ''
+  export let align = 'right'
   export let duration = ''
   export let onClick = () => {}
   export let start = getContext('start')
@@ -55,6 +56,7 @@
   <div
     class="label"
     class:hide
+    class:left={align === 'left'}
     bind:clientWidth={w}
     style=" position:absolute; color:{color}; font-size:{size}; transform: rotate(270deg);white-space: nowrap;"
     class:isTiny
@@ -109,10 +111,13 @@
   }
   .top {
     position: absolute;
-    top: -1.2rem;
+    top: -1.5rem;
     width: 100%;
   }
   .hide {
     display: none;
+  }
+  .left {
+    left: -50px;
   }
 </style>

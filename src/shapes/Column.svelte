@@ -31,5 +31,8 @@
     .column {
       margin: 0px 5px !important;
     }
+    .label {
+      font-size: 11px;
+    }
   }
 </style>
