@@ -113,6 +113,8 @@
     position: absolute;
     z-index: 3;
     color: #fbfbfb;
+    font-size: 12px;
+    line-height: 1.2rem;
   }
   .rotate {
     writing-mode: vertical-lr;
@@ -120,5 +122,10 @@
   }
   .hide {
     display: none;
+  }
+  @media only screen and (max-width: 600px) {
+    .midLabel {
+      font-size: 11px;
+    }
   }
 </style>

@@ -27,4 +27,9 @@
     z-index: 4;
     text-align: center;
   }
+  @media only screen and (max-width: 600px) {
+    .column {
+      margin: 0px 5px !important;
+    }
+  }
 </style>
