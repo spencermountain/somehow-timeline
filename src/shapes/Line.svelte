@@ -115,6 +115,7 @@
     color: #fbfbfb;
     font-size: 12px;
     line-height: 1.2rem;
+    white-space: nowrap;
   }
   .rotate {
     writing-mode: vertical-lr;
